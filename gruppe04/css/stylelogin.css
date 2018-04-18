@@ -1,0 +1,75 @@
+/*LOGINSITE*/
+    
+    .loginbutton{
+        background:#FFF;
+        color:#DE0027;
+        width: 15em;
+    	height:31.5px;
+    	border: 1.5px solid #999;
+    	border-radius: 0.3em;
+    	border-color:#DE0027;
+    	padding-bottom:3px;
+    	margin-right:8px;
+        margin-top:50px;
+        transition: all .30s ease-in;
+    }
+    .loginbutton:hover, .searchbutton:hover{
+        background-color:#DE0027;
+        color:white;
+    }
+    .loginbutton:focus, .searchbutton:focus{
+        background-color:#393939;
+        color:#DE0027;
+    }
+    #usermail{
+    	width: 15em;
+    	height:31.5px;
+    	border: 1.5px solid #999;
+    	border-radius: 0.3em;
+    	transition: width 0.5s ease-in-out;
+    	border-color:#DE0027;
+    	padding-bottom:3px;
+    	margin-right:8px;
+    	color: #393939;
+    }
+    #password{
+    	width: 15em;
+    	height:31.5px;
+    	border: 1.5px solid #999;
+    	border-radius: 0.3em;
+    	transition: width 0.5s ease-in-out;
+    	border-color:#DE0027;
+    	padding-bottom:3px;
+    	margin-right:8px;
+    	color: #393939;
+    }
+
+
+    #loginman{
+         width:100px;
+         height:100px;
+         margin-left:68px;
+         margin-bottom: 10px;
+         
+        
+    }
+    #loginbox{
+        height:390px;
+        width:270px;
+    }
+
+ 
+
+    .plslogin{
+        font-size:25px;
+        font-weight: lighter;
+        color:#DE0027;
+        text-align:center;
+       
+    }
+     
+     .modal-title{
+       margin-left:152px;
+         color:#DE0027;
+     }
+ 

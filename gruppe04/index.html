@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1" shrink-to-fit="no">
+
+<!--Includes-->
+	<link id="imports" rel="import" href="includes/imports.html">
+	<link id="mapgermanyimport" rel="import" href="includes/mapgermany.html">
+	<link id="mapeuropeimport" rel="import" href="includes/mapeurope.html">
+	<link id="mapnetherlandsimport" rel="import" href="includes/mapnetherlands.html">
+	<link id="mapaustriaimport" rel="import" href="includes/mapaustria.html">
+	<link id="mapbelgiumimport" rel="import" href="includes/mapbelgium.html">
+	<link id="maphungaryimport" rel="import" href="includes/maphungary.html">
+	
+<!--Sylesheets-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+
+<!--Shortcuticon/tabicon-->
+	<link rel="shortcut icon" href="img/favicon.ico">
+
+	<title>apetito | proof of concept</title>
+
+</head>
+
+<body>
+	<div class="container-fluid">
+
+	<!-- PLACE FOR HEADER INCLUDE -->
+		<div id="header"></div>
+
+
+			<div class="row">
+
+	<!-- PLACE FOR SIDENAVIGATION INCLUDE -->
+				<div id="sidebar" class="col-md-3"></div>
+
+
+		<!------MAINFRAME------------------------------------->
+				<div id="mainframe" class="col-md-9">
+
+
+			<!------MAINFRAME CAROUSEL------------------------------------>
+					<div id="carouselExampleIndicators" class="carousel slide" data-interval="false">
+						<ol class="carousel-indicators">
+					
+							<li data-target="#carouselExampleIndicators" data-slide-to="0"></li>
+							<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+							<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+							<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+							<li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+					
+						</ol>
+					
+							<div id="mainframecarousel" class="carousel-inner">
+							
+								<div id="mapeurope" class="carousel-item active">
+								</div>
+							
+								<div id="mapgermany" class="carousel-item">
+								</div>
+							
+								<div id="mapnetherlands" class="carousel-item">
+								</div>
+							
+								<div id="mapaustria" class="carousel-item">
+								</div>
+							
+								<div id="mapbelgium" class="carousel-item">
+								</div>
+							
+								<div id="maphungary" class="carousel-item">
+								</div>
+							</div>
+					
+						<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+										<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+										<span class="sr-only">Previous</span>
+									</a>
+					
+						<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+										<span class="carousel-control-next-icon" aria-hidden="true"></span>
+										<span class="sr-only">Next</span>
+									</a>
+					</div>
+	
+				</div>
+			</div>
+
+<!------FOOTER----------------------------------------->
+
+		<!-- PLACE FOR FOOTER INCLUDE -->
+		<div id="footer" class="row"></div>
+
+<!--CONTAINER CLOSED-->
+	</div>
+
+
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+	<!--IMPORT OF HEADER, SIDENAV, FOOTER & MAPS-->
+
+	<script>
+		var link = document.querySelector('#imports');
+		var imports = link.import;
+
+	// IMPORT HEADER ELEMENT
+		var el = imports.querySelector('#header');
+		document.querySelector("#header").appendChild(el.cloneNode(true));
+
+	// IMPORT FOOD ELEMENT
+		var el = imports.querySelector('#footer');
+		document.querySelector("#footer").appendChild(el.cloneNode(true));
+
+	// IMPORT SIDENAVIGATION ELEMENT
+		var el = imports.querySelector('#navside');
+		document.querySelector("#sidebar").appendChild(el.cloneNode(true));
+		
+	// IMPORT MAP EUROPE
+		var linkEuropeMaps = document.querySelector('#mapeuropeimport');
+		var mapeurope = linkEuropeMaps.import;
+		var el = mapeurope.querySelector('#mapeurope');
+		document.querySelector("#mapeurope").appendChild(el.cloneNode(true));
+
+	// IMPORT MAP GEMRANY
+		var linkMaps = document.querySelector('#mapgermanyimport');
+		var mapgermany = linkMaps.import;
+		var el = mapgermany.querySelector('#mapgermany');
+		document.querySelector("#mapgermany").appendChild(el.cloneNode(true));
+		
+	//IMPORT MAP NETHERLANDS
+		var linkNetherlandsMaps = document.querySelector('#mapnetherlandsimport');
+		var mapnetherlands = linkNetherlandsMaps.import;
+		var el = mapnetherlands.querySelector('#mapnetherlands');
+		document.querySelector("#mapnetherlands").appendChild(el.cloneNode(true));
+		
+	//IMPORT MAP AUSTRIA
+		var linkAustriaMaps = document.querySelector('#mapaustriaimport');
+		var mapaustria = linkAustriaMaps.import;
+		var el = mapaustria.querySelector('#mapaustria');
+		document.querySelector("#mapaustria").appendChild(el.cloneNode(true));
+		
+	//IMPORT MAP BEGIUM
+		var linkBelgiumMaps = document.querySelector('#mapbelgiumimport');
+		var mapbelgium = linkBelgiumMaps.import;
+		var el = mapbelgium.querySelector('#mapbelgium');
+		document.querySelector("#mapbelgium").appendChild(el.cloneNode(true));
+		
+	//IMPORT MAP HUNGARY
+		var linkHungaryMaps = document.querySelector('#maphungaryimport');
+		var maphungary = linkHungaryMaps.import;
+		var el = maphungary.querySelector('#maphungary');
+		document.querySelector("#maphungary").appendChild(el.cloneNode(true));
+	
+</script>
+
+
+
+
+</body>
+
+</html>

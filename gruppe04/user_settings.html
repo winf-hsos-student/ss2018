@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1" shrink-to-fit="no">
+
+	<!--Includes-->
+	<link id="imports" rel="import" href="includes/imports.html">
+
+	<!--Sylesheets-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+
+	<!--Shortcuticon/tabicon-->
+	<link rel="shortcut icon" href="img/favicon.ico">
+
+	<title>apetito | proof of concept</title>
+
+</head>
+
+<body>
+
+	<div class="container-fluid">
+
+		<!-- Platzhalter für header include -->
+		<div id="header"></div>
+
+
+		<div class="row" id="sidebarleft">
+			<!------SIDEBAR LEFT---------------------------------->
+			<div id="sidebar" class="col-md-3"></div>
+
+
+			<!------MAINFRAME------------------------------------->
+			<div class="col-md-9" id="mainframe">
+
+
+				   <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<h3 class="text-center">
+				profile settings
+			</h3>
+			<div class="row">
+				<div class="col-md-9">
+					<form role="form">
+						<div class="form-group">
+							 
+							<label for="exampleInputEmail1">
+								Email address
+							</label>
+							<input type="email" class="form-control" id="exampleInputEmail1" />
+						</div>
+						<div class="form-group">
+							 
+							<label for="exampleInputPassword1">
+								Password
+							</label>
+							<input type="password" class="form-control" id="exampleInputPassword1" />
+						</div>
+						<div class="form-group">
+							 
+							<label for="exampleInputFile">
+								File input
+							</label>
+							<input type="file" class="form-control-file" id="exampleInputFile" />
+							<p class="help-block">
+								Choose a file for your profile picture.
+							</p>
+						</div>
+						
+						<button type="submit" class="btn btn-primary">
+							Upload
+						</button>
+					</form>
+				</div>
+				<div class="col-md-3">
+					<img alt="Bootstrap Image Preview" src="img/apetitologo.png" class="rounded-circle" />
+				</div>
+			</div>
+						<form role="form">
+				<div class="form-group">
+					 
+					<label for="exampleInputEmail1">
+						surname
+					</label>
+					<input type="surname" class="form-control" id="exampleInputEmail1" />
+				</div>
+				<div class="form-group">
+					 
+					<label for="exampleInputPassword1">
+						name
+					</label>
+					<input type="name" class="form-control" id="exampleInputPassword1" />
+				</div>
+				
+				</div>
+				
+				</div> 
+				
+			</form>
+			<form role="form">
+				<div class="form-group">
+					 
+					<label for="exampleInputEmail1">
+						personal number
+					</label>
+					<input type="peronal number" class="form-control" id="exampleInputEmail1" />
+				</div>
+				<div class="form-group">
+					 
+					<label for="exampleInputPassword1">
+						direct dialing
+					</label>
+					<input type="direct dialing" class="form-control" id="exampleInputPassword1" />
+				</div>
+				
+				</div>
+				
+				</div> 
+				
+			</form> 
+			<button type="button" class="btn btn-success btn-block">
+				save settings
+			</button>
+		</div>
+	</div>
+</div>
+
+			</div>
+		</div>
+
+		<!------FOOTER----------------------------------------->
+
+		<div id="footer" class="row">
+
+		</div>
+	</div>
+
+
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+	<script>
+		/* Import the navigation so that we don't have
+		 * to make changes on every site when we add
+		 * something to it. */
+		var link = document.querySelector('#imports');
+		var imports = link.import;
+
+		// Import the header element
+		var el = imports.querySelector('#header');
+		document.querySelector("#header").appendChild(el.cloneNode(true));
+
+		// Import the footer element
+		var el = imports.querySelector('#footer');
+		document.querySelector("#footer").appendChild(el.cloneNode(true));
+
+		// Import the navside element
+		var el = imports.querySelector('#navside');
+		document.querySelector("#sidebar").appendChild(el.cloneNode(true));
+	</script>
+</body>
+
+</html>
