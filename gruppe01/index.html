@@ -1,371 +1,280 @@
 <!doctype html>
-<html lang="en">
+<html lang="de">
 
 <head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<link rel="stylesheet" href="assets/owlcarousel/assets/owl.carousel.min.css">
-  <link rel="stylesheet" href="assets/owlcarousel/assets/owl.theme.default.min.css">
+   <!-- Required meta tags -->
 
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<!-- Navigation -->
-	<link rel="import" id="navigationimport" href="includes/navigation.html">
-	<link rel="import" id="footerimport" href="includes/footer.html">
+   <!-- Bootstrap CSS -->
 
-	<!-- Your custom styles -->
-	<link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <link rel="stylesheet" href="assets/owlcarousel/assets/owl.carousel.min.css">
+   <link rel="stylesheet" href="assets/owlcarousel/assets/owl.theme.default.min.css">
 
-	<title>GülleMarkt24</title></title>
+   <!-- Navigation and Footer -->
+
+   <link rel="import" id="navigationimport" href="includes/navigation.html">
+   <link rel="import" id="footerimport" href="includes/footer.html">
+
+   <!-- Your custom styles -->
+
+   <link rel="stylesheet" href="css/style.css">
+
+   <title>GülleMarkt24</title>
 </head>
 
 <body>
-	
- <!-- Navigation-->
-	<div id="navigation"></div>
-	
-	
- <!-- Güllesuche -->
-	<div class="hintergrundbild">
-				<div class="suche">
-					<div class="col-md-12">
-						<div class="row">
-							
-							<div class="col-xs-12 col-sm-8 col-md-2">
-								<div class="dropdown">
-									<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Nährstoffart
-  </button>
-									<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-										<a class="dropdown-item" href="#">Fest</a>
-										<a class="dropdown-item" href="#">Flüssig</a>
-										<a class="dropdown-item" href="#">Separiert</a>
-									</div>
-								</div>
-							</div>
-							<div class="col-xs-12 col-sm-8 col-md-2">
-								<div class="dropdown">
-									<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Unterart
-  </button>
-									<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-										<a class="dropdown-item" href="#">Schwein</a>
-										<a class="dropdown-item" href="#">Rind</a>
-										<a class="dropdown-item" href="#">Geflügel</a>
-									</div>
-								</div>
-							</div>
 
-							<div class="col-xs-12 col-sm-8 col-md-2" >
-								<form class="form-inline form-inline_suche">
-									<input class="form-control form-control_suche mr-sm-2" type="text" placeholder="PLZ/ORT">
+   <!-- Navigation-->
 
-								</form>
-							</div>
-								<div class="col-xs-12 col-sm-8 col-md-2">
-								<div class="dropdown">
-									<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Entfernung
-  </button>
-									<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-										<a class="dropdown-item" href="#">10km</a>
-										<a class="dropdown-item" href="#">50km</a>
-										<a class="dropdown-item" href="#">100km</a>
-									</div>
-								</div>
-							</div>
-							<div class="col-xs-12 col-sm-8 col-md-2">
+   <div id="navigation"></div>
 
-								<form class="form-inline form-inline_suche">
-									<input class="form-control form-control_suche mr-sm-2" type="text" placeholder="Menge (cm³)">
+   <!-- Güllesuche -->
 
-								</form>
-							</div>
-						
-							<div class="col-xs-12 col-sm-8 col-md-2">
-								<button type="button" class="btn-los btn-secondary-los"><img src="img/lupe2.svg" height="25px" id="lupe">Und Los!</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-</div>
+   <div class="hintergrundbild">
+      <div class="suche">
+         <div class="col-md-12">
+            <div class="row">
+               <div class="col-xs-12 col-sm-8 col-md-2">
+                  <div class="dropdown">
+                     <select class="selectpicker">
+                           <option>Feststoff</option>
+                           <option>Flüssig</option>
+                           <option>Separiert</option>
+                        </select>
+                  </div>
+               </div>
+               <div class="col-xs-12 col-sm-8 col-md-2">
+                  <div class="dropdown">
+                     <select class="selectpicker">
+                           <option>Feststoff</option>
+                           <option>Flüssig</option>
+                           <option>Separiert</option>
+                        </select>
+                  </div>
+               </div>
+               <div class="col-xs-12 col-sm-8 col-md-2">
+                  <form class="form-inline form-inline_suche">
+                     <input class="form-control form-control_suche mr-sm-2" type="text" placeholder="PLZ/ORT">
+                  </form>
+               </div>
+               <div class="col-xs-12 col-sm-8 col-md-2">
+                  <div class="dropdown">
+                     <div class="dropdown">
+                        <select class="selectpicker">
+                              <option>Feststoff</option>
+                              <option>Flüssig</option>
+                              <option>Separiert</option>
+                           </select>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-xs-12 col-sm-8 col-md-2">
+                  <form class="form-inline form-inline_suche">
+                     <input class="form-control form-control_suche mr-sm-2" type="text" placeholder="Menge (cm³)">
+                  </form>
+               </div>
+               <div class="col-xs-12 col-sm-8 col-md-2">
+                  <button type="button" class="btn-los btn-secondary-los"><img src="img/lupe2.svg" alt="lupe" id="lupe">Und Los!</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
 
+   <!-- Hauptbereich.. -->
 
+   <div class="container-fluid">
+      <div class="row">
+         <div class="col-md-10">
 
-	<!-- Hauptbereich.. -->
+            <!-- SLIDER ANGEBOTE ANFANG -->
 
+            <div class="sliderheading">
+               Aktuelle Angebote<br>
+               <hr>
+            </div>
+            <div class="owl-carousel owl-theme">
+               <div class="item">
+                  <h4>1</h4>
+                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+               </div>
+               <div class="item">
+                  <h4>2</h4>
+                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+               </div>
+               <div class="item">
+                  <h4>3</h4>
+                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+               </div>
+               <div class="item">
+                  <h4>4</h4>
+                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+               </div>
+               <div class="item">
+                  <h4>5</h4>
+                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+               </div>
+               <div class="item">
+                  <h4>6</h4>
+                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+               </div>
+               <div class="item">
+                  <h4>7</h4>
+                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+               </div>
+               <div class="item">
+                  <h4>8</h4>
+                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+               </div>
+               <div class="item">
+                  <h4>9</h4>
+                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+               </div>
+               <div class="item">
+                  <h4>10</h4>
+                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+               </div>
+               <div class="item">
+                  <h4>11</h4>
+                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+               </div>
+               <div class="item">
+                  <h4>12</h4>
+                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+               </div>
+            </div>
 
+            <!-- SLIDER GESUCHE ANFANG -->
 
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-10">
+            <div class="sliderheading">
+               Aktuelle Gesuche<br>
+               <hr>
+            </div>
+            <div id="gesuche" class="owl-carousel owl-theme">
+               <div class="item">
+                  <h4>1</h4>
+                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+               </div>
+               <div class="item">
+                  <h4>2</h4>
+                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+               </div>
+               <div class="item">
+                  <h4>3</h4>
+                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+               </div>
+               <div class="item">
+                  <h4>4</h4>
+                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+               </div>
+               <div class="item">
+                  <h4>5</h4>
+                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+               </div>
+               <div class="item">
+                  <h4>6</h4>
+                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+               </div>
+               <div class="item">
+                  <h4>7</h4>
+                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+               </div>
+               <div class="item">
+                  <h4>8</h4>
+                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+               </div>
+               <div class="item">
+                  <h4>9</h4>
+                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+               </div>
+               <div class="item">
+                  <h4>10</h4>
+                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+               </div>
+               <div class="item">
+                  <h4>11</h4>
+                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+               </div>
+               <div class="item">
+                  <h4>12</h4>
+                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+               </div>
+            </div>
 
-			
+            <!-- SLIDER ENDE -->
 
-			
-			
+            <!-- HAUPTBEREICH ENDE -->
 
+         </div>
 
-		
-				<!-- SLIDER ANGEBOTE ANFANG -->
+         <!-- SIDEBAR -->
 
-<div class="sliderheading">Aktuelle Angebote<br><hr></div>
+         <div class="col-md-2">
+            <div class="sidebar">
+               <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+               <!-- Responsive Beitrag -->
+               <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3071593330863809" data-ad-slot="1872166374" data-ad-format="auto"></ins>
+               <script>
+                  (adsbygoogle = window.adsbygoogle || []).push({});
+               </script>
+            </div>
+         </div>
 
-<div class="owl-carousel owl-theme">
-    <div class="item"><h4>1</h4>
-    <img class="itembild" src="img/guelle.jpg"><br>
-    Gülleart: Flüssig<br>
-    Ort: 49074 Osnabrück<br>
-    Preis pro m³: 7€
-    </div>
-    <div class="item"><h4>2</h4>
-     <img class="itembild" src="img/guelle.jpg"><br>
-      Gülleart: Flüssig<br>
-    Ort: 49074 Osnabrück<br>
-    Preis pro m³: 7€
-    </div>
-    <div class="item"><h4>3</h4>
-     <img class="itembild" src="img/guelle.jpg"><br>
-      Gülleart: Flüssig<br>
-    Ort: 49074 Osnabrück<br>
-    Preis pro m³: 7€
-    </div>
-    <div class="item"><h4>4</h4>
-     <img class="itembild" src="img/guelle.jpg"><br>
-      Gülleart: Flüssig<br>
-    Ort: 49074 Osnabrück<br>
-    Preis pro m³: 7€
-    </div>
-    <div class="item"><h4>5</h4>
-     <img class="itembild" src="img/guelle.jpg"><br>
-      Gülleart: Flüssig<br>
-    Ort: 49074 Osnabrück<br>
-    Preis pro m³: 7€
-    </div>
-    <div class="item"><h4>6</h4>
-     <img class="itembild" src="img/guelle.jpg"><br>
-      Gülleart: Flüssig<br>
-    Ort: 49074 Osnabrück<br>
-    Preis pro m³: 7€
-    </div>
-    <div class="item"><h4>7</h4>
-     <img class="itembild" src="img/guelle.jpg"><br>
-      Gülleart: Flüssig<br>
-    Ort: 49074 Osnabrück<br>
-    Preis pro m³: 7€
-    </div>
-    <div class="item"><h4>8</h4>
-     <img class="itembild" src="img/guelle.jpg"><br>
-      Gülleart: Flüssig<br>
-    Ort: 49074 Osnabrück<br>
-    Preis pro m³: 7€
-    </div>
-    <div class="item"><h4>9</h4>
-     <img class="itembild" src="img/guelle.jpg"><br>
-      Gülleart: Flüssig<br>
-    Ort: 49074 Osnabrück<br>
-    Preis pro m³: 7€
-    </div>
-    <div class="item"><h4>10</h4>
-     <img class="itembild" src="img/guelle.jpg"><br>
-      Gülleart: Flüssig<br>
-    Ort: 49074 Osnabrück<br>
-    Preis pro m³: 7€
-    </div>
-    <div class="item"><h4>11</h4>
-     <img class="itembild" src="img/guelle.jpg"><br>
-      Gülleart: Flüssig<br>
-    Ort: 49074 Osnabrück<br>
-    Preis pro m³: 7€
-    </div>
-    <div class="item"><h4>12</h4>
-     <img class="itembild" src="img/guelle.jpg"><br>
-      Gülleart: Flüssig<br>
-    Ort: 49074 Osnabrück<br>
-    Preis pro m³: 7€
-    </div>
-</div>
+         <!-- SIDEBAR ENDE -->
 
-		
-				<!-- SLIDER GESUCHE ANFANG -->
-
-<div class="sliderheading">Aktuelle Gesuche<br><hr></div>
-
-<div id="gesuche" class="owl-carousel owl-theme">
-    <div class="item"><h4>1</h4>
-    <img class="itembild" src="img/guelle.jpg"><br>
-    Gülleart: Flüssig<br>
-    Ort: 49074 Osnabrück<br>
-    Preis pro m³: 7€
-    </div>
-    <div class="item"><h4>2</h4>
-     <img class="itembild" src="img/guelle.jpg"><br>
-      Gülleart: Flüssig<br>
-    Ort: 49074 Osnabrück<br>
-    Preis pro m³: 7€
-    </div>
-    <div class="item"><h4>3</h4>
-     <img class="itembild" src="img/guelle.jpg"><br>
-      Gülleart: Flüssig<br>
-    Ort: 49074 Osnabrück<br>
-    Preis pro m³: 7€
-    </div>
-    <div class="item"><h4>4</h4>
-     <img class="itembild" src="img/guelle.jpg"><br>
-      Gülleart: Flüssig<br>
-    Ort: 49074 Osnabrück<br>
-    Preis pro m³: 7€
-    </div>
-    <div class="item"><h4>5</h4>
-     <img class="itembild" src="img/guelle.jpg"><br>
-      Gülleart: Flüssig<br>
-    Ort: 49074 Osnabrück<br>
-    Preis pro m³: 7€
-    </div>
-    <div class="item"><h4>6</h4>
-     <img class="itembild" src="img/guelle.jpg"><br>
-      Gülleart: Flüssig<br>
-    Ort: 49074 Osnabrück<br>
-    Preis pro m³: 7€
-    </div>
-    <div class="item"><h4>7</h4>
-     <img class="itembild" src="img/guelle.jpg"><br>
-      Gülleart: Flüssig<br>
-    Ort: 49074 Osnabrück<br>
-    Preis pro m³: 7€
-    </div>
-    <div class="item"><h4>8</h4>
-     <img class="itembild" src="img/guelle.jpg"><br>
-      Gülleart: Flüssig<br>
-    Ort: 49074 Osnabrück<br>
-    Preis pro m³: 7€
-    </div>
-    <div class="item"><h4>9</h4>
-     <img class="itembild" src="img/guelle.jpg"><br>
-      Gülleart: Flüssig<br>
-    Ort: 49074 Osnabrück<br>
-    Preis pro m³: 7€
-    </div>
-    <div class="item"><h4>10</h4>
-     <img class="itembild" src="img/guelle.jpg"><br>
-      Gülleart: Flüssig<br>
-    Ort: 49074 Osnabrück<br>
-    Preis pro m³: 7€
-    </div>
-    <div class="item"><h4>11</h4>
-     <img class="itembild" src="img/guelle.jpg"><br>
-      Gülleart: Flüssig<br>
-    Ort: 49074 Osnabrück<br>
-    Preis pro m³: 7€
-    </div>
-    <div class="item"><h4>12</h4>
-     <img class="itembild" src="img/guelle.jpg"><br>
-      Gülleart: Flüssig<br>
-    Ort: 49074 Osnabrück<br>
-    Preis pro m³: 7€
-    </div>
-</div>
+      </div>
+   </div>
 
 
+   <!-- FOOTER -->
 
-			
-			<!-- SLIDER ENDE -->
-			
+   <div id="footer"></div>
 
-			<!-- HAUPTBEREICH ENDE -->
-			</div>
+   <!-- FOOTER ENDE -->
 
-			<!-- SIDEBAR -->
+   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
-			<div class="col-md-2">
-				<div class="sidebar">
+   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+   <script src="assets/vendors/jquery.min.js"></script>
+   <script src="assets/owlcarousel/owl.carousel.js"></script>
 
-				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Responsive Beitrag -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-3071593330863809"
-     data-ad-slot="1872166374"
-     data-ad-format="auto"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-				</div>
-			</div>
+   <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+   <script src="https://cdn.jsdelivr.net/gh/winf-hsos/firebase-tools@0.4/src/firebase-tools.js"></script>
 
-			<!-- SIDEBAR ENDE -->
+   <script src="js/custom.js"></script>
 
-		</div>
+   <!-- Specific Script -->
 
-	</div>
-</div>
+   <!-- Slider JS -->
+   <script>
+      $('.owl-carousel').owlCarousel({
+         loop: true,
+         margin: 10,
+         nav: false,
+         autoplay: 800,
+         responsive: {
+            0: {
+               items: 1,
+               dots: false,
+               autowidth: true,
+               nav: true,
 
-	<!-- FOOTER -->
-	<div id="footer"></div>
-
-	<!-- FOOTER ENDE -->
-
-
-
-
-
-
-
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
- <script src="assets/vendors/jquery.min.js"></script>
-    <script src="assets/owlcarousel/owl.carousel.js"></script>
-
-	<!-- Your inline custom Javascript -->
-	<script>
-		/* Import the navigation so that we don't have
-		 * to make changes on every site when we add
-		 * something to it. */
-		var link = document.querySelector('#navigationimport');
-		var navigation = link.import;
-		var el = navigation.querySelector('#navigation');
-		document.querySelector("#navigation").appendChild(el.cloneNode(true));
-
-		/* Import the footer so that we don't have
-		 * to make changes on every site when we add
-		 * something to it. */
-		//var link2 = document.querySelector('link[rel="import"]');
-		var link2 = document.querySelector('#footerimport');
-		var footer = link2.import;
-		var el2 = footer.querySelector('#footer');
-		document.querySelector("#footer").appendChild(el2.cloneNode(true));
-	</script>
-	
-	<script>$('.owl-carousel').owlCarousel({
-    loop:true,
-    margin:10,
-    nav:false,
-    autoplay:800,
-    responsive:{
-        0:{
-            items:1,
-            dots:false,
-            autowidth: true,
-            nav:true,
-            
-        },
-        600:{
-            items:2
-        },
-        1000:{
-            items:4
-        }
-    }
-})</script>
-
-
+            },
+            600: {
+               items: 2
+            },
+            1000: {
+               items: 4
+            }
+         }
+      })
+   </script>
 </body>
 
 </html>
-

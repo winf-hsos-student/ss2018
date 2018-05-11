@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Navigation and Footer -->
+    <link rel="import" id="navigationimport" href="includes/navigation.html">
+    <link rel="import" id="footerimport" href="includes/footer.html">
+
+    <!-- Your custom styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>GülleMarkt24</title>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <div id="navigation"></div>
+
+
+    <!-- Profil -->
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-sm-3"></div>
+            <div class="col align-self-center">
+                <h3 class="text-center">Benutzerdaten</h3>
+                <hr>
+
+                <div class="form-group">
+                    <label for="inputFirstName">Vorname</label>
+                    <input type="text" class="form-control" id="inputFirstName" placeholder="Vorname eingeben">
+                </div>
+
+                <div class="form-group">
+                    <label for="inputLastName">Nachname</label>
+                    <input type="text" class="form-control" id="inputLastName" placeholder="Nachname eingeben">
+                </div>
+
+                <div class="form-group">
+                    <label for="inputZIPCode">PLZ</label>
+                    <input type="text" class="form-control" id="inputZIPCode" placeholder="Postleitzahl eingeben">
+                </div>
+
+                <div class="form-group">
+                    <label for="inputCity">Ort</label>
+                    <input type="text" class="form-control" id="inputCity" placeholder="Wohnort eingeben">
+                </div>
+
+                <div class="form-group">
+                    <label for="inputCustomerType">Funktion</label>
+                    <select class="form-control" id="inputCustomerType">
+                      <option>Verkäufer</option>
+                      <option>Käufer</option>
+                    </select>
+                </div>
+
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="inputNewsletter">
+                    <label class="form-check-label" for="inputNewsletter">Ja, ich möchte den Newsletter abonnieren</label>
+                </div>
+
+                <!-- When this is clicked, register() is called -->
+                <button onclick="createUser()" class="btn btn-secondary">Registrierung abschließen</button>
+                <p id="erfolg" style="display:none">Registrierung erfolgreich! Sie werden in Kürze weitergeleitet</p>
+
+                <hr>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+    </div>
+    <!-- End of container -->
+
+    <!-- FOOTER -->
+    <div id="footer"></div>
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-firestore.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/winf-hsos/firebase-tools@0.4/src/firebase-tools.js"></script>
+
+    <script src="js/custom.js"></script>
+
+    <script>
+        /* Required code for using firestore */
+        /* {
+             var db = firebase.firestore();
+             const settings = { timestampsInSnapshots: true };
+             db.settings(settings);
+         }*/
+        /* This function is called when the button is clicked */
+        function createUser() {
+            /* Get the values from the form elements */
+            var firstName = document.getElementById("inputFirstName").value;
+            var lastName = document.getElementById("inputLastName").value;
+            var zipCode = document.getElementById("inputZIPCode").value;
+            var city = document.getElementById("inputCity").value;
+            var customerType = document.getElementById("inputCustomerType").value;
+            var newsletter = document.getElementById("inputNewsletter").checked;
+            /* Create the user object to send to the database */
+            var user = {
+                firstName: firstName,
+                lastName: lastName,
+                zip: zipCode,
+                city: city,
+                type: customerType,
+                newsletter: newsletter
+            }
+            /* Print the user object to the console for debugging */
+            console.dir(user);
+            /* Neues Benutzerprofil erstellen und mit Benutzer verknüpfen */
+            firebasetools.setUserProfile(user);
+            var erfolg = document.getElementById("erfolg");
+            erfolg.style.display = "block";
+            window.setTimeout(function() {window.location.href = "index.html"}, 5000);
+        }
+    </script>
+</body>
+
+</html>

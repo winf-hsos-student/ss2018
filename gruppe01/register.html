@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Navigation and Footer -->
+    <link rel="import" id="navigationimport" href="includes/navigation.html">
+    <link rel="import" id="footerimport" href="includes/footer.html">
+
+    <!-- Your custom styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>GülleMarkt24</title>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <div id="navigation"></div>
+
+
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-sm-3"></div>
+            <div class="col align-self-center">
+                <h3 class="text-center">Registrieren</h3>
+                <hr>
+                <div class="form-group">
+                    <label for="inputEmail">Aktuelle E-Mail-Adresse</label>
+                    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="E-Mail">
+                    <small id="emailHelp" class="form-text text-muted">Es gelten die aktuellen Nutzungsbedingungen.</small>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword">Neues Passwort</label>
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Passwort">
+                </div>
+
+                <!-- When this is clicked, register() is called -->
+                <button onclick="register()" class="btn btn-secondary btn_reg_all">Registrieren</button>
+
+                <!-- When this is clicked, logout() is called -->
+                <button onclick="logout()" class="btn btn-secondary btn_reg_all">Abmelden</button>
+
+
+                <hr>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+    </div>
+    <!-- End of container -->
+
+    <!-- FOOTER -->
+    <div id="footer"></div>
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/winf-hsos/firebase-tools@0.4/src/firebase-tools.js"></script>
+
+    <script src="js/custom.js"></script>
+
+    <!-- Registrierungs Script -->
+    <script>
+        function register() {
+
+            // Get the values from the email and password input fields
+            var email = document.getElementById("inputEmail").value;
+            var password = document.getElementById("inputPassword").value;
+            firebase.auth().createUserWithEmailAndPassword(email, password).then(function() {
+                window.location.href = "userprofile.html"
+            }).catch(handleError);
+
+        }
+    </script>
+
+</body>
+
+</html>

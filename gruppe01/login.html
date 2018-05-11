@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/owlcarousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/owlcarousel/assets/owl.theme.default.min.css">
+
+
+    <!-- Navigation and Footer -->
+    <link rel="import" id="navigationimport" href="includes/navigation.html">
+    <link rel="import" id="footerimport" href="includes/footer.html">
+
+    <!-- Your custom styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>GülleMarkt24</title>
+</head>
+
+<body>
+
+    <!-- Navigation-->
+    <div id="navigation"></div>
+
+
+
+
+
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-sm-3"></div>
+            <div class="col align-self-center">
+                <h3 class="text-center">Anmeldung</h3>
+                <hr>
+                <div class="form-group">
+                    <label for="inputEmail">E-Mail Adresse </label>
+                    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="E-Mail">
+                    <small id="emailHelp" class="form-text text-muted">Es gelten die aktuellen Nutzungsbedingungen.</small>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword">Passwort</label>
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Passwort">
+                </div>
+
+                <!-- When this is clicked, login() is called -->
+                <button id="btnLogin" onclick="login()" class="btn btn-secondary">Anmelden</button>
+                <p id="errorText" style="color: red"></p>
+                <hr>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+
+
+        <div class="row align-items-center">
+            <div class="col-sm-3"></div>
+            <div class="col align-self-center">
+                <div class="card">
+                    <div class="card-body">
+
+                        <!-- These two will be filled dynamically -->
+                        <h5 class="card-title" id="welcomeTitle"></h5>
+                        <p class="card-text" id="welcomeText"></p>
+
+                    </div>
+                </div>
+
+                <!-- When this is clicked, logout() is called -->
+                <button id="btnLogout" onclick="logout()" style="margin-top: 16px;" class="btn btn-secondary" hidden>Logout</button>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+
+    </div>
+    <!-- End of container -->
+
+    <!-- FOOTER -->
+    <div id="footer"></div>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+
+    <script src="js/custom.js"></script>
+    
+    <!-- Specific Script -->
+    <script>
+        firebase.auth().onAuthStateChanged(loginChanged);
+
+/* login function */
+        function login() {
+            // Get the values from the email and password input fields
+            var email = document.getElementById("inputEmail").value;
+            var password = document.getElementById("inputPassword").value;
+            /* Call the sign in function provided by the Firebase API 
+             * and pass the email and password */
+            firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
+                window.location.href = "index.html"
+            }).catch(loginError);
+        }
+
+        function loginError(error) {
+            console.error(error.code + ": " + error.message);
+            document.getElementById("errorText").innerText = error.message;
+        }
+
+       /* This is the callback function when the user changed.
+     * Either because a new user logged in, or the current user
+     * signed out. */
+    function loginChanged(user) {
+        // If the user variable is set, a user is logged in
+        if (user) {
+            // Disable the login button
+            document.getElementById("btnLogin").setAttribute("disabled", true);
+            // Show the logout button
+            document.getElementById("btnLogout").removeAttribute("hidden");
+            console.log("Successfully logged in!");
+            // Get some user data
+            var email = user.email;
+            var lastLogin = user.metadata.lastSignInTime;
+            document.getElementById("welcomeTitle").innerText = "Herzlich Willkommen " + email;
+            document.getElementById("welcomeText").innerHTML = "Schön, dass Sie wieder Gülle brauchen.<br> Ihr letzter Besuch: <b>" + lastLogin + "</b>";
+        }
+        // No user logged in
+        else {
+            // Enable the login button
+            document.getElementById("btnLogin").removeAttribute("disabled");
+            // Hide the logout button
+            document.getElementById("btnLogout").setAttribute("hidden", "true");
+            document.getElementById("welcomeTitle").innerText = "Kein Benutzer angemeldet";
+            document.getElementById("welcomeText").innerText = "Für die Anmeldung bitte E-Mail und Passwort eingeben."
+        }
+    }
+    </script>
+
+</body>
+
+</html>
