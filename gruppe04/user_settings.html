@@ -15,8 +15,11 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link href="css/style.css" rel="stylesheet" type="text/css">
 
+	<link href="css/styleset.css" rel="stylesheet" type="text/css">
+
 	<!--Shortcuticon/tabicon-->
 	<link rel="shortcut icon" href="img/favicon.ico">
+
 
 	<title>apetito | proof of concept</title>
 
@@ -36,102 +39,110 @@
 
 
 			<!------MAINFRAME------------------------------------->
-			<div class="col-md-9" id="mainframe">
+			<div id="mainframe" class="col-md-9">
+
+				<div class="row">
+					<div class="col-md-12">
+
+						<div class="row">
+							<div class="col-md-9">
+								<form role="form">
+									<div class="form-group">
+										<label for="inputEmail"></label>
+										<input type="email" class="form-control" id="inputEmail" placeholder="Enter E-Mail" />
+
+									</div>
+									<div class="form-group">
+										<label for="inputPassword"></label>
+										<input type="password" class="form-control" id="inputPassword" placeholder="Enter Password" />
+
+									</div>
+									<div id="picupload" class="form-group">
+										<input type="file" class="form-control-file" id="inputFile" />
+										<p class="help-block"> <label for="file">Choose a file for your profile picture.</label>
+
+										</p>
+									</div>
+
+									<button type="submit" class="btn btn-danger">Upload</button>
+								</form>
+							</div>
+							<div id="profilepicture" class="col-md-3">
+								<img alt="Profile Picture" src="img/loginman.png" class="rounded-circle" />
+
+							</div>
+
+						</div>
+					</div>
+				</div>
 
 
-				   <div class="container-fluid">
-	<div class="row">
-		<div class="col-md-12">
-			<h3 class="text-center">
-				profile settings
-			</h3>
-			<div class="row">
-				<div class="col-md-9">
-					<form role="form">
+				<div class="row">
+
+
+					<div class="col">
+
 						<div class="form-group">
-							 
-							<label for="exampleInputEmail1">
-								Email address
-							</label>
-							<input type="email" class="form-control" id="exampleInputEmail1" />
+							<label for="inputSurname"></label>
+							<input type="text" class="form-control" id="inputSurname" placeholder="Enter Surname" />
 						</div>
 						<div class="form-group">
-							 
-							<label for="exampleInputPassword1">
-								Password
-							</label>
-							<input type="password" class="form-control" id="exampleInputPassword1" />
+							<label for="inputName"></label>
+							<input type="text" class="form-control" id="inputName" placeholder="Enter Name" />
 						</div>
 						<div class="form-group">
-							 
-							<label for="exampleInputFile">
-								File input
-							</label>
-							<input type="file" class="form-control-file" id="exampleInputFile" />
-							<p class="help-block">
-								Choose a file for your profile picture.
-							</p>
+							<label for="inputMobile"></label>
+							<input type="number" class="form-control" id="inputMobile" placeholder="Enter Mobile Number" />
 						</div>
-						
-						<button type="submit" class="btn btn-primary">
-							Upload
-						</button>
-					</form>
+						<div class="form-group">
+							<label for="inputSkype"></label>
+							<input type="number" class="form-control" id="inputSkype" placeholder="Enter Skype Number" />
+						</div>
+					</div>
+					<div class="col">
+						<div class="form-group">
+							<label for="inputDialing"></label>
+							<input type="number" class="form-control" id="inputDialing" placeholder="Enter Direct Dialing" />
+						</div>
+
+						<div class="form-group">
+							<label for="inputLocation"></label>
+							<input type="text" class="form-control" id="inputLocation" placeholder="Enter Company Location" />
+						</div>
+
+						<p>Please click just one position that fits to you:</p>
+
+						<div class="form-group form-check">
+							<input type="checkbox" class="form-check-input" id="checkCanvasser">
+							<label class="form-check-label" for="canvasser">Canvasser</label>
+						</div>
+
+						<div class="form-group form-check">
+							<input type="checkbox" class="form-check-input" id="checkAdvisor">
+							<label class="form-check-label" for="advisor">Client Advisor</label>
+						</div>
+
+						<div class="form-group form-check">
+							<input type="checkbox" class="form-check-input" id="checkHead">
+							<label class="form-check-label" for="head">Head of Department</label>
+						</div>
+
+						<!-- When this is clicked, createUser() is called -->
+						<button onclick="createUser()" class="btn btn-danger">Save Settings</button>
+
+						<!-- When this is clicked, register() is called -->
+						<button onclick="register()" class="btn btn-danger">Register</button>
+
+						<!-- When this is clicked, sendVerificationEMail() is called -->
+						<button id="btnVerify" onclick="sendVerificationEMail()" class="btn btn-danger">Verification</button>
+
+					</div>
+
+
 				</div>
-				<div class="col-md-3">
-					<img alt="Bootstrap Image Preview" src="img/apetitologo.png" class="rounded-circle" />
-				</div>
+
 			</div>
-						<form role="form">
-				<div class="form-group">
-					 
-					<label for="exampleInputEmail1">
-						surname
-					</label>
-					<input type="surname" class="form-control" id="exampleInputEmail1" />
-				</div>
-				<div class="form-group">
-					 
-					<label for="exampleInputPassword1">
-						name
-					</label>
-					<input type="name" class="form-control" id="exampleInputPassword1" />
-				</div>
-				
-				</div>
-				
-				</div> 
-				
-			</form>
-			<form role="form">
-				<div class="form-group">
-					 
-					<label for="exampleInputEmail1">
-						personal number
-					</label>
-					<input type="peronal number" class="form-control" id="exampleInputEmail1" />
-				</div>
-				<div class="form-group">
-					 
-					<label for="exampleInputPassword1">
-						direct dialing
-					</label>
-					<input type="direct dialing" class="form-control" id="exampleInputPassword1" />
-				</div>
-				
-				</div>
-				
-				</div> 
-				
-			</form> 
-			<button type="button" class="btn btn-success btn-block">
-				save settings
-			</button>
-		</div>
-	</div>
-</div>
 
-			</div>
 		</div>
 
 		<!------FOOTER----------------------------------------->
@@ -139,6 +150,7 @@
 		<div id="footer" class="row">
 
 		</div>
+
 	</div>
 
 
@@ -147,7 +159,19 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+	<!--Script for using firebase-->
+	<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-firestore.js"></script>
+
+	<!--<script type="text/javascript" src="js/customer.js"></script>-->
+
+	<!-- Firebase Tools for simpler usage -->
+	<script src="https://cdn.jsdelivr.net/gh/winf-hsos/firebase-tools@0.5/src/firebase-tools.js"></script>
+
+
 	<script>
+		/* global firebase */
+
 		/* Import the navigation so that we don't have
 		 * to make changes on every site when we add
 		 * something to it. */
@@ -165,7 +189,126 @@
 		// Import the navside element
 		var el = imports.querySelector('#navside');
 		document.querySelector("#sidebar").appendChild(el.cloneNode(true));
+
+		/* Replace with your project's information */
+		var config = {
+			projectId: "apetito-meiningerhotel",
+			apiKey: "AIzaSyA1lqle0sqk_UG_LpU7RYU2_vCnzDmgn4M",
+			authDomain: "apetito-meiningerhotel.firebaseapp.com",
+		};
+
+		firebase.initializeApp(config);
+
+
+		/* This function is called when the button is clicked */
+		function createUser() {
+			/* Get the values from the form elements */
+			var name = document.getElementById("inputName").value;
+			var surname = document.getElementById("inputSurname").value;
+			var mobile = document.getElementById("inputMobile").value;
+			var skype = document.getElementById("inputSkype").value;
+			var dialing = document.getElementById("inputDialing").value;
+			var location = document.getElementById("inputLocation").value;
+
+
+			console.log(name);
+			console.log(surname);
+			console.log(mobile);
+			console.log(skype);
+			console.log(dialing);
+			console.log(location);
+
+			/*var canvasser = document.getElementById("checkCanvasser").true;
+			var advisor = document.getElementById("checkAdvisor").true;
+			var head = document.getElementById("checkHead").true;*/
+
+			/* Create the user object to send to the database */
+			var userObj = {
+				name: name,
+				surname: surname,
+				mobile: mobile,
+				skype: skype,
+				directDialing: dialing,
+				companyLocation: location
+				/*Canvasser: canvasser,
+				Advisor: advisor,
+				HeadOfDepartment: head,*/
+			};
+
+			/* Print the user object to the console for debugging */
+			console.dir(userObj);
+
+			firebasetools.setUserProfile(userObj);
+
+		}
+		/* This is called if something goes wrong. */
+		function handleError(error) {
+			console.error(error.code + ": " + error.message);
+		}
+
+		firebasetools.onLoginChanged(loginChanged);
+		/* This function is called when the user clicks
+		 * the sign-up button. */
+
+		function loginChanged(user) {
+			if (user) {
+				console.log("User with email >" + user.email + "< is signed in.");
+			}
+			else {
+				console.log("No user signed in.");
+			}
+		}
+
+		function register() {
+
+			// Get the values from the email and password input fields
+			var email = document.getElementById("inputEmail").value;
+			var password = document.getElementById("inputPassword").value;
+			firebase.auth().createUserWithEmailAndPassword(email, password).catch(handleError);
+		}
+
+
+		/* This function is called when a user
+		 * clicks on the send verification email button */
+		function sendVerificationEMail() {
+
+			var user = firebase.auth().currentUser;
+
+			user.sendEmailVerification().then(function() {
+				console.log("Verification e-Mail has been sent!")
+			}).catch(handleError);
+		}
+
+		/* This is called if something goes wrong when logging in or logging out.
+		 * For example if the user's password is wrong. 
+		function handleError(error) {
+			console.error(error.code + ": " + error.message); 
+		} */
+
+		// Get the current user
+		var user = firebase.auth().currentUser;
+
+		/* Print the user object to the console for debugging */
+		console.dir(user);
+
+		/*global user*/
+		/*global firebasetools*/
+		/*firebasetools.setUserProfile(user);*/
+
+		/* This is called if something goes wrong. */
+		function handleError(error) {
+			console.error(error.code + ": " + error.message);
+		}
+
+
+		/* global $*/
+		function slideTo(slideNr) {
+			window.location = "index.html";
+			$('.carousel').carousel(slideNr);
+		}
 	</script>
+
+
 </body>
 
 </html>

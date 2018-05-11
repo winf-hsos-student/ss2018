@@ -1,0 +1,55 @@
+/*Color Definition*/
+
+/*
+
+Hauptfarben: benutzt für Buttons, Übersichtskarte, hover Effekte etc.
+apetito-red = #DE0027
+apetito-green = #9CCC11
+
+Das etwas dunklere weiß hinter den Elementen, um diese von dem Rest abzuheben.
+light-white-shadow = #F8F9FA
+
+Footer Farben
+footer-lightgrey = #393939
+footer-darkgrey = #5F5F5F
+
+Als Schriftfarbe wird haptsächlich Weiss verwendet.
+white = #FFFFFF
+*/
+
+/* MODAL ÜBERSCHRIFT */
+
+.modal-topic {
+    color: #DE0027;
+    text-align: center;
+}
+
+/*STYLE FÜR DIE TABS IM MODAL*/
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+    color: #DE0027;
+    background-color: #fff;
+    border-color: #DE0027 #DE0027 #fff;
+}
+
+.nav-tabs,
+.nav-tabs .nav-link:hover {
+    border-color: #DE0027 #DE0027 #DE0027;
+}
+
+.nav-tabs {
+    border-bottom: 1px solid #DE0027;
+}
+
+/*STYLE FÜR DEN FOOTER IM MODAL*/
+
+.modal-footer {
+
+    border-top: 1px solid #DE0027;
+
+}
+
+a.nav-link {
+    color: #DE0027;
+}

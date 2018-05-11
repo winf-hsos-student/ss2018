@@ -1,0 +1,37 @@
+<div id="loginhtml" class="container-fluid">
+
+<!-- Modal -->
+  
+  <div class="modal fade" id="popup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Login to continue</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body" class="container-fluid">
+          <div id="loginbox" class="container-fluid">
+            <img class="img-fluid" id="loginman" src="img/loginman.png">
+            <span class="plslogin"><p>Please Login!</p></span>
+
+
+            <form id="loginposition">
+              <input type="email" name="usermail" id="usermail" aria-describedby="emailHelp" placeholder="Email" /><br><br>
+              <input type="password" name="pswrd" id="password" placeholder="Password" />
+              <input type="button" onclick="validate()" value="Login" id="submit" class="loginbutton" />
+            </form>
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="https://www.apetito.de" id="backbtn" class="btn btn-secondary" role="button" aria-pressed="true">back</a>
+          <a href="user_settings.html" class="btn btn-danger" role="button" aria-pressed="true">Registration</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

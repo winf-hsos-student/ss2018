@@ -1,0 +1,123 @@
+/*Color Definition*/
+
+/*
+
+Hauptfarben: benutzt für Buttons, Übersichtskarte, hover Effekte etc.
+apetito-red = #DE0027
+apetito-green = #9CCC11
+
+Das etwas dunklere weiß hinter den Elementen, um diese von dem Rest abzuheben.
+light-white-shadow = #F8F9FA
+
+Footer Farben
+footer-lightgrey = #393939
+footer-darkgrey = #5F5F5F
+
+Als Schriftfarbe wird Weiss verwendet
+white = #FFFFFF
+*/
+
+.btn.btn-danger {
+    background-color: #DE0027;
+    border-color: #DE0027;
+    transition: all .30s ease-in;
+}
+
+.btn.btn-danger:hover {
+    background-color: #FFF;
+    border-color: #DE0027;
+    color: #DE0027;
+}
+
+#inputEmail.form-control,
+#inputPassword.form-control {
+    background-image: url("img/mailIcon.png");
+    background-repeat: no-repeat;
+    background-position: left 10px center;
+    background-size: 17px;
+    padding-left: 35px;
+    width: 50%;
+}
+
+#inputPassword.form-control {
+    background-image: url("img/passIcon.png");
+
+}
+
+#inputEmail.form-control {
+    background-image: url("img/mailIcon.png");
+}
+
+#inputMobile.form-control {
+    background-image: url("img/mobileIcon.png");
+    background-repeat: no-repeat;
+    background-position: left 10px center;
+    background-size: 17px;
+    padding-left: 35px;
+}
+
+#inputSkype.form-control {
+    background-image: url("img/skypeIcon.png");
+    background-repeat: no-repeat;
+    background-position: left 10px center;
+    background-size: 17px;
+    padding-left: 35px;
+}
+
+#inputDialing.form-control {
+    background-image: url("img/dialingIcon.png");
+    background-repeat: no-repeat;
+    background-position: left 10px center;
+    background-size: 17px;
+    padding-left: 35px;
+}
+
+#inputSurname.form-control {
+    background-image: url("img/nameIcon.png");
+    background-repeat: no-repeat;
+    background-position: left 10px center;
+    background-size: 17px;
+    padding-left: 35px;
+}
+
+#inputLocation.form-control {
+    background-image: url("img/companyIcon.png");
+    background-repeat: no-repeat;
+    background-position: left 10px center;
+    background-size: 17px;
+    padding-left: 35px;
+}
+
+#inputName.form-control {
+    background-image: url("img/nameIcon.png");
+    background-repeat: no-repeat;
+    background-position: left 10px center;
+    background-size: 17px;
+    padding-left: 35px;
+}
+
+
+/*#btn.btn-primary {
+    background-image: url("img/save-icon.png");
+    background-repeat: no-repeat;
+    background-position: left 10px center;
+    background-size: 17px;
+    padding-left: 35px;
+}*/
+
+.row {
+    display: -webkit-box;
+}
+
+#mainframe {
+    width: 60%;
+    right: 60px;
+}
+
+#profilepicture {
+    top: 20px;
+}
+
+.col {
+    padding-bottom: 20px;
+}

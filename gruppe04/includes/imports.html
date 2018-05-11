@@ -13,84 +13,75 @@
 						    	<span class="navbar-toggler-icon"></span>
 						    </button>
 
+			<!------DROPDOWN MENU------------------------>
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 				<ul class="navbar-nav mr-auto">
 
 					<div id="navtop" class="btn-group">
-						<button type="button" class="btn btn-danger">Germany</button>
+						<button type="button" onclick="slideTo(1)" class="btn btn-danger">Germany</button>
 						<button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 												<span class="sr-only">Toggle Dropdown</span>
 											</button>
 						<div class="dropdown-menu">
-							<a class="dropdown-item" href="#">location x</a>
-							<a class="dropdown-item" href="#">location y</a>
-							<a class="dropdown-item" href="#">location z</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#">Separated link</a>
-						</div>
-					</div>
+							<a class="dropdown-item" onclick="slideTo(1)" href="#">Berlin</a>
+							<a class="dropdown-item" onclick="slideTo(1)" href="#">Hamburg</a>
+							<a class="dropdown-item" onclick="slideTo(1)" href="#">Munich</a>
 
-					<div id="navtop" class="btn-group">
-						<button type="button" class="btn btn-danger">Netherlands</button>
-						<button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-												<span class="sr-only">Toggle Dropdown</span>
-											</button>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="#">location x</a>
-							<a class="dropdown-item" href="#">location y</a>
-							<a class="dropdown-item" href="#">location z</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#">Separated link</a>
 						</div>
 					</div>
-
-					<div id="navtop" class="btn-group">
-						<button type="button" class="btn btn-danger">Austria</button>
-						<button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-												<span class="sr-only">Toggle Dropdown</span>
-											</button>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="#">location x</a>
-							<a class="dropdown-item" href="#">location y</a>
-							<a class="dropdown-item" href="#">location z</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#">Separated link</a>
-						</div>
-					</div>
-
-					<div id="navtop" class="btn-group">
-						<button type="button" class="btn btn-danger">Belgium</button>
-						<button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-												<span class="sr-only">Toggle Dropdown</span>
-											</button>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="#">location x</a>
-							<a class="dropdown-item" href="#">location y</a>
-							<a class="dropdown-item" href="#">location z</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#">Separated link</a>
-						</div>
-					</div>
-
-					<div id="navtop" class="btn-group">
-						<button type="button" class="btn btn-danger">Hungary</button>
-						<button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-												<span class="sr-only">Toggle Dropdown</span>
-											</button>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="#">location x</a>
-							<a class="dropdown-item" href="#">location y</a>
-							<a class="dropdown-item" href="#">location z</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#">Separated link</a>
-						</div>
-					</div>
-				</ul>
 			</div>
-		</nav>
+
+			<div id="navtop" class="btn-group">
+				<button type="button" onclick="slideTo(2)" class="btn btn-danger">Netherlands</button>
+				<button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<span class="sr-only">Toggle Dropdown</span>
+											</button>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" onclick="slideTo(2)" href="#">Amsterdam Amstel</a>
+
+				</div>
+			</div>
+
+			<div id="navtop" class="btn-group">
+				<button type="button" onclick="slideTo(3)" class="btn btn-danger">Austria</button>
+				<button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<span class="sr-only">Toggle Dropdown</span>
+											</button>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" onclick="slideTo(3)" href="#">Salzburg</a>
+					<a class="dropdown-item" onclick="slideTo(3)" href="#">Vienna</a>
+
+				</div>
+			</div>
+
+			<div id="navtop" class="btn-group">
+				<button type="button" onclick="slideTo(4)" class="btn btn-danger">Belgium</button>
+				<button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<span class="sr-only">Toggle Dropdown</span>
+											</button>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" onclick="slideTo(4)" href="#">Brussels "Gare du Midi"</a>
+
+				</div>
+			</div>
+
+			<div id="navtop" class="btn-group">
+				<button type="button" onclick="slideTo(5)" class="btn btn-danger">Hungary</button>
+				<button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												<span class="sr-only">Toggle Dropdown</span>
+											</button>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" onclick="slideTo(5)" href="#">Budapest</a>
+
+				</div>
+			</div>
+			</ul>
 	</div>
+	</nav>
+
+	<!------SEARCH BAR------------------------>
 
 	<div class="col-md-3">
 		<form class="form-inline my-2 my-lg-0" id="searchelement">
@@ -100,27 +91,34 @@
 	</div>
 </div>
 
-<footer id="footer">
-
-	<!------FOOTER CONTACT--------------------------------->
-	<div class="col-md-3">
-		Hier Impressum
-	</div>
-
-	<!------FOOTER COPYRIGHT------------------------------->
-	<div class="col-md-9" id="copyright">
-		<p><a href=index.html>&copy;2018 apez@work</a></p>
-	</div>
-</footer>
+<!------SIDEBAR NAVIGATION------------------------>
 
 <nav id="navside">
 	<ul>
 		<li><a href="index.html">Home</a></li>
 		<li><a href="calendar.html">Calendar</a></li>
 		<li><a href="inbox.html">Inbox</a></li>
-		<li><a href="account Management.html">Account Management</a></li>
+		<li><a href="user_settings.html">Account Management</a></li>
 		<li><a href="activities.html">Activities</a></li>
-		<li class="logout"><a href="https://www.apetito.de">Logout<span>&nbsp&nbsp<img id="iconlogout" src="img/iconlogout.svg"</span></a></li>
+		<li class="logout" onclick="logout()">Logout<span>&nbsp&nbsp<img id="iconlogout" src="img/iconlogout.svg"</span></li>
 
 	</ul>
 </nav>
+
+
+<!------FOOTER------------------------>
+
+<footer id="footer">
+
+	<!------FOOTER CONTACT--------------------------------->
+
+	<div class="col-md-3">
+		Hier Impressum
+	</div>
+
+	<!------FOOTER COPYRIGHT------------------------------->
+
+	<div class="col-md-9" id="copyright">
+		<p><a href=index.html>&copy;2018 apez@work</a></p>
+	</div>
+</footer>

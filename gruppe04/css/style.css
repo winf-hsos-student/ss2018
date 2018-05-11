@@ -1,302 +1,352 @@
+/*Color Definition*/
+
+/*
+
+Hauptfarben: benutzt für Buttons, Übersichtskarte, hover Effekte etc.
+apetito-red = #DE0027
+apetito-green = #9CCC11
+
+Das etwas dunklere weiß hinter den Elementen, um diese von dem Rest abzuheben.
+light-white-shadow = #F8F9FA
+
+Footer Farben
+footer-lightgrey = #393939
+footer-darkgrey = #5F5F5F
+
+Als Schriftfarbe wird Weiss verwendet
+white = #FFFFFF
+*/
+
 /*LOGO*/
 
-        #logo {
-            padding-top: 10px;
-            margin-left: 15px;
-            background-color: #F8F9FA;
-        }
+#logo {
+    padding-top: 10px;
+    margin-left: 15px;
+    background-color: #F8F9FA;
+}
 
 /*NAVIGATION*/
 
-    /*NAVIGATION TOP STYLE & TOOGLE BUTTON*/
-            
-        #tugle:hover {
-            border-color: #DE0027;
-        }
-        
-        #tugle:focus {
-            background-color: #9CCC11;
-        }
-        
-        #header {
-            min-width: 1400px;
-        }
-        
-        #navtop button {
-            background-color: #DE0027;
-        }
-        
-        #navtop button:hover {
-            color: #9ccc11;
-        }
-        
-        #navtop {
-            padding-right: 40px;
-            padding-top: 8px;
-        }
-        
-        #navigationheader {
-            min-width: 810px;
-        }
+/*NAVIGATION TOP STYLE & TOOGLE BUTTON*/
 
-    /*NAVIGATION LEFT BASIC & STYLE*/
-            
-           
-        #navside {
-            width: 210px;
-        }
-        
-        #navside ul {
-            list-style-type: none;
-            padding-left: 10px;
-            padding-top: 50px;
-            width: 210px;
-            padding-bottom: 50px;
-            background-color: #F8F9FA;
-        }
-        
-        #navside li {
-            margin-bottom: 40px;
-        }
-        
-        #navside li a {
-            text-decoration: none;
-            color: #DE0027;
-            padding: 0.4em;
-            transition: all .25s ease-in;
-        }
-            
-    /*NAVIGATION TOP & NAVIGATION LEFT STYLE ON HOVER*/
-        
-        #navtop a:hover,
-        #navside a:hover,
-        #navtop li[aria-current] a:hover #navside li[aria-current] a:hover {
-            color: #FFF;
-            background-color: #DE0027;
-            border-radius: 10px;
-            transition: all .20s ease-in;
-        
-        }
-        
-    /*NAVIGATION TOP & NAVIGATION LEFT STYLE ON FOCUS*/
-        #navside a:focus,
-        #navtop a:focus {
-            background-color: #DE0027;
-            color: #9CCC11;
-        }
-        
-        .logout {
-            text-decoration: underline;
-            margin-top: 80px;
-        }
-        
-        #iconlogout{
-            width:13px;
-            height:13px;
-        }
+#tugle:hover {
+    border-color: #DE0027;
+}
 
-    
+#tugle:focus {
+    background-color: #9CCC11;
+}
+
+#header {
+    min-width: 1400px;
+}
+
+#navtop button {
+    background-color: #DE0027;
+}
+
+#navtop button:hover {
+    color: #9ccc11;
+}
+
+#navtop {
+    padding-right: 40px;
+    padding-top: 8px;
+}
+
+#navigationheader {
+    min-width: 810px;
+}
+
+/*NAVIGATION LEFT BASIC & STYLE*/
+
+#navside {
+    width: 210px;
+}
+
+#navside ul {
+    list-style-type: none;
+    padding-left: 10px;
+    padding-top: 50px;
+    width: 210px;
+    padding-bottom: 50px;
+    background-color: #F8F9FA;
+}
+
+#navside li {
+    margin-bottom: 40px;
+}
+
+#navside li a {
+    text-decoration: none;
+    color: #DE0027;
+    padding: 0.4em;
+    transition: all .25s ease-in;
+}
+
+/*NAVIGATION TOP & NAVIGATION LEFT STYLE ON HOVER*/
+
+#navtop a:hover,
+#navside a:hover,
+#navtop li[aria-current] a:hover #navside li[aria-current] a:hover {
+    color: #FFF;
+    background-color: #DE0027;
+    border-radius: 10px;
+    transition: all .20s ease-in;
+
+}
+
+/*NAVIGATION TOP & NAVIGATION LEFT STYLE ON FOCUS*/
+
+#navside a:focus,
+#navtop a:focus {
+    background-color: #DE0027;
+    color: #9CCC11;
+}
+
+.logout {
+    text-decoration: underline;
+    margin-top: 80px;
+    cursor: pointer;
+    color: #DE0027;
+    padding: 0.4em;
+    transition: all .25s ease-in;
+    margin-right: 110px;
+    border-radius: 10px;
+}
+
+.logout:hover {
+    text-decoration: underline;
+    margin-top: 80px;
+    cursor: pointer;
+    color: #FFF;
+    background: #DE0027;
+    padding: 0.4em;
+    transition: all .25s ease-in;
+}
+
+#iconlogout {
+    width: 13px;
+    height: 13px;
+}
+
+#iconlogout:hover {
+    width: 13px;
+    height: 13px;
+    background: #FFF;
+}
+
+
 /*SEARCH FORM WITH BUTTON BASIC & STYLE*/
-        #searchelement {
-            padding-top: 20px;
-            padding-left: 60px;
-            padding-right: 0px;
-            background-color: #F8F9FA;
-            padding-bottom: 10px;
-        }
-        
-        #searchfield {
-            width: 10em;
-            height: 31.5px;
-            border: 1px solid #999;
-            border-radius: 0.3em;
-            transition: width 0.5s ease-in-out;
-            border-color: #DE0027;
-            color: #393939;
-        }
-        
-        #searchfield:hover {
-            border-color: #9CCC11;
-        }
-        
-        .searchbutton {
-            background: white;
-            color: #DE0027;
-            width: 4em;
-            height: 31.5px;
-            border: 1px solid #999;
-            border-radius: 0.3em;
-            border-color: #DE0027;
-            margin-left: 4px;
-            transition: all .25s ease-in;
-        }
-        
-        .searchbutton:hover {
-            background-color: #DE0027;
-            color: white;
-        }
-        
-        .searchbutton:focus {
-            background-color: #DE0027;
-            color: #9ccc11;
-        }
+
+#searchelement {
+    padding-top: 12px;
+    padding-left: 60px;
+    padding-right: 0px;
+    background-color: #F8F9FA;
+    padding-bottom: 8px;
+
+}
+
+#searchfield {
+    width: 10em;
+    height: 36px;
+    border: 1px solid #DE0027;
+    border-top-left-radius: 0.4em;
+    border-bottom-left-radius: 0.4em;
+    transition: width 0.5s ease-in-out;
+    color: #393939;
+    margin-top: 4px;
+}
+
+#searchfield:hover {
+    border-color: #9CCC11;
+}
+
+.searchbutton {
+    background: #DE0027;
+    color: #FFF;
+    width: 4em;
+    height: 37.5px;
+    cursor: pointer;
+    border: 1px solid;
+    border-top-right-radius: 0.4em;
+    border-bottom-right-radius: 0.4em;
+    transition: all .25s ease-in;
+    margin-top: 4px;
+}
+
+.searchbutton:hover {
+    background-color: #DE0027;
+    color: #9CCC11;
+}
+
+.searchbutton:focus {
+    background-color: #DE0027;
+    color: #9ccc11;
+}
 
 
 /*MAINFRAME*/
-        
-    /*MAINFRAME CAROUSEL*/
-    
-        .carousel-control-prev,
-        .carousel-control-next {
-            background-color: #DE0027;
-            height: 30px;
-            width: 40px;
-            border-radius: 0.4em;
-            margin-top: 240px;
-        }
-        
-        #carouselExampleIndicators a {
-            background-color: #DE0027;
 
-        }
-        
-        #carouselExampleIndicators a:hover {
-            color: #9CCC11;
-        }
-        
-        #carouselExampleIndicators {
-            width: 800px;
-            margin-left: 10px;
-        }
+/*MAINFRAME CAROUSEL*/
 
-    /*MAP OF EUROPE BASIC STYLE WITH HOVER EFFECT*/
+.carousel-control-prev,
+.carousel-control-next {
+    background-color: #DE0027;
+    height: 30px;
+    width: 40px;
+    border-radius: 0.4em;
+    margin-top: 240px;
+}
 
-        #mainframecarousel {
-            padding-bottom: 15px;
-            height:620px;
-        }
+#carouselExampleIndicators li {
+    cursor: pointer;
+}
 
-        #mapeurope {
-            fill: #9ccc11;
-            width: 700px;
-            margin-left: 20px;
-        }
+#carouselExampleIndicators a {
+    background-color: #DE0027;
 
-        #europetext {
-            fill: #000;
-        }
 
-        #europecountrymap a:hover,
-        #europecountrymap a:focus {
-            fill: #DE0027;
-            transition: all .25s ease-in;
-        }
+}
 
-  /*STYLE & SETTINGS OF THE COUNTRYMAPS*/
+#carouselExampleIndicators a:hover {
+    color: #9CCC11;
+}
 
-        #mapgermany {
-            margin-left: 70px;
-            padding-left: 5px;
-            padding-bottom: 30px;
-            fill: #9CCC11;
-        }
-        
-        #mapnetherlands {
-            margin-left: 40px;
-            margin-top:0px;
-        }
-        
-        #mapaustria {
-            margin-top: 60px;
-            margin-left: 50px;
-            
-        }
-        
-        #mapbelgium {
-            margin-top: 45px;
-            margin-left: 50px;
-        }
-        
-        #maphungary {
-            margin-top: 60px;
-            margin-left: 65px;
-        }
-        
-        #mapgermany text {
-            fill: #000;
-        }
-        
-        .carousel-indicators li {
-            background-color: #DE0027
-        }
-        
-        .carousel-indicators li:hover {
-            background-color: #9CCC11
-        }
-        
+#carouselExampleIndicators {
+    width: 800px;
+    margin-left: 10px;
+}
+
+/*MAP OF EUROPE BASIC STYLE WITH HOVER EFFECT*/
+
+#mainframecarousel {
+    padding-bottom: 15px;
+    height: 620px;
+}
+
+#mapeurope {
+    fill: #9ccc11;
+    width: 700px;
+    margin-left: 20px;
+}
+
+#europetext {
+    fill: #000;
+}
+
+#europecountrymap a:hover,
+#europecountrymap a:focus {
+    fill: #DE0027;
+    transition: all .25s ease-in;
+}
+
+/*STYLE & SETTINGS OF THE COUNTRYMAPS*/
+
+#mapgermany {
+    margin-left: 70px;
+    padding-left: 5px;
+    padding-bottom: 30px;
+    fill: #9CCC11;
+}
+
+#mapnetherlands {
+    margin-left: 40px;
+    margin-top: 0px;
+}
+
+#mapaustria {
+    margin-top: 60px;
+    margin-left: 50px;
+
+}
+
+#mapbelgium {
+    margin-top: 45px;
+    margin-left: 50px;
+}
+
+#maphungary {
+    margin-top: 60px;
+    margin-left: 65px;
+}
+
+#mapgermany text {
+    fill: #000;
+}
+
+.carousel-indicators li {
+    background-color: #DE0027
+}
+
+.carousel-indicators li:hover {
+    background-color: #9CCC11
+}
+
 /*FOOTER*/
 
-    /*FOOTER BASIC STYLE*/
+/*FOOTER BASIC STYLE*/
 
-        footer {
-            width: 100%;
-            padding-bottom: 30px;
-            background: #393939;
-            color: white;
-            border-top: 48px solid #5F5F5F
-        }
-    
-    /*FOOTER COPYRIGHT BASIC STYLE WITH HOVER EFFECT*/
+footer {
+    width: 100%;
+    padding-bottom: 30px;
+    background: #393939;
+    color: white;
+    border-top: 48px solid #5F5F5F
+}
 
-        #copyright {
-            float: right;
-        }
-        
-        #copyright a {
-            color: #FEFEFE;
-            float: right;
-        }
-        
-        #copyright a:focus,
-        #copyright a:hover {
-            color: #DE0027;
-            transition: all .25s ease-in;
-        }
-            
+/*FOOTER COPYRIGHT BASIC STYLE WITH HOVER EFFECT*/
+
+#copyright {
+    float: right;
+}
+
+#copyright a {
+    color: #FEFEFE;
+    float: right;
+}
+
+#copyright a:focus,
+#copyright a:hover {
+    color: #DE0027;
+    transition: all .25s ease-in;
+}
+
 /*MEDIA QUERIES*/
 
-        @media(max-width:800px) {
-            #mainframe {
-                display: none;
-            }
-        }
+@media(max-width:800px) {
+    #mainframe {
+        display: none;
+    }
+}
 
-        @media(max-width:600px) {
-            #sidebar ul,
-            #header {
-                width: 290px;
-            }
-        }
+@media(max-width:600px) {
+    #sidebar ul,
+    #header {
+        width: 290px;
+    }
+}
 
-        @media(max-width:600px) {
-            #searchelement,
-            .navbar.navbar-expand-lg.navbar-light.bg-light,
-            #logo {
-                padding-left: 10px;
-                width: 290px;
-            }
-        }
+@media(max-width:600px) {
+    #searchelement,
+    .navbar.navbar-expand-lg.navbar-light.bg-light,
+    #logo {
+        padding-left: 10px;
+        width: 290px;
+    }
+}
 
-        @media(max-width:1600px) {
-            #header.row {
-                max-width: 320px;
-            }
-        }
-        
-        @media(max-width:600px) {
-            #logo,
-            #logo img {
-                margin-bottom: 20px;
-                padding-left: 17px;
-            }
-        }
+@media(max-width:1600px) {
+    #header.row {
+        max-width: 320px;
+    }
+}
+
+@media(max-width:600px) {
+    #logo,
+    #logo img {
+        margin-bottom: 20px;
+        padding-left: 17px;
+    }
+}
