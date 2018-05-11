@@ -1,79 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Regionalo regional bestellen</title>
-        <link rel="stylesheet" href="owl.carousel.min.css">
-        <link rel="stylesheet" href="owl.theme.default.min.css">
-        <style type="text/css">
-            .wrapper {width: 100%; height: auto; overflow: hidden;}
-            .item {background: red; height: 300px;}
-        </style>    
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="kontakt.css">       
-    </head>
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Regionalo</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jua" type='text/css'>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- hier API nativ firebase einfügen-->
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+
+    <!-- Load firebase-tools library -->
+    <script src="https://cdn.jsdelivr.net/gh/winf-hsos/firebase-tools@0.5/src/firebase-tools.js"></script>
+
+
+
+   <!-- <style type = "text/css">
+        .wrapper {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+        }
+
+        .item {
+            background: white;
+            height: 350px;
+        }
+    </style> -->
+
+
+
+</head>
+
 <body>
-<div class="logo">
-     <img src="Logo2.png" alt="Little Boxes" width="300"height="200" />
-</div>
-<div class="sidebar">
-    <nav class="menu">
-        <ul class="clearfix">
-            <li>
-                <a href="#">Anmelden</a>
-            </li>
-            <li>
-                <a href="#">Produkte</a>
-                <ul class="sub-menu">
-                    <li><a href="#">AAAA</a></li>
-                    <li><a href="#">BBBB</a></li>
-                    <li><a href="#">CCCC</a></li>
-                    <li><a href="#">DDDD</a></li>
-                </ul>
-            </li>
-                <li><a href="kontakt.html">Kontakt</a></li>
-                <li><a href="%C3%BCberuns.html">Über uns</a></li>
-                <li>
-                <a href="#">Suchen </a>
-                <ul class="sub-menu">
-                    <li><a href="produktsuche.html">Produktsuche</a></li>
-                    <li><a href="#">Händlersuche</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
-</div>
-    
-<div class="main">
-    Kaufe ganz einfach regionale Produkte direkt vom Erzeuger und entdecke die kulinarische Vielfalt Deutschlands Regionen abseits der Supermärkte <p>
-<div class="wrapper">
-    <div class="owl-carousel owl-theme">
-        <div class="item"><h4>1</h4></div>
-        <div class="item"><h4>2</h4></div>
-        <div class="item"><h4>3</h4></div>
-        <div class="item"><h4>4</h4></div>
-        <div class="item"><h4>5</h4></div>
-        <div class="item"><h4>6</h4></div>
-        <div class="item"><h4>7</h4></div>
-        <div class="item"><h4>8</h4></div>
-        <div class="item"><h4>9</h4></div>
-        <div class="item"><h4>10</h4></div>
-        <div class="item"><h4>11</h4></div>
-        <div class="item"><h4>12</h4></div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- logo -->
+                <div class="logo">
+                    <img src="img/logo2.png" alt="Little Boxes" width="300" height="200" />
+                </div>
+                <!-- start Menüleiste -->
+                <div class="sidebar">
+                    <nav class="menu">
+                        <ul class="clearfix">
+                            <li>
+                                <a href="#">Anmelden</a>
+                                <ul class="sub-menu">
+                                    <li><a href="login1.html">Login</a></li>
+                                    <li><a href="newcustomer.html">Registrieren</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Produkte</a>
+                                <ul class="sub-menu">
+                                    <li><a href="#">AAAA</a></li>
+                                    <li><a href="#">BBBB</a></li>
+                                    <li><a href="#">CCCC</a></li>
+                                    <li><a href="#">DDDD</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="kontakt.html">Kontakt</a></li>
+                            <li><a href="%C3%BCberuns.html">Über uns</a></li>
+                            <li>
+                                <a href="#">Suchen </a>
+                                <ul class="sub-menu">
+                                    <li><a href="produktsuche.html">Produktsuche</a></li>
+                                    <li><a href="#">Händlersuche</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="main">
+
+                    Kaufe ganz einfach regionale Produkte direkt vom Erzeuger und entdecke die kulinarische Vielfalt deutscher Regionen abseits der Supermärkte!
+                    <p>
+                        <div class="wrapper">
+                            <div class="owl-carousel owl-theme">
+                                <!--<div class="item">
+                                                    <h4>1</h4>
+                                                </div> -->
+                                <div class="item">
+                                    <img src="img/eier.jpg" alt="Little Boxes" />
+
+                                </div>
+                                <div class="item">
+                                    <img src="img/honig.jpg" alt="Little Boxes" />
+
+                                </div>
+                                <div class="item">
+                                    <img src="img/milch.jpg" alt="Little Boxes" />
+
+                                </div>
+                                <div class="item">
+                                    <img src="img/käse.jpg" alt="Little Boxes" />
+
+                                </div>
+                                <div class="item">
+                                    <img src="img/steak.jpg" alt="Little Boxes" />
+
+                                </div>
+                                <div class="item">
+                                    <img src="img/huhn.jpg" alt="Little Boxes" />
+
+                                </div>
+                                <!--<div class="item">
+                                                    <h4>8</h4>
+                                                </div>
+                                                <div class="item">
+                                                    <h4>9</h4>
+                                                </div>
+                                                <div class="item">
+                                                    <h4>10</h4>
+                                                </div>
+                                                <div class="item">
+                                                    <h4>11</h4>
+                                                </div>
+                                                <div class="item">
+                                                    <h4>12</h4>
+                                                </div>
+                                            </div> -->
+
+
+
+
+                            </div>
+
+                        </div>
+                        <div class="footer">
+                            Regionalo.de Musterstraße 12 345 Musterstadt
+                        </div>
+                        <script src="js/jquery.2.min.js"></script>
+                        <script src="js/owl.carousel.min.js"></script>
+                        <script src="js/jquer.js"></script>
+
+                </div>
+            </div>
+        </div>
     </div>
-
-
-        
-        
-</div>
-    <script src="jquery.2.min.js"></script>
-    <script src="owl.carousel.min.js"></script>
-    <script src="jquer.js"></script>
-</div> 
-<div class="footer">
-	Fußzeile/copyright etc (footer)
-</div>
 </body>
+
 </html>
-
-

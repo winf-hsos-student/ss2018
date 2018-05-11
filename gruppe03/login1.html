@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+
+<head>
+    <meta charset="UTF-8">
+    <title>Regionalo login</title>
+     <!--API nativ firebase-->
+                <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+
+                <!-- Load firebase-tools library -->
+                <script src="https://cdn.jsdelivr.net/gh/winf-hsos/firebase-tools@0.5/src/firebase-tools.js"></script>
+                <!-- Required meta tags -->
+               <!-- <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+
+                <!-- Bootstrap CSS -->
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+                <link rel="stylesheet" type="text/css" href="css/custom.css">
+                <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jua">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-sm-12"></div>
+
+            <div class="col align-self-center">
+                <div class="text-center">
+                    <img src="img/logo2.png" class="rounded" alt="Little Boxes" width="300" height="200"/>
+                </div>
+                <!--img src="img/logo2.png" alt="Little Boxes" width=300px height=200px/-->
+                <h3 class="text-center">Login</h3>
+                <hr>
+
+                <div class="form-group">
+                    <label for="inputEmail">E-mail</label>
+                    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Gib deine E-mail ein!">
+                    <small id="emailHelp" class="form-text text-muted">Ihre Daten sind bei uns sicher!</small>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword">Passwort</label>
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Gib dein Passwort ein!">
+                </div>
+
+                <!-- When this is clicked, register() is called -->
+                <a href="logintrue.html"></a>
+                <button onclick="register()" class="btn btn-primary">Login</button>
+    
+                
+
+
+                
+
+
+                <!--API nativ firebase
+                <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+
+                Load firebase-tools library 
+                <script src="https://cdn.jsdelivr.net/gh/winf-hsos/firebase-tools@0.5/src/firebase-tools.js"></script>
+                Required meta tags -->
+               <!-- <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+
+                 Bootstrap CSS
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+                <link rel="stylesheet" type="text/css" href="css/custom.css">
+                <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jua"> -->
+
+
+
+
+    <!-- When this is clicked, logout() is called -->
+    <button onclick="logout()" class="btn btn-secondary">Logout</button>
+
+
+    <hr>
+    </div>
+    <div class="col-sm-3"></div>
+    </div>
+    </div>
+    <!-- End of container -->
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+
+
+    <script>
+        /* global firebase */
+        /* Replace with your project's information */
+        var config = {
+            projectId: "web-engineering-03",
+            apiKey: "AIzaSyCq0_Nn6vl6HqRa-gxk-4LzyYmQFwN_dRQ",
+            authDomain: "web-engineering-03.firebaseapp.com",
+        };
+        firebase.initializeApp(config);
+        firebase.auth().onAuthStateChanged(loginChanged);
+        /* This function is called when the user clicks
+         * the sign-up button. */
+        function register() {
+
+            // Get the values from the email and password input fields
+            var email = document.getElementById("inputEmail").value;
+            var password = document.getElementById("inputPassword").value;
+            firebase.auth().createUserWithEmailAndPassword(email, password).catch(handleError);
+        }
+
+        function loginChanged(user) {
+            if (user) {
+                console.log("User with email >" + user.email + "< is signed in.");
+            }
+            else {
+                console.log("No user signed in.");
+            }
+        }
+
+        function logout() {
+            firebase.auth().signOut().then(function() {
+                console.log("User successfully signed out.");
+            }).catch(handleError);
+        }
+        /* This is called if something goes wrong when logging in or logging out.
+         * For example if the user's password is wrong. */
+        function handleError(error) {
+            console.error(error.code + ":" + error.message);
+        }
+    </script>
+
+</body>
+
+</html>
