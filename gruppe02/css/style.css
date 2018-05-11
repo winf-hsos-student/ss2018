@@ -1,15 +1,23 @@
 @import url('https://fonts.googleapis.com/css?family=Bowlby+One+SC');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
-:root {
-    --color-blue: #009EE3;
-    --color-green: #8CAF90;
-    --color-gray-dark: #434343;
-    --color-gray-light: #FAFAFA;
-}
+/*
+Branding:
 
-#navigation {
-    margin-bottom: 24px;
-}
+h1: Bowlby One SC, cursive; color: #5c272f; size: 40Px
+h2: Bowlby One SC, cursive; color: #5c272f; size: 20Px
+h3: Roboto, sans-serif; color: #0e0e0e; size: 18px;
+h4: Roboto, sans-serif; color: #0e0e0e; size: 25px;
+
+colors: red: bootstrap -> bootstrap danger (buttons)
+        blue: arrows -> images (Pfeil_unten.jpeg)
+        brown: #5c272f -> headings (h1, h2)
+        dark-grey: #0e0e0e (text + slightly brighter muted)
+        
+*/
+
+
+/* color of the first row (index.html) to match the color of the banner. Optical inclusion of the menu.*/
 
 #indexFirstRow {
     background-color: #b1d2f1;
@@ -19,10 +27,7 @@
 
 }
 
-#loginBody {
-
-    background-image: url("../img/landingPageImage.jpg");
-}
+/* text paragraph on index.html*/
 
 #indexFirstSecondText {
     margin-top: 30px;
@@ -30,13 +35,14 @@
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     color: #0e0e0e;
-    
 }
 
 .center {
     margin: auto;
-  
+
 }
+
+/*definition of the h1. Used on all sites, where the h1 is used*/
 
 h1 {
     margin: 5px 0px 15px;
@@ -44,15 +50,19 @@ h1 {
     text-transform: uppercase;
     font-size: 60px;
     color: #5c272f;
-    
+
 }
+
+/*definition of the h2. Used on all sites, where the h2 is used*/
 
 h2 {
     margin: 60px 0px 40px 0px;
     font-family: 'Bowlby One SC', cursive;
-    font-size: 40px;
+    font-size: 30px;
     color: #5c272f
 }
+
+/*definition of the h3. Used on all sites, where the h3 is used*/
 
 h3 {
     margin: 5% 15% 5% 15%;
@@ -61,31 +71,103 @@ h3 {
     font-size: 18px;
 }
 
+
+/*definition of the h4. Used on all sites, where the h4 is used*/
+
 h4 {
-    margin: 1html0px 0px 10px 0px;
+    margin: 60px 0px 40px 0px;
+    font-family: "roboto", sans-serif;
+    font-weight: 900;
+    font-size: 25px;
+    color: #434343;
 }
 
 
-
-#indexSecondRow {
-    margin-top: 50px;
-}
+/*Padding on body in index.html*/
 
 #indexBody {
     padding-left: -15px;
     padding-right: -15px;
 }
 
+/*Padding on body in impressum.html*/
+
 #impressumBody {
     padding-left: 15px;
     padding-right: 15px;
 }
 
-.container {
-    background-color: var(--color-gray-light);
-    border-radius: .5em;
+
+/*background-image in login_test_i.html*/
+
+#loginBody {
+    background: fixed left bottom;
+    background-color: #B2D3F2;
+    background-image: url(../img/banner16zu9.jpg);
+    background-repeat: no-repeat;
 }
 
-.lightgray {
-    /*background-color: #f8f9fa;*
+
+/*style welcome box in login.html*/
+
+#loginBoxRow {
+    padding: 0.5em;
+    border-style: dotted;
+    border-width: 0.5px;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+
+}
+
+/*style error row in login.html*/
+
+#loginErrorRow {
+    border-style: solid;
+    border-color: red;
+    border-width: 0.5em;
+    padding-bottom: 0.6em
+}
+
+/*background-image in registration.html*/
+
+#registrationBody {
+    background: fixed left bottom;
+    background-color: #B2D3F2;
+    background-image: url(../img/banner16zu9.jpg);
+    background-repeat: no-repeat;
+
+}
+
+/*background-image in profile.html*/
+
+#profileBody {
+    background: fixed left bottom;
+    background-color: #B2D3F2;
+    background-image: url(../img/banner16zu9.jpg);
+    background-repeat: no-repeat;
+
+}
+
+/*Container behind different pages (profile.html, login.html, registration.html)*/
+
+.container {
+    background-color: #FAFAFA;
+    border-radius: .5em;
+
+}
+
+
+/*background-image profile.html*/
+
+#profileBody {
+    background: fixed left bottom;
+    background-color: #B2D3F2;
+    background-image: url(../img/banner16zu9.jpg);
+    background-repeat: no-repeat;
+}
+
+/*Padding password row in registration.html*/
+#registrationPasswordRow {
+    padding-top:15px;
+    padding-bottom:15px;
 }

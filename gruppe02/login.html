@@ -1,76 +1,219 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    
+
     <!-- Your navigation -->
-   	<link rel="import" href="includes/navigation.html">
-   
+    <link rel="import" href="includes/navigation.html">
+
     <!-- Your custom styles -->
     <link rel="stylesheet" href="css/style.css">
 
     <!-- Your Webpage Title -->
     <title>Strohmänner | Deine Plattform für Stroh</title>
-    
-    
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
 
 </head>
 
 <body id="loginBody">
-	<!--  bereits vorgegebene Navigationsbar ausgeblendet
-    <div id="navigation"></div>
-	-->
+    <div class="container text-center">
 
-    <!-- Put your HTML here... -->
-    
-  
-	
-  <section class="container" id=containerLogin>
-    <div class="login">
-      <h1>Login</h1>
-      <form method="post" action="index.html">
-        <p><input type="text" name="login" value="" placeholder="Username or Email"></p>
-        <p><input type="password" name="password" value="" placeholder="Password"></p>
-        <p class="remember_me">
-          <label>
-            <input type="checkbox" name="remember_me" id="remember_me">
-            Remember me on this computer
-          </label>
-        </p>
-        <p class="submit"><input type="submit" name="commit" value="Login"></p>
-      </form>
+        <div class="row align-items-center">
+            <div class="col-sm-3"></div>
+            <div class="col align-self-center">
+                <h1 class="text-center">Anmelden</h1>
+                <hr>
+                <div class="form-group">
+                    <label for="inputEmail">Email Adresse</label>
+                    <input type="email" class="form-control" id="inputEmail" placeholder="...">
+                    <small class="form-text text-muted">Bitte trage deine Email Adresse ein. Wir werden diese niemals mit Anderen teilen.</small>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword">Passwort</label>
+                    <input type="password" class="form-control" id="inputPassword" placeholder="...">
+                    <small class="form-text text-muted">Bitte trage dein Passwort ein. Dieses solltest du niemals weitergeben.</small>
+                </div>
+                <br>
+                <div class="checkbox">
+                    <label><input type="checkbox"> Ich möchte eingeloggt bleiben. </label>
+                </div>
+                <br>
+                <!-- When this is clicked, login() is called -->
+                <button id="btnLogin" onclick="login()" class="btn btn-danger">Anmelden</button>
+                <!--link to profil, if user is logged in visible -->
+                <a href="profile.html"><button id="loginProfil" class="btn btn-outline-danger" type="button" hidden >zum Profil</button></a>
+
+                <hr>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+
+
+        <div class="row align-items-center">
+            <div class="col-sm-3"></div>
+            <div class="col align-self-center">
+                <!--Welcome text -->
+                <div class="card">
+                    <div class="card-body" id="loginBoxRow">
+
+                        <!-- These two will be filled dynamically -->
+                        <h5 class="card-title" id="welcomeTitle"></h5>
+                        <p class="card-text" id="welcomeText"></p>
+
+                    </div>
+                </div>
+
+                <!--Error box, where errors get displayed -->
+                <div class="card">
+                    <div class="card-body" id="loginErrorRow">
+
+                        <!-- These two will be filled dynamically -->
+                        <h5 class="card-title" id="errorTitle"></h5>
+                        <p class="card-text" id="errorText"></p>
+
+                    </div>
+                </div>
+                <!-- When this is clicked, logout() is called -->
+                <button id="btnLogout" onclick="logout()" style="margin-top: 16px;" class="btn btn-danger" hidden>Abmelden</button>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+
     </div>
-
-    <div class="login-help">
-      <p>Forgot your password? <a href="#">Click here to reset it</a>.</p>
-    </div>
-  </section>
-    
-    <!-- End HTML-->
-
+    <!-- End of container -->
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <!-- Your inline custom Javascript -->
+    <!-- Load Firebase native API -->
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.1/firebase-functions.js"></script>
+
+    <!-- Load firebase-tools library -->
+    <script src="https://cdn.jsdelivr.net/gh/winf-hsos/firebase-tools@0.3/src/firebase-tools.js"></script>
+
     <script>
-        /* Import the navigation so that we don't have
-         * to make changes on every site when we add
-         * something to it. */
-        var link = document.querySelector('link[rel="import"]');
-        var navigation = link.import;
-        var el = navigation.querySelector('#navigation');
-        document.querySelector("#navigation").appendChild(el.cloneNode(true));
+        //Definition Firebase Variable
+        /*global firebase */
+
+        var config = {
+            apiKey: "AIzaSyDQI5s1znba5EI5kEJh7vkyVpxFUEayZhE",
+            databaseURL: "https://strohmaenner.firebaseio.com",
+            authDomain: "strohmaenner.firebaseapp.com",
+        };
+        firebase.initializeApp(config);
+        /* This change listener calls the loginChanged() function 
+         * whenever a user logs in or out */
+        firebase.auth().onAuthStateChanged(loginChanged);
+        /* This function is called when the user clicks
+         * the login button. */
+        function login() {
+            // Get the values from the email and password input fields
+            var email = document.getElementById("inputEmail").value;
+            var password = document.getElementById("inputPassword").value;
+            /* Call the sign in function provided by the Firebase API 
+             * and pass the email and password */
+            firebase.auth().signInWithEmailAndPassword(email, password).catch(handleError);
+        }
+        /* This function is called when the user clicked the 
+         * logout button */
+        function logout() {
+            firebase.auth().signOut().then(function() {
+                console.log("User successfully signed out.");
+            }).catch(handleError);
+        }
+        /* This is the callback function when the user changed.
+         * Either because a new user logged in, or the current user
+         * signed out. */
+        function loginChanged(user) {
+            // If the user variable is set, a user is logged in
+            if (user) {
+                // Disable the login button
+                document.getElementById("btnLogin").setAttribute("hidden", true);
+                // Show the logout button
+                document.getElementById("btnLogout").removeAttribute("hidden");
+                console.log("Successfully logged in!");
+                // Get some user data
+                var email = user.email;
+                var lastLogin = user.metadata.lastSignInTime;
+                document.getElementById("welcomeTitle").innerText = "Herzlich Willkommen " + email;
+                document.getElementById("welcomeText").innerHTML = "Schön das du da bist.<br> Du warst zuletzt am <b>" + lastLogin + "</b> angemeldet";
+                //button to profil is visible, if the user is logged in
+                document.getElementById("loginProfil").removeAttribute("hidden");
+                //Welcome Box is enabled
+                document.getElementById("loginBoxRow").removeAttribute("hidden");
+                //disable error box
+                document.getElementById("loginErrorRow").setAttribute("hidden", true);
+            }
+            // No user logged in
+            else {
+                // Enable the login button
+                document.getElementById("btnLogin").removeAttribute("hidden");
+                // Hide the logout button
+                document.getElementById("btnLogout").setAttribute("hidden", "true");
+                document.getElementById("welcomeTitle").innerText = "Es ist kein Benutzer eingeloggt";
+                document.getElementById("welcomeText").innerText = "Bitte gebe deine Emailadresse und dein Passwort ein, um dich anzumelden.";
+                //button to profil is not visible, if the user is not logged in
+                document.getElementById("loginProfil").setAttribute("hidden", true);
+                //Welcome Box is enabled
+                document.getElementById("loginBoxRow").removeAttribute("hidden");
+                //Disable error box
+                document.getElementById("loginErrorRow").setAttribute("hidden", true);
+            }
+        }
+        /* This is called if something goes wrong when logging in or logging out.
+         * For example if the user's password is wrong. */
+        function handleError(error) {
+            //if an error happens, the following is done
+            if (error) {
+                // Display error and errorcode in console
+                console.error(error.code + ": " + error.message);
+                // Variable for german error text
+                var german_error_text;
+                if (error.code == 'auth/invalid-email') {
+                    german_error_text = "Diese Mail ist uns unbekannt oder enthält einen Fehler."
+                }
+                else if (error.code == 'auth/wrong-password') {
+                    german_error_text = "Dieses Passwort stimmt nicht oder ist uns unbekannt."
+                }
+                else if (error.code == 'auth/user-disabled') {
+                    german_error_text = "Es scheint ein Problem mit deinem Benutzerprofil zu geben, bitte wende dich an unseren Support und wir helfen dir weiter."
+                }
+                else if (error.code == 'auth/user-not-found') {
+                    german_error_text = "Dieses Benutzerprofil ist uns nicht bekannt."
+                }
+                else {
+                    german_error_text = "Es ist ein unbekannter Fehler aufgetreten! ...Bitte wende dich mit dem Fehlercode an unseren Support.  (Code: " + error.code + ")";
+                }
+                //Display error on website
+                document.getElementById("errorTitle").innerText = "Das hat leider nicht geklappt!";
+                document.getElementById("errorText").innerText = german_error_text;
+                //Enable the row, where the error gets displayed
+                document.getElementById("loginErrorRow").removeAttribute("hidden");
+                //Hide welcome box
+                document.getElementById("loginBoxRow").setAttribute("hidden", true);
+            }
+
+            //if no error happens, the following is done
+            else {
+                //Hide the row, where the error ist displayed
+                document.getElementById("loginErrorRow").setAttribute("hidden", "true");
+                document.getElementById("loginBoxRow").removeAttribute("hidden");
+            }
+        }
     </script>
+
 </body>
 
 </html>

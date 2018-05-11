@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Your navigation -->
+    <link rel="import" href="includes/navigation.html">
+
+    <!-- Your custom styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Your Webpage Title -->
+    <title>Strohmänner | Deine Plattform für Stroh</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+
+</head>
+
+<body id="profileBody">
+    <div class="container center-text">
+        <div class="row align-items-center">
+            <div class="col-sm-3"></div>
+            <div class="col align-self-center">
+                <h1 class="text-center">Benutzerprofil</h1>
+                <hr>
+
+                <!--place for first name -->
+                <div class="form-group">
+                    <label for="inputFirstName">Vorname</label>
+                    <input type="text" class="form-control" id="inputFirstName" placeholder="...">
+                </div>
+
+
+                <!--place for last name -->
+                <div class="form-group">
+                    <label for="inputLastName">Nachname</label>
+                    <input type="text" class="form-control" id="inputLastName" placeholder="...">
+                </div>
+
+                <!--place for ZIP code -->
+                <div class="form-group">
+                    <label for="inputZIPCode">Postleitzahl</label>
+                    <input type="text" class="form-control" id="inputZIPCode" placeholder="...">
+                </div>
+
+                <!--place for city -->
+                <div class="form-group">
+                    <label for="inputCity">Stadt</label>
+                    <input type="text" class="form-control" id="inputCity" placeholder="...">
+                </div>
+
+                <!--question buyer or vendor -->
+                <div class="form-group">
+                    <label for="inputCustomerType">Käufer oder Verkäufer?</label>
+                    <select class="form-control" id="inputCustomerType">
+                      <option>Verkäufer</option>
+                      <option>Käufer</option>
+                    </select>
+                </div>
+
+                <!--checkbox for newsletter -->
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="inputNewsletter">
+                    <label class="form-check-label" for="inputNewsletter">Ja, ich möchte den Newsletter erhalten! </label>
+                </div>
+
+                <!--button for saving data -->
+                <!-- When this is clicked, register() is called -->
+                <button onclick="createUser()" class="btn btn-danger">Speichern</button>
+                <!--Cancel button -->
+                <a href="index.html"><button id="profileBtnCancel" class="btn btn-outline-danger" type="button" >Abbrechen & zurück zur Startseite</button></a>
+
+
+                <!--information text, for the user -->
+                <hr>
+                <!--Information text -->
+                <div class="card">
+                    <div class="card-body" hidden id="profileInfBox">
+
+                        <!-- These two will be filled dynamically -->
+                        <h2 class="card-title" id="InformationTitle"></h2>
+                        <p class="card-text" id="InformationText"></p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+    </div>
+    <!-- End of container -->
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-firestore.js"></script>
+
+
+    <script>
+        /* global firebase */
+        /* Replace with your project's information */
+        var config = {
+            apiKey: "AIzaSyDQI5s1znba5EI5kEJh7vkyVpxFUEayZhE",
+            authDomain: "strohmaenner.firebaseapp.com",
+            databaseURL: "https://strohmaenner.firebaseio.com",
+            projectId: "strohmaenner",
+            storageBucket: "strohmaenner.appspot.com",
+            messagingSenderId: "473037451075",
+        };
+        firebase.initializeApp(config);
+        /* Required code for using firestore */
+        {
+            var db = firebase.firestore();
+            const settings = { timestampsInSnapshots: true };
+            db.settings(settings);
+        }
+        /* This function is called when the button is clicked */
+        function createUser() {
+            /* Get the values from the form elements */
+            var userId = firebase.auth().currentUser.uid;
+            var firstName = document.getElementById("inputFirstName").value;
+            var lastName = document.getElementById("inputLastName").value;
+            var zipCode = document.getElementById("inputZIPCode").value;
+            var city = document.getElementById("inputCity").value;
+            var customerType = document.getElementById("inputCustomerType").value;
+            var newsletter = document.getElementById("inputNewsletter").checked;
+            /* Create the user object to send to the database */
+            var user = {
+                uid: userId,
+                firstName: firstName,
+                lastName: lastName,
+                zip: zipCode,
+                city: city,
+                type: customerType,
+                newsletter: newsletter
+            };
+            /* Print the user object to the console for debugging */
+            console.dir(user);
+
+            /* information of process for user*/
+            document.getElementById("InformationTitle").innerText = "Erfolgreich gespeichert!";
+            document.getElementById("InformationText").innerText = "Du kannst die Seite jetzt verlassen";
+            document.getElementById("profileInfBox").removeAttribute("hidden");
+
+            /* Add the new user with the add() function */
+            db.collection("users").doc(userId).set(user)
+                .then(function() {
+                    console.log("User successfully created!");
+                })
+                .catch(handleError);
+        }
+
+        function handleError(error) {
+            //if an error happens, the following is done
+            if (error) {
+                // Display error and errorcode in console
+                console.error(error.code + ": " + error.message);
+
+                //Display error on website
+                document.getElementById("InformationTitle").innerText = "Das hat leider nicht geklappt!";
+                document.getElementById("InformationText").innerText = error.code;
+                //Enable the row, where the error gets displayed
+                document.getElementById("loginErrorRow").removeAttribute("hidden");
+
+            }
+
+            //if no error happens, the following is done
+            else {
+                //Hide the row, where the error ist displayed
+                document.getElementById("profileInfBox").setAttribute("hidden", "true");
+
+            }
+        }
+    </script>
+
+</body>
+
+</html>

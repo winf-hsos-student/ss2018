@@ -2,62 +2,234 @@
 <html lang="en">
 
 <head>
-    
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    
+
     <!-- Your navigation -->
-   	<link rel="import" href="includes/navigation.html">
-   
+    <link rel="import" href="includes/navigation.html">
+
     <!-- Your custom styles -->
     <link rel="stylesheet" href="css/style.css">
 
     <!-- Your Webpage Title -->
     <title>Strohmänner | Deine Plattform für Stroh</title>
 
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+
 </head>
 
-<body>
-	<!--  bereits vorgegebene Navigationsbar ausgeblendet
-    <div id="navigation"></div>
-	-->
-
-    <!-- Put your HTML here... -->
-    
-  
-	<h1>
-	<p> 
-	<center>
-	Wenn ich groß bin, <br>
-	werde ich ein Registrierungsformular. :)
-	</p>
-	    Das dauert aber noch ein bißchen...
-	</center>
-	</p>
-	</h1>
-    
-    <!-- End HTML-->
+<body id="loginBody">
 
 
+    <div class="container text-center">
+
+        <!--begin row heading -->
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <h1>Benutzerprofil anlegen</h1>
+                <hr>
+
+            </div>
+        </div>
+        <!--end row heading -->
+
+
+        <!-- row email -->
+        <div class="row align-items-center" id="loginEmailRow">
+            <div class="col-md-12">
+                <label for="inputEmail"><b>E-mail eingeben: </b></label>
+                <input type="email" id="inputEmail" placeholder="..." required>
+                <small id="emailHelp" class="form-text">Bitte gib eine Mail-Adresse ein, mit der du dich registrieren möchtest. <br>Natürlich geben wir Mail-Adressen und andere Nutzerdaten nicht an Dritte weiter.</small>
+            </div>
+        </div>
+        <!--end row email -->
+
+        <!-- row password -->
+        <div class="row align-items-center" id= "registrationPasswordRow">
+            <div class="col-md-12">
+                <label for="inputPassword"><b>Passwort aussuchen:</b></label>
+                <input type="password" placeholder="..." id="inputPassword" required>
+                <small id="passHelp" class="form-text">Achte bitte stets darauf ein sicheres Passwort zu verwenden, es muss mind. 6-stellig sein.</small>
+            </div>
+        </div>
+        <!--end row password -->
+
+
+        <!-- row buttons -->
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="clearfix">
+                    <a href="index.html"><button id="btnCancel" class="btn btn-outline-danger" type="button" >Abbrechen & zurück zur Startseite</button></a>
+
+                    <!-- When this is clicked, register() is called -->
+                    <button id="btnSignIn" onclick="register()" class="btn btn-danger">Los geht`s ... gib mir Stroh!</button>
+                    <!--link to profile after sucessfull registration -->
+                    <a href="profile.html"><button id="registrationProfil" class="btn btn-outline-danger" type="button" hidden >zum Profil</button></a>
+
+
+                </div>
+            </div>
+        </div>
+        <!--end row buttons -->
+
+        <!--Test Logout- used to test the registration formular. Will be deleted in future, when the whole webpage will be ready -->
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <!-- When this is clicked, logout() is called -->
+                <button id="btnLogout" onclick="logout()" class="btn btn-danger">Logout</button>
+            </div>
+        </div>
+        <!--Test Logout end -->
+
+        <!--begin row error (hidden til error happens)-->
+        <div class="row align-items-center" id="registrationErrorRow" hidden>
+            <div class="col-md-12">
+                <!-- These two will be filled dynamically -->
+                <h1 class="card-title" id="errorTitle"></h1>
+                <h2 class="card-text" id="errorText"></h2>
+            </div>
+        </div>
+        <!--end error box -->
+
+        <!--begin row box -->
+        <div class="row align-items-center" id="registrationBoxRow">
+            <div class="col-md-12">
+                <!-- These two will be filled dynamically -->
+                <h5 class="card-title" id="welcomeTitle"></h5>
+                <p class="card-text" id="welcomeText"></p>
+            </div>
+        </div>
+        <!--end row box -->
+
+
+    </div>
+
+    <!-- End of container -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <!-- Your inline custom Javascript -->
+    <!-- Load Firebase native API -->
+    <script src="https://www.gstatic.com/firebasejs/5.0.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.1/firebase-firestore.js"></script>
+
+    <!-- Load firebase-tools library -->
+    <script src="https://cdn.jsdelivr.net/gh/winf-hsos/firebase-tools@0.5/src/firebase-tools.js"></script>
+
     <script>
-        /* Import the navigation so that we don't have
-         * to make changes on every site when we add
-         * something to it. */
-        var link = document.querySelector('link[rel="import"]');
-        var navigation = link.import;
-        var el = navigation.querySelector('#navigation');
-        document.querySelector("#navigation").appendChild(el.cloneNode(true));
+        /* global firebase, firebasetools */
+        /* Replace with your project's information */
+        var config = {
+            apiKey: "AIzaSyDQI5s1znba5EI5kEJh7vkyVpxFUEayZhE",
+            databaseURL: "https://strohmaenner.firebaseio.com",
+            authDomain: "strohmaenner.firebaseapp.com",
+        };
+        firebase.initializeApp(config);
+        firebase.auth().onAuthStateChanged(loginChanged);
+        /* This function is called when the user clicks
+         * the sign-up button. */
+        function register() {
+
+            // Get the values from the email and password input fields
+            var email = document.getElementById("inputEmail").value;
+            var password = document.getElementById("inputPassword").value;
+            firebase.auth().createUserWithEmailAndPassword(email, password).catch(handleError);
+        }
+
+        function loginChanged(user) {
+            if (user) {
+                console.log("Nutzer mit Mailadresse: >" + user.email + "< ...hat sich erfolgreich eingeloggt.");
+                // Get some user data
+                var email = user.email;
+                var lastLogin = user.metadata.lastSignInTime;
+                document.getElementById("welcomeTitle").innerText = "Hallo, Grüß Gott & Moin Moin... " + email;
+                document.getElementById("welcomeText").innerHTML = "Schön, dass du wieder mal vorbeischaust.<br> Dein letzter Login war am: <b>" + lastLogin + "</b>";
+                //Hide error-row, when userdata has been corrected after beeing wrong
+                document.getElementById("registrationErrorRow").setAttribute("hidden", "true");
+                //Show RegistrationBoxRow
+                document.getElementById("registrationBoxRow").removeAttribute("hidden");
+
+                //Hide Sign in button
+                document.getElementById("btnSignIn").setAttribute("hidden", true);
+                //link to profil page
+                document.getElementById("registrationProfil").removeAttribute("hidden");
+
+            }
+            else {
+                console.log("Kein Nutzer eingeloggt.");
+                //hide button with link to profil page
+                document.getElementById("registrationProfil").setAttribute("hidden", true);
+
+                document.getElementById("btnSignIn").removeAttribute("hidden");
+
+            }
+        }
+
+        function logout() {
+            firebase.auth().signOut().then(function() {
+                document.getElementById("welcomeTitle").innerText = "Erfolgreich ausgeloggt";
+                document.getElementById("welcomeText").innerHTML = "Teste die Registrierungsfunktion doch noch einmal";
+
+                console.log("Erfolgreich ausgeloggt!");
+            }).catch(handleError);
+        }
+
+
+        function handleError(error) {
+            //if an error happens, the following is done
+            if (error) {
+                // Display error and errorcode in console
+                console.error(error.code + ": " + error.message);
+                // Variable for german error text
+                var german_error_text;
+                if (error.code == 'auth/invalid-email') {
+                    german_error_text = "Diese Mail ist uns unbekannt oder enthält einen Fehler."
+                }
+                else if (error.code == 'auth/wrong-password') {
+                    german_error_text = "Dieses Passwort stimmt nicht oder ist uns unbekannt."
+                }
+                else if (error.code == 'auth/email-already-in-use') {
+                    german_error_text = "Diese Emailadresse wird bereits von einem anderen Nutzer genutzt."
+                }
+                else if (error.code == 'auth/weak-password') {
+                    german_error_text = "Das Passwort entspricht nicht den Sicherheitsanforderungen."
+                }
+                else if (error.code == 'auth/user-disabled') {
+                    german_error_text = "Es scheint ein Problem mit deinem Benutzerprofil zu geben, bitte wende dich an unseren Support und wir helfen dir weiter."
+                }
+                else if (error.code == 'auth/user-not-found') {
+                    german_error_text = "Dieses Benutzerprofil ist uns nicht bekannt."
+                }
+                else {
+                    german_error_text = "Es ist ein unbekannter Fehler aufgetreten! ...Bitte wende dich mit dem Fehlercode an unseren Support.  (Code: " + error.code + ")";
+                }
+                //Display error on website
+                document.getElementById("errorTitle").innerText = "Das hat leider nicht geklappt!";
+                document.getElementById("errorText").innerText = german_error_text;
+                //Enable the row, where the error gets displayed
+                document.getElementById("registrationErrorRow").removeAttribute("hidden");
+                document.getElementById("registrationBoxRow").setAttribute("hidden", true);
+
+            }
+
+            //if no error happens, the following is done
+            else {
+                //Hide the row, where the error ist displayed
+                document.getElementById("registrationErrorRow").setAttribute("hidden", "true");
+                document.getElementById("registrationBoxRow").removeAttribute("hidden");
+            }
+        }
     </script>
+
 </body>
 
 </html>
