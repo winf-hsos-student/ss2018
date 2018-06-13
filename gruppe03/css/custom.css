@@ -1,20 +1,161 @@
+body {
+ 	font-family: Chewy;
+	color: #000000; 
+	
+	
+}
+
+
+.show-front {
+	z-index: 10000 !important;
+}
+
+.logo {
+	padding-top: 0px;
+	text-align: center;
+}
+
+.sidebar {
+	padding-bottom: 0px;
+	
+}
+.wrapper {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+            
+		}
+.item {
+            background: white;
+            height: 350px;
+        }
+
+.clearfix:after {
+	display: block;
+	clear: both;
+}
+
+/*----- Menu Outline -----*/
+
+.sidebar {
+	width: 100%;
+	background: #16683f;
+}
+
+.menu {
+	width: 1000px;
+	margin: 0px auto;
+}
+
+.menu li {
+	margin: 0px;
+	list-style: none;
+	font-family: Chewy;
+}
+
+.menu a {
+	transition: all linear 0.15s;
+	color: #ffb610;
+}
+
+.menu li:hover>a,
+.menu .current-item>a {
+	text-decoration: none; 
+	color: #088A29;
+}
+
+/*----- Top Level -----*/
+
+.menu>ul>li {
+	float: left;
+	display: inline-block;
+	position: relative;
+	font-size: 23px;
+}
+
+.menu>ul>li>a {
+	padding: 10px 40px;
+	display: inline-block; 
+	text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.4);
+}
+
+.menu>ul>li:hover>a,
+.menu>ul>.current-item>a {}
+
+/*----- Bottom Level -----*/
+
+.menu li:hover .sub-menu {
+	z-index: 1;
+	opacity: 1;
+}
+
+.sub-menu {
+	width: 160%;
+	padding: 0px 0px;
+	position: absolute;
+	top: 100%;
+	left: 0px;
+	z-index: -1;
+	opacity: 0;
+	transition: opacity linear 0.15s;
+	background: #FFFFFF;
+
+}
+
+.sub-menu li {
+	display: block;
+	font-size: 23px;
+}
+
+.sub-menu li a {
+	padding: 10px 30px;
+	display: block;
+}
+
+.sub-menu li a:hover,
+.sub-menu .current-item a {
+	background: #FFFFFF;
+}
+
+.main {
+	font-size: 30px;
+	color: #16683f;
+	text-align: center;
+	padding: 100px;
+	padding-bottom: 0px;
+    font-family: Chewy;
+}
+
+.footer {
+	font-size: 15px;
+	color: #16683f;
+	text-align: center;
+	font-family: Chewy;
+}
+
+.kontakt {
+	text-align: center;
+}
+
+
 .container-fluid
 {
-    font-family: Jua; 
+    font-family: Chewy; 
     
 }
 .btn {
     border-color: #16683f;
     border-radius: 50px;
     background-color: #16683f;
-    font-family: Jua;
+    font-family: Chewy;
     }
 
 
 .confirm
 {
     text-align: center;
-    font-family: Jua;
+    font-family: Chewy;
     padding-top: 100px;
     color:#16683f ;
 }
+

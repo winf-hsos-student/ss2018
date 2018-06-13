@@ -5,7 +5,7 @@
 
     <meta charset="UTF-8">
     <!-- Required meta tags -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>Regionalo - Neues Konto</title>
 
@@ -14,15 +14,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jua">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chewy">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/custom.css">
 </head>
 
 <body>
     <div class="container">
-        <div class="row align-items-center">
-            <div class="col-sm-12"></div>
+
+        <!-- Formular für die Registrierung -->
+        <div id="formRegister" class="row align-items-center" hidden>
+            <div class="col-sm-3"></div>
             <div class="col align-self-center">
                 <br />
                 <div class="text-center">
@@ -32,24 +34,83 @@
                 <hr>
 
                 <div class="form-group">
-                    <label for="inputemail">E-mail</label>
+                    <label for="inputEmail">E-mail</label>
                     <input type="text" class="form-control" id="inputEmail" placeholder="Gib deine E-mail ein!">
                 </div>
 
                 <div class="form-group">
-                    <label for="inputpassword">Passwort</label>
-                    <input type="text" class="form-control" id="inputPassword" placeholder="Gib dein Passwort ein!">
+                    <label for="inputPassword">Passwort</label>
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Gib dein Passwort ein!">
                 </div>
 
                 <!-- When this is clicked, createUserWithEmailAndPassword() is called -->
                 <a href="logintrue.html"></a>
                 <button onclick="createUserWithEmailAndPassword()" class="btn btn-primary">Jetzt registrieren</button>
 
+                <hr>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+
+        <!-- Formular für das erweiterte Profil -->
+        <div id="formProfile" class="row align-items-center" hidden>
+            <div class="col-sm-3"></div>
+            <div class="col align-self-center">
+                <br />
+                <div class="text-center">
+                    <img src="img/logo2.png" class="rounded" alt="Little Boxes" width="300" height="200">
+                </div>
+                <h3 class="text-center">Nutzerprofil ausfüllen</h3>
+                <hr>
+
+                <div class="form-group">
+                    <label for="inputFirstName">Vorname</label>
+                    <input type="text" class="form-control" id="inputFirstName" placeholder="Gib deinen Vornamen ein!">
+                </div>
+
+                <div class="form-group">
+                    <label for="inputLastName">Nachname</label>
+                    <input type="text" class="form-control" id="inputLastName" placeholder="Gib deinen Nachnamen ein!">
+                </div>
+
+                <div class="form-group">
+                    <label for="inputCity">Ort</label>
+                    <input type="text" class="form-control" id="inputCity" placeholder="Wo wohnst du?">
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPlz">PLZ</label>
+                    <input type="text" class="form-control" id="inputPlz" placeholder="Gib deine PLZ ein!">
+                </div>
+
+                <div class="form-group">
+                    <label for="inputCustomerType">Was sind Sie?</label>
+                    <select class="form-control" id="inputCustomerType">
+                      <option>Verkäufer</option>
+                      <option>Käufer</option>
+                    </select>
+                </div>
+
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="inputNewsletter">
+                    <label class="form-check-label" for="inputNewsletter">Ja, ich möchte den Newsletter abonnieren!</label>
+                </div>
+
+                <!-- When this is clicked, createUserWithEmailAndPassword() is called -->
+                <a href="logintrue.html"></a>
+                <button onclick="updateProfile()" class="btn btn-primary">Jetzt aktualisieren</button>
 
                 <hr>
             </div>
             <div class="col-sm-3"></div>
         </div>
+
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col"><a href="index.html">Zurück zur Startseite</a></div>
+            <div class="col-sm-3"></div>
+        </div>
+
     </div>
     <!-- When this is clicked, register() is called -->
     <!-- <button onclick="createUserWithEmailAndPassword()" class="btn btn-primary">Konto erstellen</button><!DOCTYPE html> -->
@@ -59,29 +120,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <!--API nativ firebase-->
-    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-firestore.js"></script>
+    <!-- Firebase API -->
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
 
-    <!-- Load firebase-tools library -->
-    <script src="https://cdn.jsdelivr.net/gh/winf-hsos/firebase-tools@0.5/src/firebase-tools.js"></script>
+    <!-- Firebase Tools for simpler usage -->
+    <script src="https://cdn.jsdelivr.net/gh/winf-hsos/firebase-tools@0.70/src/firebase-tools.js"></script>
 
 
     <script>
-        /* global firebase */
+        /* global firebase firebasetools */
         /* Replace with your project's information */
         var config = {
             projectId: "web-engineering-03",
             apiKey: "AIzaSyCq0_Nn6vl6HqRa-gxk-4LzyYmQFwN_dRQ",
             authDomain: "web-engineering-03.firebaseapp.com",
-
         };
-        firebase.initializeApp(config);
+
+        firebasetools.initialize(config);
         firebase.auth().onAuthStateChanged(loginChanged);
 
         /* This function is called when the user clicks
          * the sign-up button. */
-        function createUserWithEmailAndPassword(){
+        function createUserWithEmailAndPassword() {
 
             // Get the values from the email and password input fields
             var email = document.getElementById("inputEmail").value;
@@ -90,8 +150,51 @@
             firebase.auth().createUserWithEmailAndPassword(email, password).catch(handleError);
         }
 
+        function updateProfile() {
+            console.log("Updating profile");
+
+            var profile = {};
+
+            var firstName = document.getElementById("inputFirstName").value;
+            var lastName = document.getElementById("inputLastName").value;
+            var city = document.getElementById("inputCity").value;
+            var plz = document.getElementById("inputPlz").value;
+            var customerType = document.getElementById("inputCustomerType").value;
+            var newsletter = document.getElementById("inputNewsletter").checked;
+
+            profile.firstName = firstName;
+            profile.lastName = lastName;
+            profile.city = city;
+            profile.plz = plz;
+            profile.type = customerType;
+            profile.newsletter = newsletter;
+
+            firebasetools.setUserProfile(profile)
+
+        }
+
+
         function loginChanged(user) {
-            console.log("User is logged in", user);
+            if (user) {
+
+                var profileForm = document.getElementById("formProfile");
+                var registerForm = document.getElementById("formRegister");
+
+                profileForm.removeAttribute("hidden");
+                registerForm.setAttribute("hidden", "");
+            }
+            else {
+                var profileForm = document.getElementById("formProfile");
+                var registerForm = document.getElementById("formRegister");
+
+                profileForm.setAttribute("hidden", "");
+                registerForm.removeAttribute("hidden");
+            }
+
+        }
+
+        function handleError(error) {
+            console.error(error);
         }
     </script>
 </body>
