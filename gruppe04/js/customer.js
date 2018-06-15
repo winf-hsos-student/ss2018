@@ -1,4 +1,5 @@
    /* customer.js, beinhaltet login/logout */
+   /* global firebasetools */
 
    /* global firebase*/
    var config = {
@@ -9,7 +10,8 @@
       storageBucket: "apetito-meiningerhotel.appspot.com",
       messagingSenderId: "950686525212"
    };
-   firebase.initializeApp(config);
+
+   firebasetools.initialize(config);
 
 
    /* global firebase */
@@ -29,15 +31,21 @@
    }
 
    function loginChanged(user) {
+      console.log(user);
+
       if (user) {
          console.log("Welcome " + user.email + "!");
-         /* global $*/
          $('#popup').modal('hide');
+
       }
+
+
       else {
-         /* global $*/
+
          $('#popup').modal({ backdrop: 'static' });
+
       }
+
    }
 
    function logout() {
@@ -48,7 +56,14 @@
 
    }
 
-   function handleError(error) {
-      console.error(error.code + ": " + error.message);
+   /* This function fetches the information for a specific hotel
+    * from the database and returns the object */
+   function getHotelInfo(callback) {
+      firebasetools.getContentItems("hotels", callback);
    }
-   
+
+
+   function handleError(error) {
+      console.error(error.code + "wrong password or E-Mail" + error.message);
+      alert("Insert wrong email or password!");
+   }

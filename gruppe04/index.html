@@ -12,19 +12,12 @@
 	<link id="imports" rel="import" href="includes/imports.html">
 	<link id="loginimport" rel="import" href="includes/login.html">
 	<link id="mapgermanyimport" rel="import" href="includes/maps/mapgermany.html">
-	<link id="infoberlinimport" rel="import" href="includes/hotelmodals/hotelinfoberlin.html">
-	<link id="infomunichimport" rel="import" href="includes/hotelmodals/hotelinfomunich.html">
-	<link id="infohamburgimport" rel="import" href="includes/hotelmodals/hotelinfohamburg.html">
-	<link id="infoviennaimport" rel="import" href="includes/hotelmodals/hotelinfovienna.html">
-	<link id="infosalzburgimport" rel="import" href="includes/hotelmodals/hotelinfosalzburg.html">
-	<link id="infoamsterdamimport" rel="import" href="includes/hotelmodals/hotelinfoamsterdam.html">
-	<link id="infobrusselsimport" rel="import" href="includes/hotelmodals/hotelinfobrussels.html">
-	<link id="infobudapestimport" rel="import" href="includes/hotelmodals/hotelinfobudapest.html">
 	<link id="mapeuropeimport" rel="import" href="includes/maps/mapeurope.html">
 	<link id="mapnetherlandsimport" rel="import" href="includes/maps/mapnetherlands.html">
 	<link id="mapaustriaimport" rel="import" href="includes/maps/mapaustria.html">
 	<link id="mapbelgiumimport" rel="import" href="includes/maps/mapbelgium.html">
 	<link id="maphungaryimport" rel="import" href="includes/maps/maphungary.html">
+	<link id="infoModalimport" rel="import" href="includes/hotelmodals/hotelinfomodal.html">
 
 	<!--Sylesheets-->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -32,11 +25,8 @@
 	<link href="css/styleinfomodal.css" rel="stylesheet" type="text/css">
 	<link href="css/style.css" rel="stylesheet" type="text/css">
 
-
 	<!--Shortcuticon/tabicon-->
 	<link rel="shortcut icon" href="img/favicon.ico">
-
-
 
 	<title>apetito | proof of concept</title>
 
@@ -64,29 +54,23 @@
 
 				<!------HOTELINFORMATION MODAL-INCLUDES------------------------------------->
 
-				<div id="infoberlin"></div>
-				<div id="infomunich"></div>
-				<div id="infohamburg"></div>
-				<div id="infoamsterdam"></div>
-				<div id="infovienna"></div>
-				<div id="infosalzburg"></div>
-				<div id="infobrussels"></div>
-				<div id="infobudapest"></div>
+				<div id="infohotelmodal"></div>
+
 
 				<!------MAINFRAME CAROUSEL------------------------------------>
+				<div id="mainframecarousel" class="carousel-inner">
+					<div id="carouselExampleIndicators" class="carousel slide" data-interval="false">
+						<ol class="carousel-indicators">
 
-				<div id="carouselExampleIndicators" class="carousel slide" data-interval="false">
-					<ol class="carousel-indicators">
+							<li data-target="#carouselExampleIndicators" data-slide-to="0"></li>
+							<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+							<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+							<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+							<li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
 
-						<li data-target="#carouselExampleIndicators" data-slide-to="0"></li>
-						<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-						<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-						<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-						<li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+						</ol>
 
-					</ol>
 
-					<div id="mainframecarousel" class="carousel-inner">
 
 						<!------MAP INCLUDES------------------------------------->
 
@@ -109,6 +93,7 @@
 						</div>
 					</div>
 
+					<!-- CAROUSEL IDICATORS TO SLIDE BETWEEN THE MAPS -->
 					<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
 										<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 										<span class="sr-only">Previous</span>
@@ -132,15 +117,14 @@
 	</div>
 
 	<!--Script zum Benutzen von firebase-->
-	<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
+
+	<!-- Firebase Tools for simpler usage -->
+	<script src="https://cdn.jsdelivr.net/gh/winf-hsos/firebase-tools@0.75/src/firebase-tools.js"></script>
+
+	<!--IMPORT OF LOGIN SCRIPT AND COUNTRYSLDER-->
 	<script type="text/javascript" src="js/customer.js"></script>
-
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+	<script type="text/javascript" src="js/slide.js"></script>
 
 	<!--IMPORT OF HEADER, SIDENAV, FOOTER-->
 
@@ -159,8 +143,6 @@
 		// IMPORT SIDENAVIGATION ELEMENT
 		var el = imports.querySelector('#navside');
 		document.querySelector("#sidebar").appendChild(el.cloneNode(true));
-
-
 
 
 		//IMPORT OF MAPS//
@@ -201,7 +183,13 @@
 		var el = maphungary.querySelector('#maphungary');
 		document.querySelector("#maphungary").appendChild(el.cloneNode(true));
 
+		//IMPORT OF HOTELINFORMATION - MODALS//
 
+		// IMPORT INFOBERLIN
+		var linkInfoModal = document.querySelector('#infoModalimport');
+		var infohotelmodal = linkInfoModal.import;
+		var el = infohotelmodal.querySelector('#infoModal');
+		document.querySelector("#infohotelmodal").appendChild(el.cloneNode(true));
 
 		//IMPORT OF LOGIN//
 
@@ -210,66 +198,6 @@
 		var loginhtml = linkLogin.import;
 		var el = loginhtml.querySelector('#loginhtml');
 		document.querySelector("#loginhtml").appendChild(el.cloneNode(true));
-
-
-
-		//IMPORT OF HOTELINFORMATION - MODALS//
-
-		// IMPORT INFOBERLIN
-		var linkInfoBerlin = document.querySelector('#infoberlinimport');
-		var infoberlin = linkInfoBerlin.import;
-		var el = infoberlin.querySelector('#infoberlin');
-		document.querySelector("#infoberlin").appendChild(el.cloneNode(true));
-
-		// IMPORT INFOHAMBURG
-		var linkInfoHamburg = document.querySelector('#infohamburgimport');
-		var infohamburg = linkInfoHamburg.import;
-		var el = infohamburg.querySelector('#infohamburg');
-		document.querySelector("#infohamburg").appendChild(el.cloneNode(true));
-
-		// IMPORT INFOAMSTERDAM
-		var linkInfoAmsterdam = document.querySelector('#infoamsterdamimport');
-		var infoamsterdam = linkInfoAmsterdam.import;
-		var el = infoamsterdam.querySelector('#infoamsterdam');
-		document.querySelector("#infoamsterdam").appendChild(el.cloneNode(true));
-
-		// IMPORT INFOVIENNA
-		var linkInfoVienna = document.querySelector('#infoviennaimport');
-		var infovienna = linkInfoVienna.import;
-		var el = infovienna.querySelector('#infovienna');
-		document.querySelector("#infovienna").appendChild(el.cloneNode(true));
-
-		// IMPORT INFOSALZBURG
-		var linkInfoSalzburg = document.querySelector('#infosalzburgimport');
-		var infosalzburg = linkInfoSalzburg.import;
-		var el = infosalzburg.querySelector('#infosalzburg');
-		document.querySelector("#infosalzburg").appendChild(el.cloneNode(true));
-
-		// IMPORT INFOBRUSSELS
-		var linkInfoBrussels = document.querySelector('#infobrusselsimport');
-		var infobrussels = linkInfoBrussels.import;
-		var el = infobrussels.querySelector('#infobrussels');
-		document.querySelector("#infobrussels").appendChild(el.cloneNode(true));
-
-		// IMPORT INFOBUDAPEST
-		var linkInfoBudapest = document.querySelector('#infobudapestimport');
-		var infobudapest = linkInfoBudapest.import;
-		var el = infobudapest.querySelector('#infobudapest');
-		document.querySelector("#infobudapest").appendChild(el.cloneNode(true));
-
-		// IMPORT INFOMUNICH
-		var linkInfoMunich = document.querySelector('#infomunichimport');
-		var infomunich = linkInfoMunich.import;
-		var el = infomunich.querySelector('#infomunich');
-		document.querySelector("#infomunich").appendChild(el.cloneNode(true));
-
-
-		//SCRIPT FOR SLIDING WHEN CLICK ON COUNTRY//
-
-		/*global $*/
-		function slideTo(slideNr) {
-			$('.carousel').carousel(slideNr);
-		}
 	</script>
 
 

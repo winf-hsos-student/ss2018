@@ -53,3 +53,7 @@ white = #FFFFFF
 a.nav-link {
     color: #DE0027;
 }
+
+.custom-file-input {
+    cursor: text;
+}

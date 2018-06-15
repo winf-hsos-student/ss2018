@@ -20,9 +20,10 @@ white = #FFFFFF
 /*LOGO*/
 
 #logo {
-    padding-top: 10px;
+    padding: 18px;
     margin-left: 15px;
     background-color: #F8F9FA;
+
 }
 
 /*NAVIGATION*/
@@ -37,38 +38,55 @@ white = #FFFFFF
     background-color: #9CCC11;
 }
 
-#header {
-    min-width: 1400px;
-}
 
 #navtop button {
     background-color: #DE0027;
+    padding-left: 20px;
 }
 
 #navtop button:hover {
     color: #9ccc11;
 }
 
-#navtop {
-    padding-right: 40px;
+#gerbutton,
+#hunbutton,
+#nethbutton,
+#ausbutton,
+#belbutton {
+    padding-right: 20px;
     padding-top: 8px;
 }
 
-#navigationheader {
-    min-width: 810px;
+.navbar.navbar-expand-lg.navbar-light.bg-light {
+    min-width: 790px;
+}
+
+header.row,
+#navigationheader.col-md-6 {
+    width: 57%;
+    max-width: 57%;
+
+}
+
+#header {
+    display: -webkit-box;
 }
 
 /*NAVIGATION LEFT BASIC & STYLE*/
 
+#sidebar.col-md-3 {
+    max-width: 246px;
+}
+
 #navside {
-    width: 210px;
+    width: 85%;
+    min-width: 246px;
 }
 
 #navside ul {
     list-style-type: none;
     padding-left: 10px;
     padding-top: 50px;
-    width: 210px;
     padding-bottom: 50px;
     background-color: #F8F9FA;
 }
@@ -125,7 +143,7 @@ white = #FFFFFF
     transition: all .25s ease-in;
 }
 
-#iconlogout {
+#logout {
     width: 13px;
     height: 13px;
 }
@@ -136,17 +154,25 @@ white = #FFFFFF
     background: #FFF;
 }
 
+#iconlogout {
+    width: 13px;
+    height: 13px;
+
+}
+
 
 /*SEARCH FORM WITH BUTTON BASIC & STYLE*/
 
 #searchelement {
+
     padding-top: 12px;
-    padding-left: 60px;
-    padding-right: 0px;
     background-color: #F8F9FA;
     padding-bottom: 8px;
+    height: 10%;
+    left: 70px;
 
 }
+
 
 #searchfield {
     width: 10em;
@@ -189,6 +215,14 @@ white = #FFFFFF
 
 /*MAINFRAME*/
 
+/* Hotelmodals*/
+
+#iconroute {
+    height: 50px;
+    width: 50px;
+    fill: #9CCC11;
+}
+
 /*MAINFRAME CAROUSEL*/
 
 .carousel-control-prev,
@@ -215,21 +249,20 @@ white = #FFFFFF
 }
 
 #carouselExampleIndicators {
-    width: 800px;
-    margin-left: 10px;
+    left: 50px;
 }
 
 /*MAP OF EUROPE BASIC STYLE WITH HOVER EFFECT*/
 
 #mainframecarousel {
     padding-bottom: 15px;
-    height: 620px;
+    left: 100px;
 }
 
 #mapeurope {
     fill: #9ccc11;
-    width: 700px;
     margin-left: 20px;
+    padding-bottom: 40px;
 }
 
 #europetext {
@@ -252,28 +285,38 @@ white = #FFFFFF
 }
 
 #mapnetherlands {
-    margin-left: 40px;
-    margin-top: 0px;
+    margin-left: 100px;
+    padding-bottom: 30px;
 }
 
 #mapaustria {
     margin-top: 60px;
     margin-left: 50px;
-
+    padding-bottom: 60px
 }
 
 #mapbelgium {
     margin-top: 45px;
     margin-left: 50px;
+    padding-bottom: 60px
 }
 
 #maphungary {
     margin-top: 60px;
     margin-left: 65px;
+    padding-bottom: 60px
 }
 
 #mapgermany text {
     fill: #000;
+}
+
+.carousel-inner {
+    overflow: visible;
+}
+
+.carousel-indicators {
+    left: -180px;
 }
 
 .carousel-indicators li {
@@ -300,6 +343,7 @@ footer {
 
 #copyright {
     float: right;
+    font-weight: lighter;
 }
 
 #copyright a {
@@ -313,15 +357,33 @@ footer {
     transition: all .25s ease-in;
 }
 
+#impressum {
+    top: 40px;
+    font-weight: lighter;
+}
+
 /*MEDIA QUERIES*/
 
-@media(max-width:800px) {
-    #mainframe {
+@media(max-width:600px) {
+    #sidebar.col-md-3 {
+        background-color: #F8F9FA;
+        max-height: 536.8px;
+    }
+}
+
+@media(max-width:600px) {
+    #mainframecarousel {
         display: none;
     }
 }
 
 @media(max-width:600px) {
+    #header {
+        display: flex;
+    }
+}
+
+@media(max-width:766px) {
     #sidebar ul,
     #header {
         width: 290px;
@@ -329,7 +391,15 @@ footer {
 }
 
 @media(max-width:600px) {
-    #searchelement,
+    #searchelement.col-md-3 {
+        height: auto;
+        left: 15px;
+
+    }
+}
+
+@media(max-width:600px) {
+
     .navbar.navbar-expand-lg.navbar-light.bg-light,
     #logo {
         padding-left: 10px;
@@ -337,9 +407,15 @@ footer {
     }
 }
 
-@media(max-width:1600px) {
-    #header.row {
-        max-width: 320px;
+@media(max-width:978px) {
+    .navbar.navbar-expand-lg.navbar-light.bg-light {
+        min-width: 290px;
+    }
+}
+
+@media(max-width:979px) {
+    #searchelement {
+        min-width: 290px;
     }
 }
 
@@ -348,5 +424,11 @@ footer {
     #logo img {
         margin-bottom: 20px;
         padding-left: 17px;
+    }
+}
+
+@media(max-width:600px) {
+    #header {
+        background-color: #F8F9FA;
     }
 }

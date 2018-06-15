@@ -107,7 +107,7 @@ white = #FFFFFF
 }
 
 #mainframe.col-md-9 {
-    min-width: 766px;
+    max-width: 766px;
     left: 30px;
 }
 
@@ -127,6 +127,34 @@ white = #FFFFFF
     background-color: #F8F9FA;
     outline-color: #DE0027;
 }
+
+
+
+#inputResponsible.form-control {
+    background-image: url("img/nameIcon.png");
+    background-repeat: no-repeat;
+    background-position: left 10px center;
+    background-size: 17px;
+    padding-left: 35px;
+}
+
+#inputTopic.form-control {
+    background-image: url("img/topic.png");
+    background-repeat: no-repeat;
+    background-position: left 10px center;
+    background-size: 17px;
+    padding-left: 35px;
+}
+
+#inputHotelName.form-control {
+    background-image: url("img/hotel.png");
+    background-repeat: no-repeat;
+    background-position: left 10px center;
+    background-size: 17px;
+    padding-left: 35px;
+}
+
+
 
 @media(max-width:769px) {
     #mainframe.col-md-9 {

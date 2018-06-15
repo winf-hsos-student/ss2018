@@ -14,7 +14,6 @@
 	<!--Sylesheets-->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link href="css/style.css" rel="stylesheet" type="text/css">
-
 	<link href="css/styleset.css" rel="stylesheet" type="text/css">
 
 	<!--Shortcuticon/tabicon-->
@@ -27,7 +26,7 @@
 
 <body>
 
-	<div class="container-fluid">
+	<div id="wrapper" class="container-fluid">
 
 		<!-- Platzhalter für header include -->
 		<div id="header"></div>
@@ -41,34 +40,35 @@
 			<!------MAINFRAME------------------------------------->
 			<div id="mainframe" class="col-md-9">
 
+
+
 				<div class="row">
 					<div class="col-md-12">
 
+						<!------REGISTER FORMULARS------------------------------------->
+
 						<div class="row">
 							<div class="col-md-9">
-								<form role="form">
-									<div class="form-group">
-										<label for="inputEmail"></label>
-										<input type="email" class="form-control" id="inputEmail" placeholder="Enter E-Mail" />
+								<div class="form-group">
+									<label for="inputEmail"></label>
+									<input type="email" class="form-control" id="inputEmail" placeholder="Enter E-Mail" />
 
-									</div>
-									<div class="form-group">
-										<label for="inputPassword"></label>
-										<input type="password" class="form-control" id="inputPassword" placeholder="Enter Password" />
+								</div>
+								<div class="form-group">
+									<label for="inputPassword"></label>
+									<input type="password" class="form-control" id="inputPassword" placeholder="Enter Password" />
 
-									</div>
-									<div id="picupload" class="form-group">
-										<input type="file" class="form-control-file" id="inputFile" />
-										<p class="help-block"> <label for="file">Choose a file for your profile picture.</label>
+								</div>
+								<div class="custom-file">
+									<input id="inputImage" type="file" accept="image/*" class="custom-file-input">
+									<label class="custom-file-label" for="inputImage">Choose image file</label>
+								</div>
+								<!-- When this is clicked, upload() is called -->
+								<button id="btnupload" onclick="upload()" class="btn btn-danger">Upload</button>
 
-										</p>
-									</div>
-
-									<button type="submit" class="btn btn-danger">Upload</button>
-								</form>
 							</div>
 							<div id="profilepicture" class="col-md-3">
-								<img alt="Profile Picture" src="img/loginman.png" class="rounded-circle" />
+								<img id="showImage" class="img-fluid" src="#" alt="Place for your Picture" />
 
 							</div>
 
@@ -79,7 +79,7 @@
 
 				<div class="row">
 
-
+					<!------REGISTER FORMULARS------------------------------------->
 					<div class="col">
 
 						<div class="form-group">
@@ -113,28 +113,28 @@
 						<p>Please click just one position that fits to you:</p>
 
 						<div class="form-group form-check">
-							<input type="checkbox" class="form-check-input" id="checkCanvasser">
-							<label class="form-check-label" for="canvasser">Canvasser</label>
+							<input type="radio" name="positionRadio" class="form-check-input" id="inputCanvasser">
+							<label class="form-check-label" for="inputCanvasser">Canvasser</label>
 						</div>
 
 						<div class="form-group form-check">
-							<input type="checkbox" class="form-check-input" id="checkAdvisor">
-							<label class="form-check-label" for="advisor">Client Advisor</label>
+							<input type="radio" name="positionRadio" class="form-check-input" id="inputAdvisor">
+							<label class="form-check-label" for="inputAdvisor">Client Advisor</label>
 						</div>
 
 						<div class="form-group form-check">
-							<input type="checkbox" class="form-check-input" id="checkHead">
-							<label class="form-check-label" for="head">Head of Department</label>
+							<input type="radio" name="positionRadio" class="form-check-input" id="inputHead">
+							<label class="form-check-label" for="inputHead">Head of Department</label>
 						</div>
 
 						<!-- When this is clicked, createUser() is called -->
-						<button onclick="createUser()" class="btn btn-danger">Save Settings</button>
+						<button id="btnCreate" onclick="createUser()" class="btn btn-danger" hidden>Save Settings</button>
 
 						<!-- When this is clicked, register() is called -->
-						<button onclick="register()" class="btn btn-danger">Register</button>
+						<button id="btnRegister" onclick="register()" class="btn btn-danger">Register</button>
 
 						<!-- When this is clicked, sendVerificationEMail() is called -->
-						<button id="btnVerify" onclick="sendVerificationEMail()" class="btn btn-danger">Verification</button>
+						<button id="btnVerify" onclick="sendVerificationEMail()" class="btn btn-danger" hidden>Verification</button>
 
 					</div>
 
@@ -160,15 +160,15 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 	<!--Script for using firebase-->
-	<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
 
-	<!--<script type="text/javascript" src="js/customer.js"></script>-->
+
 
 	<!-- Firebase Tools for simpler usage -->
-	<script src="https://cdn.jsdelivr.net/gh/winf-hsos/firebase-tools@0.5/src/firebase-tools.js"></script>
+	<script src="https://cdn.jsdelivr.net/gh/winf-hsos/firebase-tools@0.75/src/firebase-tools.js"></script>
 
-
+	<script type="text/javascript" src="js/customer.js"></script>
+	<script type="text/javascript" src="js/slide.js"></script>
 	<script>
 		/* global firebase */
 
@@ -190,50 +190,46 @@
 		var el = imports.querySelector('#navside');
 		document.querySelector("#sidebar").appendChild(el.cloneNode(true));
 
-		/* Replace with your project's information */
-		var config = {
-			projectId: "apetito-meiningerhotel",
-			apiKey: "AIzaSyA1lqle0sqk_UG_LpU7RYU2_vCnzDmgn4M",
-			authDomain: "apetito-meiningerhotel.firebaseapp.com",
-		};
-
-		firebase.initializeApp(config);
-
 
 		/* This function is called when the button is clicked */
 		function createUser() {
 			/* Get the values from the form elements */
 			var name = document.getElementById("inputName").value;
 			var surname = document.getElementById("inputSurname").value;
+			var email = document.getElementById("inputEmail").value;
 			var mobile = document.getElementById("inputMobile").value;
 			var skype = document.getElementById("inputSkype").value;
 			var dialing = document.getElementById("inputDialing").value;
 			var location = document.getElementById("inputLocation").value;
+			var canvasser = document.getElementById("inputCanvasser").checked;
+			var advisor = document.getElementById("inputAdvisor").checked;
+			var head = document.getElementById("inputHead").checked;
 
 
 			console.log(name);
 			console.log(surname);
+			console.log(email);
 			console.log(mobile);
 			console.log(skype);
 			console.log(dialing);
 			console.log(location);
-
-			/*var canvasser = document.getElementById("checkCanvasser").true;
-			var advisor = document.getElementById("checkAdvisor").true;
-			var head = document.getElementById("checkHead").true;*/
+			console.log(canvasser);
+			console.log(advisor);
+			console.log(head);
 
 			/* Create the user object to send to the database */
 			var userObj = {
 				name: name,
 				surname: surname,
+				email: email,
 				mobile: mobile,
 				skype: skype,
 				directDialing: dialing,
-				companyLocation: location
-				/*Canvasser: canvasser,
-				Advisor: advisor,
-				HeadOfDepartment: head,*/
-			};
+				companyLocation: location,
+				canvasser: canvasser,
+				clientAdvisor: advisor,
+				headOfDepartment: head
+			}
 
 			/* Print the user object to the console for debugging */
 			console.dir(userObj);
@@ -246,6 +242,8 @@
 			console.error(error.code + ": " + error.message);
 		}
 
+
+
 		firebasetools.onLoginChanged(loginChanged);
 		/* This function is called when the user clicks
 		 * the sign-up button. */
@@ -253,18 +251,32 @@
 		function loginChanged(user) {
 			if (user) {
 				console.log("User with email >" + user.email + "< is signed in.");
+
+				// Show the Save Settings button
+				document.getElementById("btnCreate").removeAttribute("hidden");
+				document.getElementById("btnRegister").setAttribute("hidden", "true")
+				console.dir(user);
+				if (user.emailVerified == false) {
+					sendVerificationEMail();
+				}
 			}
 			else {
 				console.log("No user signed in.");
+				// Hide the Save Settings button
+				document.getElementById("btnCreate").setAttribute("hidden", "true");
 			}
-		}
 
+			/*	var placeholderProfilePic = document.getElementById("profilePic"); */
+
+		}
+		// This function is called when the user clicks the register button
 		function register() {
 
 			// Get the values from the email and password input fields
 			var email = document.getElementById("inputEmail").value;
 			var password = document.getElementById("inputPassword").value;
 			firebase.auth().createUserWithEmailAndPassword(email, password).catch(handleError);
+
 		}
 
 
@@ -275,21 +287,34 @@
 			var user = firebase.auth().currentUser;
 
 			user.sendEmailVerification().then(function() {
-				console.log("Verification e-Mail has been sent!")
+				console.log("Verification e-Mail has been sent!");
 			}).catch(handleError);
 		}
 
 		/* This is called if something goes wrong when logging in or logging out.
-		 * For example if the user's password is wrong. 
+		 * For example if the user's password is wrong. */
 		function handleError(error) {
-			console.error(error.code + ": " + error.message); 
-		} */
+			console.error(error.code + ": " + error.message);
+		}
+
+		function checkEmailVerified() {
+			// Get the current user
+			var user = firebase.auth().currentUser;
+			// Get the info if user if verified
+			var emailVerified = user.emailVerified;
+			if (emailVerified === false) {
+				document.getElementById("btnVerify").removeAttribute("hidden");
+			}
+
+			else {
+				document.getElementById("welcomeTitle").innerText = "Welcome " + user.email;
+				document.getElementById("welcomeText").innerHTML = "Your account email has been verified!";
+			}
+		}
 
 		// Get the current user
 		var user = firebase.auth().currentUser;
 
-		/* Print the user object to the console for debugging */
-		console.dir(user);
 
 		/*global user*/
 		/*global firebasetools*/
@@ -300,11 +325,17 @@
 			console.error(error.code + ": " + error.message);
 		}
 
+		function upload() {
+			var imageFile = document.getElementById("inputImage").files[0];
+			firebasetools.uploadUserImage(imageFile, uploadFinished);
+		}
 
-		/* global $*/
-		function slideTo(slideNr) {
-			window.location = "index.html";
-			$('.carousel').carousel(slideNr);
+		function uploadFinished(snapshot, downloadURL) {
+			console.log("File uploaded: " + downloadURL);
+			var image = document.getElementById("showImage");
+			image.removeAttribute("hidden");
+			image.setAttribute("src", downloadURL);
+
 		}
 	</script>
 

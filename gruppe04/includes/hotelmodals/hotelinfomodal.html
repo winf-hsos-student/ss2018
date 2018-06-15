@@ -1,0 +1,212 @@
+<div id="infoModal" class="modal fade bd-example-modal-lg container-fluid" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<!--MODAL HEADER!-->
+				<h5 class="modal-topic" id="hotelName"></h5>
+
+				<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">×</span>
+							</button>
+
+			</div>
+			<!--MODAL BODY!-->
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="tabbable" id="tabs-855742">
+
+							<ul class="nav nav-tabs">
+								<li class="nav-item">
+									<a class="nav-link active show" href="#panel-279146" data-toggle="tab">General</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="#panel-624889" data-toggle="tab">Menu</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="#panel-624890" data-toggle="tab">Equipment</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="#panel-624891" data-toggle="tab">Contract</a>
+								</li>
+							</ul>
+
+							<div class="tab-content">
+								<div class="tab-pane active" id="panel-279146">
+									<div class="row">
+										<div class="col-md-4">
+
+											<p>
+												<h2>
+													Adress
+												</h2>
+												<p id="hotelAdress">
+													<p id="hotelRoute">
+													</p>
+
+													<p>Navigate here<span>&nbsp&nbsp <a target="_blank" id="navigateLink" href="#"> <img id="iconroute" src="img/map.svg"></a></p>
+											</p>
+
+										</div>
+										<div class="col-md-4">
+
+											<p>
+												<h2>
+													apetito Contact
+												</h2>
+												<p id="apeContact">
+											</p>
+
+										</div>
+
+										<div class="col-md-4">
+
+											<p>
+												<h2>
+													Last Visit
+												</h2>
+												<p>
+													Person<br>Info<br>Location<br>Phone<br>Mail<br>Next Visit
+												</p>
+											</p>
+
+										</div>
+									</div>
+
+								</div>
+
+								<div class="tab-pane" id="panel-624889">
+									<p>
+										Mention the relevant hotel & date in the file name: hotel_menu_date
+										<div class="custom-file">
+											<input id="inputMenu" type="file" class="custom-file-input">
+											<label class="custom-file-label" for="inputMenu">Choose menu file</label>
+										</div>
+										<!-- When this is clicked, uploadMenu() is called -->
+										<button style="margin-top: 16px;" onclick="uploadMenu()" class="btn btn-danger">Upload</button>
+										<div class="row" style="margin-top: 32px;">
+											<div class="col">
+											<p id="showMenuUrl" hidden></p>
+											</div>
+										</div>
+									</p>
+								</div>
+
+								<div class="tab-pane" id="panel-624890">
+									<p>
+										Mention the relevant hotel & date in the file name: hotel_equipment_date
+										<div class="custom-file">
+											<input id="inputEquip" type="file" class="custom-file-input">
+											<label class="custom-file-label" for="inputEquip">Choose equipment file</label>
+										</div>
+										<!-- When this is clicked, uploadEquipment() is called -->
+										<button style="margin-top: 16px;" onclick="uploadEquipment()" class="btn btn-danger">Upload</button>
+										<div class="row" style="margin-top: 32px;">
+											<div class="col">
+												<p id="showEquipUrl" hidden></p>
+											</div>
+										</div>
+									</p>
+								</div>
+
+								<div class="tab-pane" id="panel-624891">
+									<p>
+										Mention the relevant hotel & date in the file name: city_contract_date
+										<div class="custom-file">
+											<input id="inputContract" type="file" class="custom-file-input">
+											<label class="custom-file-label" for="inputContract">Choose contract file</label>
+										</div>
+										<!-- When this is clicked, uploadContract() is called -->
+										<button style="margin-top: 16px;" onclick="uploadContract()" class="btn btn-danger">Upload</button>
+										<div class="row" style="margin-top: 32px;">
+											<div class="col">
+												<p id="showContractUrl" hidden></p>
+											</div>
+										</div>
+									</p>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--MODAL FOOTER!-->
+			<div class="modal-footer">
+
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">
+								Close
+							</button>
+
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+<!-- Firebase API -->
+<script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
+
+<!-- Firebase Tools for simpler usage -->
+<script src="https://cdn.jsdelivr.net/gh/winf-hsos/firebase-tools@0.75/src/firebase-tools.js"></script>
+
+<script>
+/* global firebasetools */
+/* global user */
+	function uploadMenu() {
+		alert("The upload may needs a while! Press Ok and lean back!")
+		var file = document.getElementById("inputMenu").files[0];
+		// Upload the file to a path called 'documents/menus'
+		firebasetools.uploadFile("documents/menus", file, uploadFinishedMenu);
+	}
+
+	function uploadEquipment() {
+		alert("The upload may needs a while! Press Ok and lean back!")
+		var file = document.getElementById("inputEquip").files[0];
+		// Upload the file to a path called 'documents/equipment'
+		firebasetools.uploadFile("documents/equipment", file, uploadFinishedEquip);
+	}
+
+	function uploadContract() {
+		alert("The upload may needs a while! Press Ok and lean back!")
+		var file = document.getElementById("inputContract").files[0];
+		// Upload the file to a path called 'documents/contracts'
+		firebasetools.uploadFile("documents/contracts", file, uploadFinishedContract);
+	}
+
+	function uploadFinishedMenu(snapshot, downloadURL) {
+		alert("Hey wake up! It was faster than you thought!")
+		console.log("File uploaded: " + downloadURL);
+		console.dir(snapshot.metadata.name);
+		var urlMenuPlaceholder = document.getElementById("showMenuUrl");
+		urlMenuPlaceholder.removeAttribute("hidden");
+		urlMenuPlaceholder.innerHTML = 'File uploaded: <a href="' + downloadURL + '">' + snapshot.metadata.name + '</a>';
+	}
+	
+	function uploadFinishedEquip(snapshot, downloadURL) {
+		
+		alert("Hey wake up! It was faster than you thought!")
+		var urlEquipPlaceholder = document.getElementById("showEquipUrl");
+		urlEquipPlaceholder.removeAttribute("hidden");
+		urlEquipPlaceholder.innerHTML = 'File uploaded: <a href="' + downloadURL + '">' + snapshot.metadata.name + '</a>';
+	}
+	
+	function uploadFinishedContract(snapshot, downloadURL) {
+		
+		alert("Hey wake up! It was faster than you thought!")
+		var urlContractPlaceholder = document.getElementById("showContractUrl");
+		urlContractPlaceholder.removeAttribute("hidden");
+		urlContractPlaceholder.innerHTML = 'File uploaded: <a href="' + downloadURL + '">' + snapshot.metadata.name + '</a>';
+		
+	}
+
+
+</script>
