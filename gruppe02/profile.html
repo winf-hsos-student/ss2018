@@ -23,7 +23,7 @@
 
 </head>
 
-<body id="profileBody">
+<body id="body">
     <div class="container center-text">
         <div class="row align-items-center">
             <div class="col-sm-3"></div>
@@ -34,7 +34,7 @@
                 <!--place for first name -->
                 <div class="form-group">
                     <label for="inputFirstName">Vorname</label>
-                    <input type="text" class="form-control" id="inputFirstName" placeholder="...">
+                    <input type="text" class="form-control" id="inputFirstName">
                 </div>
 
 
@@ -90,6 +90,14 @@
 
                     </div>
                 </div>
+
+            <div>
+                    <!-- There will be information, we already know about the user -->
+                <p id="infoMessage" class="text-left"></p>
+                <p id="userInfo" class="text-left"></p>
+
+            </div>
+
             </div>
             <div class="col-sm-3"></div>
         </div>
@@ -101,12 +109,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
+
+    <!-- Load firebase-tools library -->
+    <script src="https://cdn.jsdelivr.net/gh/winf-hsos/firebase-tools@0.75/src/firebase-tools.js"></script>
 
 
     <script>
-        /* global firebase */
+        /* global firebase firebasetools*/
         /* Replace with your project's information */
         var config = {
             apiKey: "AIzaSyDQI5s1znba5EI5kEJh7vkyVpxFUEayZhE",
@@ -117,12 +127,19 @@
             messagingSenderId: "473037451075",
         };
         firebase.initializeApp(config);
+        // starts function to show information about user
+       
         /* Required code for using firestore */
         {
             var db = firebase.firestore();
             const settings = { timestampsInSnapshots: true };
             db.settings(settings);
         }
+
+        //function to fill forms with information, which was saved before
+        // firebasetools.getUserProfile(userProfileRead);
+        readUsers();
+
         /* This function is called when the button is clicked */
         function createUser() {
             /* Get the values from the form elements */
@@ -145,6 +162,8 @@
             };
             /* Print the user object to the console for debugging */
             console.dir(user);
+            
+            /*update Display*/
 
             /* information of process for user*/
             document.getElementById("InformationTitle").innerText = "Erfolgreich gespeichert!";
@@ -171,6 +190,7 @@
                 //Enable the row, where the error gets displayed
                 document.getElementById("loginErrorRow").removeAttribute("hidden");
 
+
             }
 
             //if no error happens, the following is done
@@ -180,6 +200,68 @@
 
             }
         }
+
+        /*try to fill userdata into formular, could not be tested because firebase says again "error while loading documents" */
+        /*function userProfileRead(profile) {
+            // Get some user data
+            var firstName = profile.firstName;
+
+            document.getElementById("InformationTitle").innerText = "Test";
+            document.getElementById("InformationTitle").removeAttribute("hidden"); 
+            
+            
+        }*/
+
+
+
+        function readUsers() {
+            console.log("Reading users from database.");
+            db.collection("users").get().then(queryUsers);
+        }
+
+        function listUsers(userCollection) {
+            var infoMessage = document.getElementById("infoMessage");
+            var userInfo = document.getElementById("userInfo");
+            /* Clear result list */
+            while (userInfo.firstChild) {
+                userInfo.removeChild(userInfo.firstChild);
+            }
+            /* Set the info message with number matches found */
+            infoMessage.innerHTML = "Found <b>" + userCollection.size + "</b> user(s):";
+            /* Create a new list item <li> for each result */
+            userCollection.forEach(function(doc) {
+                var user = document.createElement("li");
+                user.innerHTML = "Vorname: " + doc.data().firstName + ", Nachname: " + doc.data().lastName + ", Postleitzahl: " + doc.data().zip + ", Rolle: " + doc.data().type + ", newsletter" + doc.data().newsletter;
+                userInfo.appendChild(user);
+            });
+
+
+
+        }
+        /* This is called if something goes wrong. */
+        function handleError(error) {
+            console.error(error.code + ": " + error.message);
+
+        }
+
+        function queryUsers() {
+            
+            
+            
+            //Speichern der eindeutigen UserId des aktuellen Nutzers in der Variable "userId"
+            var userId = firebase.auth().currentUser.uid;
+            //Test, ob Ansatz funktioniert -> funktioniert
+           // var firstName = "Anna";
+            
+            console.log("Querying offers from database with UserId: " + userId);
+            
+            
+            //Beschränken der Userliste nur auf den angemeldeten User
+            db.collection("users").where("userId", "==", userId).get().then(listUsers);
+            
+            //Test, ob Ansatz funktioniert
+           // db.collection("users").where("firstName", "==", firstName).get().then(listUsers);
+            }
     </script>
 
 </body>

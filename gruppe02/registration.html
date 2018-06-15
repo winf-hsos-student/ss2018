@@ -24,7 +24,7 @@
 
 </head>
 
-<body id="loginBody">
+<body id="body">
 
 
     <div class="container text-center">
@@ -43,6 +43,7 @@
         <!-- row email -->
         <div class="row align-items-center" id="loginEmailRow">
             <div class="col-md-12">
+                <br>
                 <label for="inputEmail"><b>E-mail eingeben: </b></label>
                 <input type="email" id="inputEmail" placeholder="..." required>
                 <small id="emailHelp" class="form-text">Bitte gib eine Mail-Adresse ein, mit der du dich registrieren möchtest. <br>Natürlich geben wir Mail-Adressen und andere Nutzerdaten nicht an Dritte weiter.</small>
@@ -51,7 +52,7 @@
         <!--end row email -->
 
         <!-- row password -->
-        <div class="row align-items-center" id= "registrationPasswordRow">
+        <div class="row align-items-center" id="registrationPasswordRow">
             <div class="col-md-12">
                 <label for="inputPassword"><b>Passwort aussuchen:</b></label>
                 <input type="password" placeholder="..." id="inputPassword" required>
@@ -65,10 +66,11 @@
         <div class="row align-items-center">
             <div class="col-md-12">
                 <div class="clearfix">
+                    <br>
                     <a href="index.html"><button id="btnCancel" class="btn btn-outline-danger" type="button" >Abbrechen & zurück zur Startseite</button></a>
 
                     <!-- When this is clicked, register() is called -->
-                    <button id="btnSignIn" onclick="register()" class="btn btn-danger">Los geht`s ... gib mir Stroh!</button>
+                    <button id="btnSignIn" onclick="register()" class="btn btn-danger">Los geht`s...gib mir Stroh!</button>
                     <!--link to profile after sucessfull registration -->
                     <a href="profile.html"><button id="registrationProfil" class="btn btn-outline-danger" type="button" hidden >zum Profil</button></a>
 
@@ -78,14 +80,7 @@
         </div>
         <!--end row buttons -->
 
-        <!--Test Logout- used to test the registration formular. Will be deleted in future, when the whole webpage will be ready -->
-        <div class="row align-items-center">
-            <div class="col-md-12">
-                <!-- When this is clicked, logout() is called -->
-                <button id="btnLogout" onclick="logout()" class="btn btn-danger">Logout</button>
-            </div>
-        </div>
-        <!--Test Logout end -->
+
 
         <!--begin row error (hidden til error happens)-->
         <div class="row align-items-center" id="registrationErrorRow" hidden>
@@ -95,9 +90,9 @@
                 <h2 class="card-text" id="errorText"></h2>
             </div>
         </div>
-        <!--end error box -->
+        <!--end error box 
 
-        <!--begin row box -->
+        begin row box -->
         <div class="row align-items-center" id="registrationBoxRow">
             <div class="col-md-12">
                 <!-- These two will be filled dynamically -->
@@ -118,12 +113,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <!-- Load Firebase native API -->
-    <script src="https://www.gstatic.com/firebasejs/5.0.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.0.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.0.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase-firestore.js"></script>
 
     <!-- Load firebase-tools library -->
-    <script src="https://cdn.jsdelivr.net/gh/winf-hsos/firebase-tools@0.5/src/firebase-tools.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/winf-hsos/firebase-tools@0.65/src/firebase-tools.js"></script>
 
     <script>
         /* global firebase, firebasetools */

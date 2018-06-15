@@ -22,6 +22,15 @@
 	<!-- favicon -->
 	<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
 
+	<style type="text/css">
+		/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+
+		#map {
+			height: 500px;
+		}
+	</style>
+
 </head>
 
 <body id="indexBody">
@@ -41,10 +50,11 @@
 				</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 						<a class="dropdown-item disabled" href="#">Menü</a>
-						<a class="dropdown-item" href="providerSite.html">zur Anbieterseite</a>
-						<a class="dropdown-item" href="demanderSite.html">zur Nachfragerseite</a>
+						<a class="dropdown-item" href="providerSite.html">Strohangebote</a>
 						<a class="dropdown-item" href="special-offering.html">Sonderangebote</a>
-						<a class="dropdown-item" href="logout.html">Abmelden</a>
+						<a class="dropdown-item" href="formular.html" id="indexOfferMenu">Angebot erstellen</a>
+						<a class="dropdown-item" onclick="logout()" id="indexLogoutMenue" hidden>Benutzer abmelden</a>
+
 
 					</div>
 				</div>
@@ -58,16 +68,35 @@
 
 					<!--begin registration, login -->
 					<a href="login.html">
-						<button class="btn btn-outline-danger" type="button"> Login </button>
+						<button class="btn btn-outline-danger" type="button" id="indexLoginButton"> Login </button>
 					</a>
 					<a href="registration.html">
-						<button class="btn btn-outline-danger" type="button"> Registrieren </button>
+						<button class="btn btn-outline-danger" type="button" id="indexRegistrationButton"> Registrieren </button>
+					</a>
+
+
+					<!-- User Filled automaticly -->
+					<a href="profile.html">
+						<img src='#' id="profilePicture" onerror="this.src='img/Default_User_Profile_Image.jpeg'" class="img-circle" alt="Info" data-toggle="modal" data-target="#infoModal">
 					</a>
 					<!--end registration, login -->
 
 				</div>
 			</div>
 		</div>
+		<!--	Logout row -->
+		<div class="row" id="indexLogoutRow">
+			<div class="col text-right">
+				<!-- When this is clicked, logout() is called -->
+				<button id="indexLogoutButton" onclick="logout()" class="btn btn-outline-danger" hidden>Abmelden</button>
+
+
+			</div>
+		</div>
+		<!--end logout row -->
+
+
+
 		<div class="row">
 			<div class="col">
 				<!-- begin logo  -->
@@ -123,120 +152,128 @@
 			</div>
 		</div>
 		<!--end row 1b -->
+		<!--start List -->
+		<div class="row align-items-center">
+			<div class="col-sm-3"></div>
+			<div class="col align-self-center text-center">
+				<h1 class="text-center">Angebote</h1>
+				<hr>
+
+
+
+				<select class="form-control" id="inputType">
+                	<option  selected >Strohart</option>
+                	<option >Haferstroh</option>
+                	<option >Gerstestroh</option>
+                	<option >Weizenstroh</option>
+                	<option >Roggenstroh</option>
+                	<option >Sonstiges</option>
+            	</select>
+				<br>
+				<select class="form-control" id="inputModeOfUse">
+                	<option  selected >Verwendung</option>
+                	<option >Nutztiere (Landwirtschaft)</option>
+                	<option >Kleintiere (Haustiere)</option>
+                	<option >Energie-Rohstoff</option>
+                	<option >Sonstige Verwendung</option>
+            	</select>
+				<br>
+				<select class="form-control" id="inputPrice">
+                	<option value="" selected >Preis Tonne </option>
+                	<option value="1">0 - 10€</option>
+                	<option value="2">10 - 20€</option>
+                	<option value="3">20 - 30€</option>
+                	<option value="4">30 - 40€</option>
+            	</select>
+				<br>
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="" id="inputPoison">
+					<label class="form-check-label" for="inputPoison">
+                	Giftpflanzenfrei
+              		</label>
+				</div>
+
+
+				<h3>Zeige mir die gefilterten Angebote</h3>
+				<!-- When this is clicked, register() is called -->
+				<button class="btn btn-outline-danger" onclick="queryOffers()">Zeige mir meine Angebote</button>
+
+				<hr>
+
+				<hr>
+
+				<!-- This is where the offers will be listed -->
+
+				<p id="infoMessage" class="text-left"></p>
+				<ul id="offerList" class="text-left"></ul>
+
+			</div>
+			<div class="col-sm-3"></div>
+		</div>
+		<!--end list -->
 
 		<!--begin of second row (PLZ, distance, advanced search, update)-->
-		<div class="row">
-			<div class="col-md-2">
 
-				<!--start PLZ placeholder -->
-				<div class="form-group">
-					<input type="text" class="btn btn-outline-danger" id="PLZ" placeholder="PLZ">
+		<div class="row  justify-content-between">
+
+			<!--begin filter box (PLZ, Entfernung, Strohart, Verwendung, Preis)-->
+
+			<div class="col-md-2" id="filterbox">
+				<div id="floating-panel">
+					<input id="address" type="text" value="Straße, PLZ">
+
 				</div>
+				<br>
+				<p class="text-center">
+					<button id="submit" type="button" class="btn btn-outline-danger btn-block">Jetzt finden!</button>
+				</p>
 
-				<!--end PLZ placeholder -->
 
-			</div>
-			<div class="col-md-2">
-
-				<!--begin dropdown distance -->
-				<div class="dropdown">
-					<button class="btn btn-outline-danger dropdown-toggle" type="button" data-toggle="dropdown">
-					Entfernung
-				</button>
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<a class="dropdown-item disabled" href="#">Entfernung</a>
-						<a class="dropdown-item" href="#">10km</a>
-						<a class="dropdown-item" href="#">25km</a>
-						<a class="dropdown-item" href="#">50km</a>
-						<a class="dropdown-item" href="#">25km</a>
-						<a class="dropdown-item" href="#">100km</a>
-					</div>
-				</div>
-
-				<!--end dropdown distance -->
 
 			</div>
-			<div class="col-md-2">
 
-				<!--begin dropdown price -->
-				<div class="dropdown">
-					<button class="btn btn-outline-danger dropdown-toggle" type="button" data-toggle="dropdown">
-					Preis pro Ballen in €
-				</button>
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<a class="dropdown-item disabled" href="#">Preis</a>
-						<a class="dropdown-item" href="#"> 0 - 10€</a>
-						<a class="dropdown-item" href="#">10 - 20€</a>
-						<a class="dropdown-item" href="#">20 - 30€</a>
-						<a class="dropdown-item" href="#">30 - 40€</a>
-						<a class="dropdown-item" href="#">40 - 50€</a>
-					</div>
-				</div>
+			<!--begin map-->
 
-				<!-- end dropdown price -->
-
+			<div class="col-md-10">
+				<div id="map"></div>
 			</div>
-			<div class="col-md-2">
 
-				<!--begin dropdown use -->
-				<div class="dropdown">
-					<button class="btn btn-outline-danger dropdown-toggle" type="button" data-toggle="dropdown">
-					Verwendung
-				</button>
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<a class="dropdown-item disabled" href="#">Verwendung</a>
-						<a class="dropdown-item" href="#">Pferde</a>
-						<a class="dropdown-item" href="#">Energie</a>
-						<a class="dropdown-item" href="#">Futter</a>
-						<a class="dropdown-item" href="#">Kleintiere</a>
-					</div>
-				</div>
+			<!--end map-->
 
-				<!-- end dropdown use -->
-
-			</div>
-			<div class="col-md-2">
-
-				<!--begin button placeholder update -->
-				<button type="button" class="btn btn-outline-danger">aktualisieren</button>
-
-				<!-- end button placeholder update  -->
-			</div>
 		</div>
+
+		<!--end filter box (PLZ, Entfernung, Strohart, Verwendung, Preis)-->
+
 		<!--end of the second row -->
 
-		<!--begin of the third row (map) -->
+
+		<!--begin third row (impressum, contact) -->
 		<div class="row">
-			<div class="col-md-12">
-
-				<iframe width="100%" height="500" frameborder="0" scrolling="no" marginheight="0" marginwidth="15" src="https://www.openstreetmap.org/export/embed.html?bbox=7.4570,51.9290,9.7888,52.5463" style="border: 0px solid black"></iframe><br/><small></small>
-			</div>
-		</div>
-
-		<!--end of the third row (map)-->
-
-
-		<!--begin fourth row (impressum, contact) -->
-		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-1">
 
 				<ul class="nav">
 					<li class="nav-item">
 						<a class="btn btn-outline-danger" href="impressum.html">Impressum</a>
 					</li>
+				</ul>
+			</div>
+
+			<div class="col-md-1">
+
+				<ul class="nav">
 					<li class="nav-item">
 						<a class="btn btn-outline-danger" href="contact.html">Kontakt</a>
 					</li>
-
-
-
-
 				</ul>
 			</div>
 		</div>
-		<!--end fourth row (impressum, contact) -->
+		<!--end third row (impressum, contact) -->
+		<div class="col text-center">
+			<h6>
+				... From Osnabrück with &#9825 ... DIE STROHMÄNNER ...
+			</h6>
+		</div>
 	</div>
-
 
 	<!-- End HTML-->
 
@@ -247,7 +284,357 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 	<!-- Your inline custom Javascript -->
+
+
+
+
+
+	<!-- Load Firebase native API -->
+	<script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
+
+
+	<!-- Load firebase-tools library -->
+	<script src="https://cdn.jsdelivr.net/gh/winf-hsos/firebase-tools@0.70/src/firebase-tools.js"></script>
+
+	<!-- google maps api -->
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBV2GhsF_dwsNHQSz03S0GDNFbUl-znLis&callback=initMap"></script>
+
+
 	<script>
+		//Definition Firebase Variable
+		/*global firebase firebasetools google */
+
+		var config = {
+			apiKey: "AIzaSyDQI5s1znba5EI5kEJh7vkyVpxFUEayZhE",
+			authDomain: "strohmaenner.firebaseapp.com",
+			databaseURL: "https://strohmaenner.firebaseio.com",
+			projectId: "strohmaenner",
+			storageBucket: "strohmaenner.appspot.com",
+			messagingSenderId: "473037451075"
+		};
+		firebasetools.initialize(config);
+		/* This change listener calls the loginChanged() function 
+		 * whenever a user logs in or out */
+		firebase.auth().onAuthStateChanged(loginChanged);
+		/* Required code for using firestore */
+		{
+			var db = firebase.firestore();
+			const settings = { timestampsInSnapshots: true };
+			db.settings(settings);
+		}
+
+
+		//Logout function
+		function logout() {
+			firebase.auth().signOut().then(function() {
+				console.log("User successfully signed out.");
+			}).catch(handleError);
+		}
+
+
+		/* Different view, if user is logged in */
+		function loginChanged(user) {
+			// If the user variable is set, a user is logged in
+			if (user) {
+				//Disable login Button
+				document.getElementById("indexLoginButton").setAttribute("hidden", true);
+				//Disable registration button
+				document.getElementById("indexRegistrationButton").setAttribute("hidden", true);
+				//Enable logout button
+				document.getElementById("indexLogoutButton").removeAttribute("hidden");
+
+				//Enable userinfo
+				document.getElementById("profilePicture").removeAttribute("hidden");
+
+				//Show logout button in menue
+				document.getElementById("indexLogoutMenue").removeAttribute("hidden");
+
+				// Getting Facebook-UserPicture if User logged in with Facebook-Social
+				document.getElementById("profilePicture").setAttribute("src", user.providerData[0].photoURL);
+				
+				//Enable offer making in menu
+				document.getElementById("indexOfferMenu").removeAttribute("hidden");
+
+
+			}
+			// No user logged in
+			else {
+				// Enable the login button
+				document.getElementById("indexLoginButton").removeAttribute("hidden");
+				//Enable registration button
+				document.getElementById("indexRegistrationButton").removeAttribute("hidden");
+				//Hide logout button
+				document.getElementById("indexLogoutButton").setAttribute("hidden", true);
+				//Hide user image
+				document.getElementById("profilePicture").setAttribute("hidden", true);
+				//hide logout button in menue, when user is not logged in
+				document.getElementById("indexLogoutButton").setAttribute("hidden", true);
+				//Disable offer making in menu
+				document.getElementById("indexOfferMenu").setAttribute("hidden", true);
+
+			}
+		}
+
+		//start map
+		function initMap() {
+			var map = new google.maps.Map(document.getElementById('map'), {
+				zoom: 8,
+				center: { lat: 52.27264, lng: 8.0498 }
+
+			});
+			var geocoder = new google.maps.Geocoder();
+
+			document.getElementById('submit').addEventListener('click', function() {
+				geocodeAddress(geocoder, map);
+			});
+		}
+
+		function geocodeAddress(geocoder, resultsMap) {
+			var address = document.getElementById('address').value;
+			geocoder.geocode({ 'address': address }, function(results, status) {
+				if (status === 'OK') {
+					resultsMap.setCenter(results[0].geometry.location);
+					var marker = new google.maps.Marker({
+						map: resultsMap,
+						position: results[0].geometry.location
+					});
+				}
+				else {
+					alert('Geocode was not successful for the following reason: ' + status);
+				}
+			});
+		}
+
+		//end map
+
+		//start list
+		function readOffers() {
+			console.log("Reading offers from database.");
+			db.collection("offers").get().then(listOffers);
+		}
+
+		function listOffers(offerCollection) {
+			console.dir(offerCollection);
+
+			var infoMessage = document.getElementById("infoMessage");
+			var offerList = document.getElementById("offerList");
+			/* Clear result list */
+			while (offerList.firstChild) {
+				offerList.removeChild(offerList.firstChild);
+			}
+			/* Set the info message with number matches found */
+			infoMessage.innerHTML = "Found <b>" + offerCollection.size + "</b> offer(s):";
+			/* Create a new list item <li> for each result */
+			offerCollection.forEach(function(doc) {
+				var offer = document.createElement("li");
+				offer.innerHTML = "Art: " + doc.data().type + ", Verwendungszweck: " + doc.data().modeOfUse + ", Preis: " + doc.data().price + ", Giftfrei: " + doc.data().poisonfree + ", Adresse: " + doc.data().street + ", " + doc.data().PLZ;
+				offerList.appendChild(offer);
+			});
+		}
+		/* This is called if something goes wrong. */
+		function handleError(error) {
+			console.error(error.code + ": " + error.message);
+		}
+
+		function queryOffers() {
+			var type = document.getElementById("inputType").value;
+			var price = document.getElementById("inputPrice").value;
+
+			console.log("Querying offers from database with type: " + type);
+
+			var priceSpanValue = document.getElementById("inputPrice").value;
+			var maxPrice, minPrice;
+			var modeOfUse = document.getElementById("inputModeOfUse").value;
+			var poison = document.getElementById("inputPoison").checked;
+
+
+			if (priceSpanValue == 1) {
+				minPrice = 0;
+				maxPrice = 10;
+			}
+			else if (priceSpanValue == 2) {
+				minPrice = 10;
+				maxPrice = 20;
+			}
+			else if (priceSpanValue == 3) {
+				minPrice = 20;
+				maxPrice = 30;
+			}
+			else if (priceSpanValue == 4) {
+				minPrice = 30;
+				maxPrice = 40;
+			}
+
+
+			console.log("Price: " + price);
+			console.log("Type: " + type);
+			console.log("Mode of Use: " + modeOfUse);
+			console.log("Poison: " + poison);
+
+			if (type !== "Strohart" && price !== "" && modeOfUse == "Verwendung" && poison == false) {
+
+				console.log("price and type");
+
+				// Price und Type als Kriterium
+				db.collection("offers")
+					.where("type", "==", type)
+					.where("price", "<=", maxPrice)
+					.where("price", ">", minPrice)
+					.get().then(listOffers);
+
+			}
+			else if (type == "Strohart" && price !== "" && modeOfUse !== "Verwendung" && poison == false) {
+				// Price &  modeOfUse
+				db.collection("offers")
+					.where("price", "<=", maxPrice)
+					.where("price", ">", minPrice)
+					.where("modeOfUse", "==", modeOfUse)
+					.get().then(listOffers);
+
+			}
+
+			else if (type !== "Strohart" && price == "" && modeOfUse == "Verwendung" && poison !== false) {
+				// Poison &  type
+				db.collection("offers")
+					.where("type", "==", type)
+					.where("poison", "==", poison)
+					.get().then(listOffers);
+
+			}
+
+			else if (type == "Strohart" && price == "" && modeOfUse !== "Verwendung" && poison !== false) {
+				// Poison &  modeOfUse
+				db.collection("offers")
+					.where("modeOfUse", "==", modeOfUse)
+					.where("poison", "==", poison)
+					.get().then(listOffers);
+
+			}
+			else if (type == "Strohart" && price !== "" && modeOfUse == "Verwendung" && poison == true) {
+				// Poison &  Price
+				db.collection("offers")
+					.where("price", "<=", maxPrice)
+					.where("price", ">", minPrice)
+					.where("poison", "==", poison)
+					.get().then(listOffers);
+
+			}
+
+
+			else if (type !== "Strohart" && price == "" && modeOfUse == "Verwendung" && poison !== false) {
+				// type &  poison
+				db.collection("offers")
+					.where("type", "==", type)
+					.where("poison", "==", poison)
+					.get().then(listOffers);
+
+			}
+			else if (type !== "Strohart" && price == "" && modeOfUse !== "Verwendung" && poison == false) {
+				// type &  modeOfUse
+				db.collection("offers")
+					.where("modeOfUse", "==", modeOfUse)
+					.where("type", "==", type)
+					.get().then(listOffers);
+
+			}
+
+
+			else if (type !== "Strohart" && price == "" && modeOfUse == "Verwendung" && poison == false) {
+				// Nur type als Kriterium
+				db.collection("offers")
+					.where("type", "==", type)
+					.get().then(listOffers);
+
+			}
+			else if (type == "Strohart" && price == "" && modeOfUse !== "Verwendung" && poison == false) {
+				// Nur modeOfUse als Kriterium
+				db.collection("offers")
+					.where("modeOfUse", "==", modeOfUse)
+					.get().then(listOffers);
+
+			}
+
+
+			else if (type == "Strohart" && price !== "" && modeOfUse == "Verwendung" && poison == false) {
+				// Nur price als Kriterium
+				db.collection("offers")
+					.where("price", "<=", maxPrice)
+					.where("price", ">", minPrice)
+					.get().then(listOffers);
+			}
+			else if (type == "Strohart" && price == "" && modeOfUse == "Verwendung" && poison == true) {
+				// Nur poison als Kriterium
+				db.collection("offers")
+					.where("poison", "==", poison)
+					.get().then(listOffers);
+			}
+			else if (type !== "Strohart" && price !== "" && modeOfUse !== "Verwendung" && poison == false) {
+				// type &  modeOfUse & Price
+				db.collection("offers")
+					.where("price", "<=", maxPrice)
+					.where("price", ">", minPrice)
+					.where("type", "==", type)
+					.where("modeOfUse", "==", modeOfUse)
+					.get().then(listOffers);
+
+			}
+			else if (type !== "Strohart" && price == "" && modeOfUse !== "Verwendung" && poison == true) {
+				// type &  modeOfUse & Poison
+				db.collection("offers")
+					.where("type", "==", type)
+					.where("poison", "==", poison)
+					.where("modeOfUse", "==", modeOfUse)
+					.get().then(listOffers);
+
+			}
+			else if (type !== "Strohart" && price !== "" && modeOfUse == "Verwendung" && poison == true) {
+				// type &  poison & Price
+				db.collection("offers")
+					.where("price", "<=", maxPrice)
+					.where("price", ">", minPrice)
+					.where("type", "==", type)
+					.where("poison", "==", poison)
+					.get().then(listOffers);
+
+			}
+			else if (type == "Strohart" && price !== "" && modeOfUse !== "Verwendung" && poison == true) {
+				// modeOfUse &  poison & Price
+				db.collection("offers")
+					.where("price", "<=", maxPrice)
+					.where("price", ">", minPrice)
+					.where("modeOfUse", "==", modeOfUse)
+					.where("poison", "==", poison)
+					.get().then(listOffers);
+
+			}
+			else if (type !== "Strohart" && price !== "" && modeOfUse !== "Verwendung" && poison == true) {
+				// modeOfUse &  poison & Price & type
+				db.collection("offers")
+					.where("price", "<=", maxPrice)
+					.where("price", ">", minPrice)
+					.where("modeOfUse", "==", modeOfUse)
+					.where("poison", "==", poison)
+					.where("type", "==", type)
+					.get().then(listOffers);
+
+			}
+			else if (type == "Strohart" && price == "" && modeOfUse == "Verwendung" && poison == false) {
+				// nothing selected
+				db.collection("offers")
+					.get().then(readOffers);
+
+			}
+		}
+
+		//end list
+
+
+
+
+
+
+
+
 		/* Import the navigation so that we don't have
 		 * to make changes on every site when we add
 		 * something to it. */

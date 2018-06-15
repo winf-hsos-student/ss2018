@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Your navigation -->
+    <link rel="import" href="includes/navigation.html">
+
+    <!-- Your custom styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Your Webpage Title -->
+    <title>Strohmänner | Deine Plattform für Stroh</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+
+</head>
+
+<body id="body">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-8">
+                <h1 class="text-center">Hier kann ein neues Strohangebot eingegeben werden.</h1>
+                <hr>
+
+                <!--start straw type -->
+                <div class="form-group">
+                    <label for="formularStrawType">Strohart:</label>
+                    <select class="form-control" id="formularStrawType">
+                       <option value="" selected disabled>Strohart auswählen</option>
+                       <option>Haferstroh</option>
+                       <option>Gerstenstroh</option>
+                       <option>Roggenstroh</option>
+                       <option>Weizenstroh</option>
+                       <option>sonstige Strohart / Unbekannt / Mischvariante</option>
+                     </select>
+                </div>
+                <!-- end straw type-->
+
+                <!--start straw mode of use -->
+                <div class="form-group">
+                    <label for="formularStrawModeOfUse">Art der Verwendung:</label>
+                    <select class="form-control" id="formularStrawModeOfUse">
+                       <option value="" selected disabled>Verwendung auswählen</option>
+                       <option>Nutztiere (Landwirtschaft)</option>
+                       <option>Kleintiere (Haustiere)</option>
+                       <option>Energie-Rohstoff (NaWaRo)</option>
+                       <option>sonstige Verwendung</option>
+                     </select>
+                </div>
+                <!-- end straw mode of use-->
+                <!--start straw year -->
+                <div class="form-group">
+                    <label for="formularStrawYear">Erntejahr:</label>
+                    <select class="form-control" id="formularStrawYear">
+                       <option value="" selected disabled>Erntejahr auswählen</option>
+                       <option>Produktionsjahr unbekannt</option>
+                       <option>2012</option>
+                       <option>2013</option>
+                       <option>2014</option>
+                       <option>2015</option>
+                       <option>2016</option>
+                       <option>2017</option>
+                       <option>2018</option>
+                     </select>
+                </div>
+                <!-- end straw year-->
+                <hr>
+
+                <!--start straw characteristics-->
+                <div class="form-group">
+                    <label for="formularStrawPoison">Merkmale des Strohs:</label>
+                </div>
+                <!--start poison free -->
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="formularStrawPoison">
+                    <label class="form-check-label" for="formularStrawPoison">Das Stroh ist Giftpflanzenfrei.</label>
+                </div>
+                <!--end poison free -->
+
+                <!--end straw characteristics -->
+                <hr>
+                <!--start price -->
+                <div class="form-group">
+                    <label for="formularPrice">Preis [in €/Tonne] :</label>
+                    <input type="text" class="form-control" id="formularPrice" placeholder="bitte angeben">
+                </div>
+
+                <!--end price -->
+                <hr>
+                <!--start adress -->
+
+                <div class="form-group">
+                    
+                     <label >Ort der Lagerung:</label>
+                    
+                </div>
+
+                <div class="form-group">
+                    <label for="formularStreet">Straße:</label>
+                    <input type="text" class="form-control" id="formularStreet" placeholder="bitte angeben">
+                </div>
+
+                <div class="form-group">
+                    <label for="formularPLZ">PLZ:</label>
+                    <input type="text" class="form-control" id="formularPLZ" placeholder="bitte angeben">
+                </div>
+                <!--end adress -->
+
+
+                <hr>
+                <p id="errorMessage" hidden></p>
+                <p id="InformationTitle" hidden></p>
+
+
+                <!-- When this is clicked, register() is called -->
+                <button id="btnCreateOffer" onclick="createOffer()" class="btn btn-outline-danger">Angebot abschicken</button>
+                <!--back to start page -->
+                 <a href="index.html"><button  class="btn btn-outline-danger" type="button" >Zurück zur Startseite</button></a>
+
+            </div>
+            <br>
+            <div class="col-sm-2"></div>
+        </div>
+    </div>
+    <br>
+    <!-- End of container -->
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/winf-hsos/firebase-tools@0.70/src/firebase-tools.js"></script>
+
+
+    <script>
+        /* global firebase firebasetools */
+
+        console.log(checkPlz("49088"));
+
+
+        var config = {
+            apiKey: "AIzaSyDQI5s1znba5EI5kEJh7vkyVpxFUEayZhE",
+            databaseURL: "https://strohmaenner.firebaseio.com",
+            authDomain: "strohmaenner.firebaseapp.com",
+            projectId: "strohmaenner"
+        };
+
+        firebasetools.initialize(config);
+
+        /* This function is called when the button is clicked */
+        function createOffer() {
+
+            var currentUser = firebasetools.loggedUser();
+
+            if (currentUser == "nobody") {
+                console.error("Only logged in users can create offers!");
+                return;
+            }
+
+            /* Get the values from the form elements */
+            var type = document.getElementById("formularStrawType").value;
+            var modeOfUse = document.getElementById("formularStrawModeOfUse").value;
+            var poisonfree = document.getElementById("formularStrawPoison").checked;
+            var year = document.getElementById("formularStrawYear").checked;
+            var price = document.getElementById("formularPrice").value;
+            var street = document.getElementById("formularStreet").value;
+            var plz = document.getElementById("formularPLZ").value;
+            var year = document.getElementById("formularStrawYear");
+            var userId = currentUser.uid;
+
+
+            if (!checkPlz(plz)) {
+                console.error("Invalid PLZ!");
+                var errorMessage = document.getElementById("errorMessage");
+                errorMessage.innerHTML = "Bitte gültige PLZ eingeben!";
+                errorMessage.removeAttribute("hidden");
+                return;
+            }
+
+            if (isNaN(price.replace(',', '.'))) {
+                console.error("Price is not a number!");
+                var errorMessage = document.getElementById("errorMessage");
+                errorMessage.innerHTML = "Bitte gültigen Preis eingeben!";
+                errorMessage.removeAttribute("hidden");
+                return;
+            }
+
+
+            /* Alle Prüfungen erfolgreich absolviert */
+            var errorMessage = document.getElementById("errorMessage");
+            errorMessage.innerHTML = "";
+            errorMessage.setAttribute("hidden", "");
+
+
+            /* Create the user object to send to the database */
+            var offer = {
+                type: type,
+                modeOfUse: modeOfUse,
+                poisonfree: poisonfree,
+                price: price,
+                street: street,
+                PLZ: plz,
+                UserId: userId
+            };
+
+            /* Print the user object to the console for debugging */
+            console.dir(offer);
+            
+            /*information for user*/
+            document.getElementById("InformationTitle").innerText = "Erfolgreich gespeichert!";
+            document.getElementById("InformationTitle").removeAttribute("hidden");
+
+            firebasetools.addContentItem("offers", offer, offerSaved);
+        }
+
+        function offerSaved() {
+            console.log("Saved offer successfully");
+        }
+
+        function checkPlz(plz) {
+
+            if (plz.length == 5 && !isNaN(plz)) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+
+        /* This is called if something goes wrong. */
+        function handleError(error) {
+            console.error(error.code + ": " + error.message);
+        }
+    </script>
+
+</body>
+
+</html>

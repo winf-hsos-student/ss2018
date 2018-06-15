@@ -9,6 +9,12 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+    <!-- Using FONT AWESOME -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+    <!-- Include Bootstrap Social-Buttons by LIPIS -->
+    <link rel="stylesheet" href="css/bootstrap-social.css">
+
     <!-- Your navigation -->
     <link rel="import" href="includes/navigation.html">
 
@@ -21,9 +27,12 @@
     <!-- favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
 
+    <style>
+    </style>
+
 </head>
 
-<body id="loginBody">
+<body id="body">
     <div class="container text-center">
 
         <div class="row align-items-center">
@@ -41,14 +50,30 @@
                     <input type="password" class="form-control" id="inputPassword" placeholder="...">
                     <small class="form-text text-muted">Bitte trage dein Passwort ein. Dieses solltest du niemals weitergeben.</small>
                 </div>
+                <hr>
+                <!-- In the following two Buttons are for social-login with Facebook & Google -->
+                <h2 class="text-center">Oder bequem mit: </h2>
+
+                <!-- Button for Facebook Login -->
+                <a class="btn btn-block btn-social btn-facebook white" onclick="loginSocialFacebook()"><i class="fab fa-facebook white"></i>Facebook-Konto Anmeldung</a>
                 <br>
+
+                <!-- Button for Login with Google -->
+                <a class="btn btn-block btn-social btn-google white" onclick="loginSocialGoogle()"><i class="fab fa-google white"></i>Google-Konto Anmeldung</a>
+                <br>
+                <hr>
+
+                <!-- Checkbox for "Keep me logged in" ...working comes later -->
                 <div class="checkbox">
                     <label><input type="checkbox"> Ich möchte eingeloggt bleiben. </label>
+                    <br><br>
                 </div>
-                <br>
+
                 <!-- When this is clicked, login() is called -->
                 <button id="btnLogin" onclick="login()" class="btn btn-danger">Anmelden</button>
-                <!--link to profil, if user is logged in visible -->
+                <!--link to startpage -->
+                <a href="index.html"><button class="btn btn-outline-danger" type="button" >zurück zur Startseite </button></a>
+                <!--link to profile, if user is logged in visible -->
                 <a href="profile.html"><button id="loginProfil" class="btn btn-outline-danger" type="button" hidden >zum Profil</button></a>
 
                 <hr>
@@ -67,6 +92,7 @@
                         <!-- These two will be filled dynamically -->
                         <h5 class="card-title" id="welcomeTitle"></h5>
                         <p class="card-text" id="welcomeText"></p>
+                        <img src='#' id="profilePicture" class="img-circle" alt="">
 
                     </div>
                 </div>
@@ -79,11 +105,15 @@
                         <h5 class="card-title" id="errorTitle"></h5>
                         <p class="card-text" id="errorText"></p>
 
+
                     </div>
                 </div>
                 <!-- When this is clicked, logout() is called -->
                 <button id="btnLogout" onclick="logout()" style="margin-top: 16px;" class="btn btn-danger" hidden>Abmelden</button>
+                <br>
+                <br>
             </div>
+
             <div class="col-sm-3"></div>
         </div>
 
@@ -96,12 +126,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <!-- Load Firebase native API -->
-    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.0.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.0.1/firebase-functions.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
+
+
+
 
     <!-- Load firebase-tools library -->
-    <script src="https://cdn.jsdelivr.net/gh/winf-hsos/firebase-tools@0.3/src/firebase-tools.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/winf-hsos/firebase-tools@0.70/src/firebase-tools.js"></script>
 
     <script>
         //Definition Firebase Variable
@@ -111,6 +142,7 @@
             apiKey: "AIzaSyDQI5s1znba5EI5kEJh7vkyVpxFUEayZhE",
             databaseURL: "https://strohmaenner.firebaseio.com",
             authDomain: "strohmaenner.firebaseapp.com",
+            projectId: "strohmaenner"
         };
         firebase.initializeApp(config);
         /* This change listener calls the loginChanged() function 
@@ -126,11 +158,76 @@
              * and pass the email and password */
             firebase.auth().signInWithEmailAndPassword(email, password).catch(handleError);
         }
+
+        /* In the following the Social-Login Function with Facebook is called.
+        Also you see what Information you want to get from Facebook. */
+        function loginSocialFacebook() {
+            var provider = new firebase.auth.FacebookAuthProvider();
+            provider.addScope('email');
+
+            provider.addScope('user_hometown');
+
+            provider.addScope('user_location');
+
+            provider.addScope('public_profile');
+
+
+
+            firebase.auth().signInWithPopup(provider).then(function(result) {
+                // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+                var token = result.credential.accessToken;
+                // The signed-in user info.
+                var user = result.user;
+                console.dir(result);
+                FB.api('/me/likes', { access_token: result.credential.accessToken }, function(response) {
+                    console.log(response);
+                });
+                // ...
+            }).catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // The email of the user's account used.
+                var email = error.email;
+                // The firebase.auth.AuthCredential type that was used.
+                var credential = error.credential;
+                // ...
+            });
+        }
+
+        /* In the following the Social-Login Function with Google-Account is called.*/
+
+        function loginSocialGoogle() {
+            var provider = new firebase.auth.GoogleAuthProvider();
+
+            firebase.auth().signInWithPopup(provider).then(function(result) {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                var token = result.credential.accessToken;
+                // The signed-in user info.
+                var user = result.user;
+                // ...
+            }).catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // The email of the user's account used.
+                var email = error.email;
+                // The firebase.auth.AuthCredential type that was used.
+                var credential = error.credential;
+                // ...
+            });
+        }
+
         /* This function is called when the user clicked the 
          * logout button */
         function logout() {
             firebase.auth().signOut().then(function() {
-                console.log("User successfully signed out.");
+                console.log("Du hast dich erfolgreich ausgeloggt.");
+
+                // Hide Profile-Picture if user is logged out //
+                document.getElementById("profilePicture").setAttribute("hidden", "");
+
+
             }).catch(handleError);
         }
         /* This is the callback function when the user changed.
@@ -139,39 +236,76 @@
         function loginChanged(user) {
             // If the user variable is set, a user is logged in
             if (user) {
+
+                console.dir(user);
+
                 // Disable the login button
                 document.getElementById("btnLogin").setAttribute("hidden", true);
+
                 // Show the logout button
                 document.getElementById("btnLogout").removeAttribute("hidden");
-                console.log("Successfully logged in!");
+
+                // Log-Text in Console (Dev-Mode) //
+                console.log("Du hast dich erfolgreich eingeloggt.");
+
+
                 // Get some user data
                 var email = user.email;
                 var lastLogin = user.metadata.lastSignInTime;
-                document.getElementById("welcomeTitle").innerText = "Herzlich Willkommen " + email;
-                document.getElementById("welcomeText").innerHTML = "Schön das du da bist.<br> Du warst zuletzt am <b>" + lastLogin + "</b> angemeldet";
+
+                // document.getElementById("welcomeTitle").innerText = "Herzlich Willkommen " + email;
+                document.getElementById("welcomeText").innerHTML = "Schön, dass du da bist.<br> Du warst zuletzt am <b>" + lastLogin + "</b> angemeldet";
+
+
+                console.dir("Photo URL: " + user.providerData[0].photoURL);
+                // Getting Facebook-UserPicture if User logged in with Facebook-Social
+                document.getElementById("profilePicture").setAttribute("src", user.providerData[0].photoURL)
+
+                // Show Profile-Picture if user is logged in //
+                document.getElementById("profilePicture").removeAttribute("hidden");
+
+
                 //button to profil is visible, if the user is logged in
                 document.getElementById("loginProfil").removeAttribute("hidden");
+
                 //Welcome Box is enabled
                 document.getElementById("loginBoxRow").removeAttribute("hidden");
+
                 //disable error box
                 document.getElementById("loginErrorRow").setAttribute("hidden", true);
+
+                var userName = user.displayName;
+
+                //Fill user information
+                document.getElementById("welcomeTitle").innerText = "Herzlich wilkommen  " + userName + ".";
+
+
             }
             // No user logged in
             else {
                 // Enable the login button
                 document.getElementById("btnLogin").removeAttribute("hidden");
+
                 // Hide the logout button
                 document.getElementById("btnLogout").setAttribute("hidden", "true");
+
+                // Text if no User is logged in //
                 document.getElementById("welcomeTitle").innerText = "Es ist kein Benutzer eingeloggt";
-                document.getElementById("welcomeText").innerText = "Bitte gebe deine Emailadresse und dein Passwort ein, um dich anzumelden.";
+                document.getElementById("welcomeText").innerText = "Bitte gib deine Emailadresse und dein Passwort ein, um dich anzumelden.";
+
                 //button to profil is not visible, if the user is not logged in
                 document.getElementById("loginProfil").setAttribute("hidden", true);
+
                 //Welcome Box is enabled
                 document.getElementById("loginBoxRow").removeAttribute("hidden");
+
                 //Disable error box
                 document.getElementById("loginErrorRow").setAttribute("hidden", true);
             }
         }
+
+
+
         /* This is called if something goes wrong when logging in or logging out.
          * For example if the user's password is wrong. */
         function handleError(error) {
@@ -199,8 +333,10 @@
                 //Display error on website
                 document.getElementById("errorTitle").innerText = "Das hat leider nicht geklappt!";
                 document.getElementById("errorText").innerText = german_error_text;
+
                 //Enable the row, where the error gets displayed
                 document.getElementById("loginErrorRow").removeAttribute("hidden");
+
                 //Hide welcome box
                 document.getElementById("loginBoxRow").setAttribute("hidden", true);
             }
@@ -212,6 +348,24 @@
                 document.getElementById("loginBoxRow").removeAttribute("hidden");
             }
         }
+
+        /* Let´s call Mark Zuckerberg for initialzing Facebook App  */
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId: '250080625557724',
+                autoLogAppEvents: true,
+                xfbml: true,
+                version: 'v3.0'
+            });
+        };
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
     </script>
 
 </body>
