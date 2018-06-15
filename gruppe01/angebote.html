@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Navigation and Footer -->
+    <link rel="import" id="navigationimport" href="includes/navigation.html">
+    <link rel="import" id="footerimport" href="includes/footer.html">
+
+    <!-- Your custom styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>GülleMarkt24</title>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <div id="navigation"></div>
+
+    <div class="container">
+        <div class="row align-items-center">
+            
+            <div class="col align-self-center text-center">
+                <h3 class="text-center">Aktuelle Anzeigen</h3>
+                <hr>
+
+
+
+                <!-- This is where the ads will be listed -->
+                <p id="infoMessage" class="text-left"></p>
+                <div id="adList" class="text-left"></div>
+
+            </div>
+           
+        </div>
+    </div>
+    <!-- End of container -->
+
+
+    <!-- FOOTER -->
+    <div id="footer"></div>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/winf-hsos/firebase-tools@0.75/src/firebase-tools.js"></script>
+
+    <script src="js/custom.js"></script>
+
+    <script>
+        /* global firebase */
+        var db = firebase.firestore();
+
+
+        readOffers();
+
+        function readOffers() {
+            console.log("Reading offers from database.");
+            db.collection("angebote").get().then(listOffers);
+        }
+
+
+        function listOffers(adCollection) {
+            var infoMessage = document.getElementById("infoMessage");
+            var adList = document.getElementById("adList");
+
+            /* Clear result list */
+
+            while (adList.firstChild) {
+                adList.removeChild(adList.firstChild);
+            }
+
+            /* Set the info message with number matches found */
+
+            infoMessage.innerHTML = "<b>" + adCollection.size + "</b> Angebote gefunden:";
+
+            /* Create a new div for each result */
+
+            adCollection.forEach(function(doc) {
+                var ads = document.createElement("div");
+                ads.setAttribute("id", "showadsfull");
+
+                /* Bild Upload */
+
+                if (doc.data().art == "Schwein" && doc.data(true).bio) {
+                    ads.innerHTML = "<img id='adssmall' src='img/Schwein_Bio.jpg'><br>" + "<br><b>Gülleart:</b> " + doc.data().art + "<br> <b>Unterart:</b> " + doc.data().unterart + "<br> <b>Plz/Ort:</b> " +
+                        doc.data().plz + " " + doc.data().ort + "<br> <b>Preis/m³:</b> " + doc.data().preis + "€";
+                    adList.appendChild(ads);
+
+                }
+                else if (doc.data().art == "Schwein" && doc.data(true).konv) {
+                    ads.innerHTML = "<img id='adssmall' src='img/Schwein_Konventionell.jpg'><br>" + "<br><b>Gülleart:</b> " + doc.data().art + "<br> <b>Unterart:</b> " + doc.data().unterart + "<br> <b>Plz/Ort:</b> " +
+                        doc.data().plz + " " + doc.data().ort + "<br> <b>Preis/m³:</b> " + doc.data().preis + "€";
+                    adList.appendChild(ads);
+                }
+                else if (doc.data().art == "Rind" && doc.data(true).konv) {
+                    ads.innerHTML = "<img id='adssmall' src='img/Rind_Konventionell.jpg'><br>" + "<br><b>Gülleart:</b> " + doc.data().art + "<br> <b>Unterart:</b> " + doc.data().unterart + "<br> <b>Plz/Ort:</b> " +
+                        doc.data().plz + " " + doc.data().ort + "<br> <b>Preis/m³:</b> " + doc.data().preis + "€";
+                    adList.appendChild(ads);
+
+
+                }
+                else if (doc.data().art == "Rind" && doc.data(true).bio) {
+                    ads.innerHTML = "<img id='adssmall' src='img/Rind_Bio.jpg'><br>" + "<br><b>Gülleart:</b> " + doc.data().art + "<br> <b>Unterart:</b> " + doc.data().unterart + "<br> <b>Plz/Ort:</b> " +
+                        doc.data().plz + " " + doc.data().ort + "<br> <b>Preis/m³:</b> " + doc.data().preis + "€";
+                    adList.appendChild(ads);
+
+
+                }
+                else if (doc.data().art == "Geflügel" && doc.data(true).konv) {
+                    ads.innerHTML = "<img id='adssmall' src='img/Huehner_Konventionell.jpg'><br>" + "<br><b>Gülleart:</b> " + doc.data().art + "<br> <b>Unterart:</b> " + doc.data().unterart + "<br> <b>Plz/Ort:</b> " +
+                        doc.data().plz + " " + doc.data().ort + "<br> <b>Preis/m³:</b> " + doc.data().preis + "€";
+                    adList.appendChild(ads);
+
+                }
+                else if (doc.data().art == "Geflügel" && doc.data(true).bio) {
+                    ads.innerHTML = "<img id='adssmall' src='img/Huehner_Bio.jpg'><br>" + "<br><b>Gülleart:</b> " + doc.data().art + "<br> <b>Unterart:</b> " + doc.data().unterart + "<br> <b>Plz/Ort:</b> " +
+                        doc.data().plz + " " + doc.data().ort + "<br> <b>Preis/m³:</b> " + doc.data().preis + "€";
+                    adList.appendChild(ads);
+
+                }
+                else if (doc.data().art == "Biogassubstrat") {
+                    ads.innerHTML = "<img id='adssmall' src='img/Biogas.jpg'><br>" + "<br><b>Gülleart:</b> " + doc.data().art + "<br> <b>Unterart:</b> " + doc.data().unterart + "<br> <b>Plz/Ort:</b> " +
+                        doc.data().plz + " " + doc.data().ort + "<br> <b>Preis/m³:</b> " + doc.data().preis + "€";
+                    adList.appendChild(ads);
+
+                }
+                else if (doc.data().art == "Andere") {
+                    ads.innerHTML = "<img id='adssmall' src='img/Andere.jpg'><br>" + "<br><b>Gülleart:</b> " + doc.data().art + "<br> <b>Unterart:</b> " + doc.data().unterart + "<br> <b>Plz/Ort:</b> " +
+                        doc.data().plz + " " + doc.data().ort + "<br> <b>Preis/m³:</b> " + doc.data().preis + "€";
+                    adList.appendChild(ads);
+
+                }
+
+
+            });
+        }
+
+        /* This is called if something goes wrong. */
+
+        function handleError(error) {
+            console.error(error.code + ": " + error.message);
+        }
+    </script>
+
+</body>
+
+</html>

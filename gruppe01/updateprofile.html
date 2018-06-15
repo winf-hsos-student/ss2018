@@ -30,7 +30,7 @@
         <div class="row align-items-center">
             <div class="col-sm-3"></div>
             <div class="col align-self-center">
-                <h3 class="text-center">Benutzerdaten</h3>
+                <h3 class="text-center">Benutzerdaten ändern</h3>
                 <hr>
 
                 <div class="form-group">
@@ -67,8 +67,8 @@
                 </div>
 
                 <!-- When this is clicked, register() is called -->
-                <button onclick="createUser()" class="btn btn-secondary">Registrierung abschließen</button>
-                <p id="erfolg" style="display:none">Registrierung erfolgreich! Sie werden in Kürze weitergeleitet</p>
+                <button onclick="createUser()" class="btn btn-secondary">Benutzerdaten aktualisieren</button>
+                <p id="erfolg" style="display:none">Ihre Daten wurden erfolgreich aktualisiert! Sie werden in Kürze weitergeleitet</p>
 
                 <hr>
             </div>
@@ -92,13 +92,39 @@
     <script src="js/custom.js"></script>
 
     <script>
-        /* Required code for using firestore */
-        /* {
-             var db = firebase.firestore();
-             const settings = { timestampsInSnapshots: true };
-             db.settings(settings);
-         }*/
-        /* This function is called when the button is clicked */
+        /* global firebasetools */
+
+        /* When the login was detected, read the user profile
+         * and update the input fields with the values from the profile */
+        firebasetools.onLoginChanged((user) => {
+            if (user)
+                firebasetools.getUserProfile(updateInputs);
+        });
+
+
+        /* This function is called when the profile
+         * was read successfully. The profile object is 
+         * passed as a parameter */
+        function updateInputs(profile) {
+
+            // Get the input fields
+            var firstName = document.getElementById("inputFirstName");
+            var lastName = document.getElementById("inputLastName");
+            var zipCode = document.getElementById("inputZIPCode");
+            var city = document.getElementById("inputCity");
+            var customerType = document.getElementById("inputCustomerType");
+            var newsletter = document.getElementById("inputNewsletter");
+
+            // Set the input field values
+            firstName.setAttribute("value", profile.firstName);
+            lastName.setAttribute("value", profile.lastName);
+            zipCode.setAttribute("value", profile.zip);
+            city.setAttribute("value", profile.city);
+            customerType.setAttribute("value", profile.type);
+
+        }
+
+
         function createUser() {
             /* Get the values from the form elements */
             var firstName = document.getElementById("inputFirstName").value;
@@ -107,6 +133,7 @@
             var city = document.getElementById("inputCity").value;
             var customerType = document.getElementById("inputCustomerType").value;
             var newsletter = document.getElementById("inputNewsletter").checked;
+
             /* Create the user object to send to the database */
             var user = {
                 firstName: firstName,
@@ -116,13 +143,14 @@
                 type: customerType,
                 newsletter: newsletter
             }
+
             /* Print the user object to the console for debugging */
             console.dir(user);
-            /* Neues Benutzerprofil erstellen und mit Benutzer verknüpfen */
+            /* Neues Benutzerprofil erstellen oder updaten und mit Benutzer verknüpfen */
             firebasetools.setUserProfile(user);
             var erfolg = document.getElementById("erfolg");
             erfolg.style.display = "block";
-            window.setTimeout(function() {window.location.href = "index.html"}, 5000);
+            window.setTimeout(function() { window.location.href = "index.html" }, 5000);
         }
     </script>
 </body>

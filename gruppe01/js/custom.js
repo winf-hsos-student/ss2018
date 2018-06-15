@@ -14,6 +14,8 @@ var footer = link2.import;
 var el2 = footer.querySelector('#footer');
 document.querySelector("#footer").appendChild(el2.cloneNode(true));
 
+
+
 /* run global firebase */
 var config = {
     projectId: "guellemarkt24",
@@ -21,7 +23,9 @@ var config = {
     databaseURL: "https://guellemarkt24.firebaseio.com",
     authDomain: "guellemarkt24.firebaseapp.com",
 };
-firebase.initializeApp(config);
+
+/*global firebasetools*/
+firebasetools.initialize(config);
 
 /* checking user status and enable/disable login, register, logout btns */
 firebase.auth().onAuthStateChanged(userAbfrage);
@@ -29,12 +33,14 @@ firebase.auth().onAuthStateChanged(userAbfrage);
 function userAbfrage(user) {
     if (user) {
         console.log("User with email >" + user.email + "< is signed in.");
+        document.getElementById("profile_btn").removeAttribute("hidden");
         document.getElementById("logout_btn").removeAttribute("hidden");
         document.getElementById("register_btn").setAttribute("hidden", "true");
         document.getElementById("login_btn").setAttribute("hidden", "true");
     }
     else {
         console.log("No user signed in.");
+        document.getElementById("profile_btn").setAttribute("hidden", "true");
         document.getElementById("logout_btn").setAttribute("hidden", "true");
         document.getElementById("register_btn").removeAttribute("hidden");
         document.getElementById("login_btn").removeAttribute("hidden");

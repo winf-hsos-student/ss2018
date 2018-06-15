@@ -3,277 +3,527 @@
 
 <head>
 
-   <!-- Required meta tags -->
+    <!-- Required meta tags -->
 
-   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-   <!-- Bootstrap CSS -->
+    <!-- Bootstrap CSS -->
 
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-   <link rel="stylesheet" href="assets/owlcarousel/assets/owl.carousel.min.css">
-   <link rel="stylesheet" href="assets/owlcarousel/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/owlcarousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/owlcarousel/assets/owl.theme.default.min.css">
 
-   <!-- Navigation and Footer -->
+    <!-- Navigation and Footer -->
 
-   <link rel="import" id="navigationimport" href="includes/navigation.html">
-   <link rel="import" id="footerimport" href="includes/footer.html">
+    <link rel="import" id="navigationimport" href="includes/navigation.html">
+    <link rel="import" id="footerimport" href="includes/footer.html">
 
-   <!-- Your custom styles -->
+    <!-- Your custom styles -->
 
-   <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        select:disabled {
+            background-color: #c0c0c0 !important;
+            border: #c0c0c0 !important;
+        }
+    </style>
 
-   <title>GülleMarkt24</title>
+    <title>GülleMarkt24</title>
 </head>
 
 <body>
 
-   <!-- Navigation-->
+    <!-- Navigation-->
 
-   <div id="navigation"></div>
+    <div id="navigation"></div>
 
-   <!-- Güllesuche -->
+    <!-- Güllesuche -->
 
-   <div class="hintergrundbild">
-      <div class="suche">
-         <div class="col-md-12">
-            <div class="row">
-               <div class="col-xs-12 col-sm-8 col-md-2">
-                  <div class="dropdown">
-                     <select class="selectpicker">
-                           <option>Feststoff</option>
-                           <option>Flüssig</option>
-                           <option>Separiert</option>
-                        </select>
-                  </div>
-               </div>
-               <div class="col-xs-12 col-sm-8 col-md-2">
-                  <div class="dropdown">
-                     <select class="selectpicker">
-                           <option>Feststoff</option>
-                           <option>Flüssig</option>
-                           <option>Separiert</option>
-                        </select>
-                  </div>
-               </div>
-               <div class="col-xs-12 col-sm-8 col-md-2">
-                  <form class="form-inline form-inline_suche">
-                     <input class="form-control form-control_suche mr-sm-2" type="text" placeholder="PLZ/ORT">
-                  </form>
-               </div>
-               <div class="col-xs-12 col-sm-8 col-md-2">
-                  <div class="dropdown">
-                     <div class="dropdown">
-                        <select class="selectpicker">
-                              <option>Feststoff</option>
-                              <option>Flüssig</option>
-                              <option>Separiert</option>
-                           </select>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-xs-12 col-sm-8 col-md-2">
-                  <form class="form-inline form-inline_suche">
-                     <input class="form-control form-control_suche mr-sm-2" type="text" placeholder="Menge (cm³)">
-                  </form>
-               </div>
-               <div class="col-xs-12 col-sm-8 col-md-2">
-                  <button type="button" class="btn-los btn-secondary-los"><img src="img/lupe2.svg" alt="lupe" id="lupe">Und Los!</button>
-               </div>
+    <div class="hintergrundbild">
+        <div class="suche">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-8 col-md-2">
+                        <div class="dropdown">
+                    <select class="selectpicker" id="inputArt" onchange="artDropdownChanged()">
+                        <option>Auswählen</option>
+                        <option>Schwein</option>
+                        <option>Rind</option>
+                        <option>Geflügel</option>
+                        <option>Biogassubstrat</option>
+                        <option>Andere</option>
+                    </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-8 col-md-2">
+                        <div class="dropdown">
+                    <select class="selectpicker" id="inputUnterart" disabled>
+                        <option>Mastschweine</option>
+                        <option>Sauen</option>
+                        <option>Ferkel</option>
+                        <option>Separiert</option>
+                        <option>Andere</option>
+                    </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-8 col-md-2">
+                        <div class="dropdown">
+                    <select class="selectpicker" id="inputbiokon">
+                        <option>Konventionell</option>
+                        <option>Biologisch</option>
+                        <option>Alle</option>
+                    </select>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xs-12 col-sm-8 col-md-2">
+                        <form class="form-inline form-inline_suche">
+                            <input class="form-control form-control_suche mr-sm-2" id="plz" type="text" placeholder="PLZ/ORT">
+                        </form>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-8 col-md-2">
+                        <form class="form-inline form-inline_suche">
+                            <input class="form-control form-control_suche mr-sm-2" id="menge" type="text" placeholder="Menge (cm³)">
+                        </form>
+                    </div>
+                    
+                    <div class="col-xs-12 col-sm-8 col-md-2">
+                        <button type="button" onclick="queryads()" class="btn-los btn-secondary-los"><img src="img/lupe2.svg" alt="lupe" id="lupe">Und Los!</button>
+                    </div>
+                </div>
             </div>
-         </div>
-      </div>
-   </div>
+        </div>
+    </div>
 
-   <!-- Hauptbereich.. -->
+    <!-- Hauptbereich.. -->
 
-   <div class="container-fluid">
-      <div class="row">
-         <div class="col-md-10">
 
-            <!-- SLIDER ANGEBOTE ANFANG -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10">
 
-            <div class="sliderheading">
-               Aktuelle Angebote<br>
-               <hr>
-            </div>
-            <div class="owl-carousel owl-theme">
-               <div class="item">
-                  <h4>1</h4>
-                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
-               </div>
-               <div class="item">
-                  <h4>2</h4>
-                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
-               </div>
-               <div class="item">
-                  <h4>3</h4>
-                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
-               </div>
-               <div class="item">
-                  <h4>4</h4>
-                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
-               </div>
-               <div class="item">
-                  <h4>5</h4>
-                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
-               </div>
-               <div class="item">
-                  <h4>6</h4>
-                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
-               </div>
-               <div class="item">
-                  <h4>7</h4>
-                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
-               </div>
-               <div class="item">
-                  <h4>8</h4>
-                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
-               </div>
-               <div class="item">
-                  <h4>9</h4>
-                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
-               </div>
-               <div class="item">
-                  <h4>10</h4>
-                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
-               </div>
-               <div class="item">
-                  <h4>11</h4>
-                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
-               </div>
-               <div class="item">
-                  <h4>12</h4>
-                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
-               </div>
-            </div>
 
-            <!-- SLIDER GESUCHE ANFANG -->
+                <!-- Suchergebnis -->
+                
+                <div class="row">
+                    <div class="col">
+                        
+                        <!-- Hier werden die Anzeigen aus der Suche angezeigt-->
+                        
+                        <p id="infoMessage" class="text-left"></p>
 
-            <div class="sliderheading">
-               Aktuelle Gesuche<br>
-               <hr>
-            </div>
-            <div id="gesuche" class="owl-carousel owl-theme">
-               <div class="item">
-                  <h4>1</h4>
-                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
-               </div>
-               <div class="item">
-                  <h4>2</h4>
-                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
-               </div>
-               <div class="item">
-                  <h4>3</h4>
-                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
-               </div>
-               <div class="item">
-                  <h4>4</h4>
-                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
-               </div>
-               <div class="item">
-                  <h4>5</h4>
-                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
-               </div>
-               <div class="item">
-                  <h4>6</h4>
-                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
-               </div>
-               <div class="item">
-                  <h4>7</h4>
-                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
-               </div>
-               <div class="item">
-                  <h4>8</h4>
-                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
-               </div>
-               <div class="item">
-                  <h4>9</h4>
-                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
-               </div>
-               <div class="item">
-                  <h4>10</h4>
-                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
-               </div>
-               <div class="item">
-                  <h4>11</h4>
-                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
-               </div>
-               <div class="item">
-                  <h4>12</h4>
-                  <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
-               </div>
+                        <div id="selectList" class="text-left"></div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+
+
+                        <!-- SLIDER ANGEBOTE ANFANG -->
+
+                        <div class="sliderheading">
+                            Aktuelle Angebote<br>
+                            <hr>
+                        </div>
+
+
+                        <!-- Hier werden die Angebote für den Slider geladen -->
+
+                      
+
+
+                        <div id="adList" class="owl-carousel owl-theme">
+
+
+                        </div>
+
+                        <!-- SLIDER GESUCHE ANFANG -->
+
+                        <div class="sliderheading">
+                            Aktuelle Gesuche<br>
+                            <hr>
+                        </div>
+                        <div id="gesuche" class="owl-carousel owl-theme">
+                            <div class="item">
+                                <h4>1</h4>
+                                <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+                            </div>
+                            <div class="item">
+                                <h4>2</h4>
+                                <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+                            </div>
+                            <div class="item">
+                                <h4>3</h4>
+                                <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+                            </div>
+                            <div class="item">
+                                <h4>4</h4>
+                                <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+                            </div>
+                            <div class="item">
+                                <h4>5</h4>
+                                <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+                            </div>
+                            <div class="item">
+                                <h4>6</h4>
+                                <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+                            </div>
+                            <div class="item">
+                                <h4>7</h4>
+                                <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+                            </div>
+                            <div class="item">
+                                <h4>8</h4>
+                                <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+                            </div>
+                            <div class="item">
+                                <h4>9</h4>
+                                <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+                            </div>
+                            <div class="item">
+                                <h4>10</h4>
+                                <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+                            </div>
+                            <div class="item">
+                                <h4>11</h4>
+                                <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+                            </div>
+                            <div class="item">
+                                <h4>12</h4>
+                                <img class="itembild" alt="guelle" src="img/guelle.jpg"><br> Gülleart: Flüssig<br> Ort: 49074 Osnabrück<br> Preis pro m³: 7€
+                            </div>
+                        </div>
+
+
+
+                        <!-- SLIDER ENDE -->
+
+
+                    </div>
+
+                </div>
+
+                <!-- HAUPTBEREICH ENDE -->
+
             </div>
 
-            <!-- SLIDER ENDE -->
+            <!-- SIDEBAR -->
 
-            <!-- HAUPTBEREICH ENDE -->
-
-         </div>
-
-         <!-- SIDEBAR -->
-
-         <div class="col-md-2">
-            <div class="sidebar">
-               <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-               <!-- Responsive Beitrag -->
-               <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3071593330863809" data-ad-slot="1872166374" data-ad-format="auto"></ins>
-               <script>
-                  (adsbygoogle = window.adsbygoogle || []).push({});
-               </script>
+            <div class="col-md-2">
+                <div class="sidebar">
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- Responsive Beitrag -->
+                    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3071593330863809" data-ad-slot="1872166374" data-ad-format="auto"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                </div>
             </div>
-         </div>
 
-         <!-- SIDEBAR ENDE -->
+            <!-- SIDEBAR ENDE -->
 
-      </div>
-   </div>
+        </div>
+    </div>
 
 
-   <!-- FOOTER -->
+    <!-- FOOTER -->
 
-   <div id="footer"></div>
+    <div id="footer"></div>
 
-   <!-- FOOTER ENDE -->
+    <!-- FOOTER ENDE -->
 
-   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
-   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-   <script src="assets/vendors/jquery.min.js"></script>
-   <script src="assets/owlcarousel/owl.carousel.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!--<script src="assets/vendors/jquery.min.js"></script>-->
+    <script src="assets/owlcarousel/owl.carousel.js"></script>
 
-   <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
-   <script src="https://cdn.jsdelivr.net/gh/winf-hsos/firebase-tools@0.5/src/firebase-tools.js"></script>
-   <script src="js/custom.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/winf-hsos/firebase-tools@0.75/src/firebase-tools.js"></script>
 
-   <!-- Specific Script -->
+    <script src="js/custom.js"></script>
 
-   <!-- Slider JS -->
-   <script>
-      $('.owl-carousel').owlCarousel({
-         loop: true,
-         margin: 10,
-         nav: false,
-         autoplay: 800,
-         responsive: {
-            0: {
-               items: 1,
-               dots: false,
-               autowidth: true,
-               nav: true,
+    <!-- Specific Script -->
 
-            },
-            600: {
-               items: 2
-            },
-            1000: {
-               items: 4
+    <script>
+    
+        /* global firebase */
+        
+        var db = firebase.firestore();
+
+
+        readOffers();
+
+        function readOffers() {
+            console.log("Reading ads from database.");
+            db.collection("angebote").get().then(listads);
+        }
+
+
+        function listads(adCollection) {
+          
+            var adList = document.getElementById("adList");
+
+            /* Clear result list */
+
+            while (adList.firstChild) {
+                adList.removeChild(adList.firstChild);
             }
-         }
-      })
-   </script>
+
+            /* Set the info message with number matches found */
+
+
+
+            /* Create a new div for each result */
+
+            adCollection.forEach(function(doc) {
+                var ads = document.createElement("div");
+                ads.setAttribute("class", "item");
+
+                /* Bild Upload - Hier wird entschieden, welches Bild genommen wird */
+
+                if (doc.data().art == "Schwein" && doc.data(true).bio) {
+                    ads.innerHTML = "<img id='adssmall' src='img/Schwein_Bio.jpg'>" + "<br><b>Gülleart:</b> " + doc.data().art + "<br> <b>Unterart:</b> " + doc.data().unterart + "<br> <b>Plz/Ort:</b> " +
+                        doc.data().plz + " " + doc.data().ort + "<br> <b>Preis/m³:</b> " + doc.data().preis + "€";
+                    adList.appendChild(ads);
+
+                }
+                else if (doc.data().art == "Schwein" && doc.data(true).konv) {
+                    ads.innerHTML = "<img id='adssmall' src='img/Schwein_Konventionell.jpg'>" + "<br><b>Gülleart:</b> " + doc.data().art + "<br> <b>Unterart:</b> " + doc.data().unterart + "<br> <b>Plz/Ort:</b> " +
+                        doc.data().plz + " " + doc.data().ort + "<br> <b>Preis/m³:</b> " + doc.data().preis + "€";
+                    adList.appendChild(ads);
+                }
+                else if (doc.data().art == "Rind" && doc.data(true).konv) {
+                    ads.innerHTML = "<img id='adssmall' src='img/Rind_Konventionell.jpg'>" + "<br><b>Gülleart:</b> " + doc.data().art + "<br> <b>Unterart:</b> " + doc.data().unterart + "<br> <b>Plz/Ort:</b> " +
+                        doc.data().plz + " " + doc.data().ort + "<br> <b>Preis/m³:</b> " + doc.data().preis + "€";
+                    adList.appendChild(ads);
+
+
+                }
+                else if (doc.data().art == "Rind" && doc.data(true).bio) {
+                    ads.innerHTML = "<img id='adssmall' src='img/Rind_Bio.jpg'>" + "<br><b>Gülleart:</b> " + doc.data().art + "<br> <b>Unterart:</b> " + doc.data().unterart + "<br> <b>Plz/Ort:</b> " +
+                        doc.data().plz + " " + doc.data().ort + "<br> <b>Preis/m³:</b> " + doc.data().preis + "€";
+                    adList.appendChild(ads);
+
+
+                }
+                else if (doc.data().art == "Geflügel" && doc.data(true).konv) {
+                    ads.innerHTML = "<img id='adssmall' src='img/Huehner_Konventionell.jpg'>" + "<br><b>Gülleart:</b> " + doc.data().art + "<br> <b>Unterart:</b> " + doc.data().unterart + "<br> <b>Plz/Ort:</b> " +
+                        doc.data().plz + " " + doc.data().ort + "<br> <b>Preis/m³:</b> " + doc.data().preis + "€";
+                    adList.appendChild(ads);
+
+                }
+                else if (doc.data().art == "Geflügel" && doc.data(true).bio) {
+                    ads.innerHTML = "<img id='adssmall' src='img/Huehner_Bio.jpg'>" + "<br><b>Gülleart:</b> " + doc.data().art + "<br> <b>Unterart:</b> " + doc.data().unterart + "<br> <b>Plz/Ort:</b> " +
+                        doc.data().plz + " " + doc.data().ort + "<br> <b>Preis/m³:</b> " + doc.data().preis + "€";
+                    adList.appendChild(ads);
+
+                }
+                else if (doc.data().art == "Biogassubstrat") {
+                    ads.innerHTML = "<img id='adssmall' src='img/Biogas.jpg'>" + "<br><b>Gülleart:</b> " + doc.data().art + "<br> <b>Unterart:</b> " + doc.data().unterart + "<br> <b>Plz/Ort:</b> " +
+                        doc.data().plz + " " + doc.data().ort + "<br> <b>Preis/m³:</b> " + doc.data().preis + "€";
+                    adList.appendChild(ads);
+
+                }
+                else if (doc.data().art == "Andere") {
+                    ads.innerHTML = "<img id='adssmall' src='img/Andere.jpg'>" + "<br><b>Gülleart:</b> " + doc.data().art + "<br> <b>Unterart:</b> " + doc.data().unterart + "<br> <b>Plz/Ort:</b> " +
+                        doc.data().plz + " " + doc.data().ort + "<br> <b>Preis/m³:</b> " + doc.data().preis + "€";
+                    adList.appendChild(ads);
+
+                }
+
+
+            });
+
+            initSlider();
+        }
+
+        /* This is called if something goes wrong. */
+
+        function handleError(error) {
+            console.error(error.code + ": " + error.message);
+        }
+
+
+        /* Slider Eigenschaften */
+        
+        function initSlider() {
+
+            $('.owl-carousel').owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: true,
+                autoplay: 800,
+                responsive: {
+                    0: {
+                        items: 1,
+                        dots: false,
+                        autowidth: true,
+                        nav: true,
+
+                    },
+                    600: {
+                        items: 2
+                    },
+                    1000: {
+                        items: 4
+                    }
+                }
+            });
+
+        }
+
+        // Ende der initSlider()
+
+
+
+        /* Abhängiges Dropdown */
+
+        function artDropdownChanged() {
+            var dropDownValue = document.getElementById("inputArt").value;
+            console.log(dropDownValue);
+
+            var unterArtValues = [];
+
+            if (dropDownValue == "Rind") {
+                unterArtValues = ["Bullen", "Rinder", "Kühe", "Separiert", "Andere"];
+            }
+            else if (dropDownValue == "Geflügel") {
+                unterArtValues = ["Hühnertrockenkot", "Hühnerfrischkot", "Hühnermist", "Putenmist", "Andere"];
+            }
+            else if (dropDownValue == "Schwein") {
+                unterArtValues = ["Mastschweine", "Sauen", "Ferkel", "Separiert", "Andere"];
+            }
+            else if (dropDownValue == "Biogassubstrat") {
+                unterArtValues = ["Gärsubstrat", "Separiert"];
+            }
+            else if (dropDownValue == "Andere") {
+                unterArtValues = ["Andere"];
+            }
+            else if (dropDownValue == "Auswählen") {
+                document.getElementById("inputUnterart").setAttribute("disabled", "");
+                return;
+            }
+
+            console.log(dropDownValue);
+
+            var dropDownMenu = document.getElementById("inputUnterart");
+            updateDropdownValues(unterArtValues, dropDownMenu);
+            dropDownMenu.removeAttribute("disabled");
+        }
+
+        function updateDropdownValues(valueList, dropDownList) {
+
+            /* Clear table */
+            while (dropDownList.firstChild) {
+                dropDownList.removeChild(dropDownList.firstChild);
+            }
+
+            valueList.forEach((item) => {
+                var listItem = document.createElement("option");
+                listItem.innerHTML = item;
+                dropDownList.appendChild(listItem);
+            })
+        }
+
+
+        /* Verarbeitung der Suche */
+
+
+        function queryads() {
+            var art = document.getElementById("inputArt").value;
+            var unterart = document.getElementById("inputUnterart").value;
+            var biokon = document.getElementById("inputbiokon").value;
+            var plz = document.getElementById("plz").value;
+            var menge = document.getElementById("menge").value;
+
+            console.log("Querying offers from database with art: " + art);
+            db.collection("angebote").where("art", "==", art).where("unterart", "==", unterart).where("plz", "==", plz).get().then(selectads);
+        }
+
+        function selectads(adCollection) {
+            var infoMessage = document.getElementById("infoMessage");
+            var selectList = document.getElementById("selectList");
+            /* Clear result list */
+            while (selectList.firstChild) {
+                selectList.removeChild(selectList.firstChild);
+            }
+            /* Set the info message with number matches found */
+
+            infoMessage.innerHTML = "<b>" + adCollection.size + "</b> Inserate wurden zu Ihrer Suchanfrage gefunden:";
+
+            /* Create a new list item <div> for each result */
+
+            adCollection.forEach(function(doc) {
+                var ad = document.createElement("div");
+                ad.setAttribute("id", "showads");
+
+                /* Dieser Teil bestimmt, welches Bild genommen wird */
+
+                if (doc.data().art == "Schwein" && doc.data(true).bio) {
+                    ad.innerHTML = "<img id='adssmall' src='img/Schwein_Bio.jpg'>" + "<br><b>Gülleart:</b> " + doc.data().art + "<br> <b>Unterart:</b> " + doc.data().unterart + "<br> <b>Plz/Ort:</b> " +
+                        doc.data().plz + " " + doc.data().ort + "<br> <b>Preis/m³:</b> " + doc.data().preis + "€";
+                    selectList.appendChild(ad);
+
+                }
+                else if (doc.data().art == "Schwein" && doc.data(true).konv) {
+                    ad.innerHTML = "<img id='adssmall' src='img/Schwein_Konventionell.jpg'>" + "<br><b>Gülleart:</b> " + doc.data().art + "<br> <b>Unterart:</b> " + doc.data().unterart + "<br> <b>Plz/Ort:</b> " +
+                        doc.data().plz + " " + doc.data().ort + "<br> <b>Preis/m³:</b> " + doc.data().preis + "€";
+                    selectList.appendChild(ad);
+                }
+                else if (doc.data().art == "Rind" && doc.data(true).konv) {
+                    ad.innerHTML = "<img id='adssmall' src='img/Rind_Konventionell.jpg'>" + "<br><b>Gülleart:</b> " + doc.data().art + "<br> <b>Unterart:</b> " + doc.data().unterart + "<br> <b>Plz/Ort:</b> " +
+                        doc.data().plz + " " + doc.data().ort + "<br> <b>Preis/m³:</b> " + doc.data().preis + "€";
+                    selectList.appendChild(ad);
+
+
+                }
+                else if (doc.data().art == "Rind" && doc.data(true).bio) {
+                    ad.innerHTML = "<img id='adssmall' src='img/Rind_Bio.jpg'>" + "<br><b>Gülleart:</b> " + doc.data().art + "<br> <b>Unterart:</b> " + doc.data().unterart + "<br> <b>Plz/Ort:</b> " +
+                        doc.data().plz + " " + doc.data().ort + "<br> <b>Preis/m³:</b> " + doc.data().preis + "€";
+                    selectList.appendChild(ad);
+
+
+                }
+                else if (doc.data().art == "Geflügel" && doc.data(true).konv) {
+                    ad.innerHTML = "<img id='adssmall' src='img/Huehner_Konventionell.jpg'>" + "<br><b>Gülleart:</b> " + doc.data().art + "<br> <b>Unterart:</b> " + doc.data().unterart + "<br> <b>Plz/Ort:</b> " +
+                        doc.data().plz + " " + doc.data().ort + "<br> <b>Preis/m³:</b> " + doc.data().preis + "€";
+                    selectList.appendChild(ad);
+
+                }
+                else if (doc.data().art == "Geflügel" && doc.data(true).bio) {
+                    ad.innerHTML = "<img id='adssmall' src='img/Huehner_Bio.jpg'>" + "<br><b>Gülleart:</b> " + doc.data().art + "<br> <b>Unterart:</b> " + doc.data().unterart + "<br> <b>Plz/Ort:</b> " +
+                        doc.data().plz + " " + doc.data().ort + "<br> <b>Preis/m³:</b> " + doc.data().preis + "€";
+                    selectList.appendChild(ad);
+
+                }
+                else if (doc.data().art == "Biogassubstrat") {
+                    ad.innerHTML = "<img id='adssmall' src='img/Biogas.jpg'>" + "<br><b>Gülleart:</b> " + doc.data().art + "<br> <b>Unterart:</b> " + doc.data().unterart + "<br> <b>Plz/Ort:</b> " +
+                        doc.data().plz + " " + doc.data().ort + "<br> <b>Preis/m³:</b> " + doc.data().preis + "€";
+                    selectList.appendChild(ad);
+
+                }
+                else if (doc.data().art == "Andere") {
+                    ad.innerHTML = "<img id='adssmall' src='img/Andere.jpg'>" + "<br><b>Gülleart:</b> " + doc.data().art + "<br> <b>Unterart:</b> " + doc.data().unterart + "<br> <b>Plz/Ort:</b> " +
+                        doc.data().plz + " " + doc.data().ort + "<br> <b>Preis/m³:</b> " + doc.data().preis + "€";
+                    selectList.appendChild(ad);
+
+                }
+
+
+
+            });
+        }
+    </script>
+
+
+
+
 </body>
 
 </html>

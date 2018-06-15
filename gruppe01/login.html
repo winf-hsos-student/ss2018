@@ -86,15 +86,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
-
-    <script src="js/custom.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/winf-hsos/firebase-tools@0.75/src/firebase-tools.js"></script>
     
+    <script src="js/custom.js"></script>
+
     <!-- Specific Script -->
     <script>
         firebase.auth().onAuthStateChanged(loginChanged);
 
-/* login function */
+        /* login function */
         function login() {
             // Get the values from the email and password input fields
             var email = document.getElementById("inputEmail").value;
@@ -111,33 +112,33 @@
             document.getElementById("errorText").innerText = error.message;
         }
 
-       /* This is the callback function when the user changed.
-     * Either because a new user logged in, or the current user
-     * signed out. */
-    function loginChanged(user) {
-        // If the user variable is set, a user is logged in
-        if (user) {
-            // Disable the login button
-            document.getElementById("btnLogin").setAttribute("disabled", true);
-            // Show the logout button
-            document.getElementById("btnLogout").removeAttribute("hidden");
-            console.log("Successfully logged in!");
-            // Get some user data
-            var email = user.email;
-            var lastLogin = user.metadata.lastSignInTime;
-            document.getElementById("welcomeTitle").innerText = "Herzlich Willkommen " + email;
-            document.getElementById("welcomeText").innerHTML = "Schön, dass Sie wieder Gülle brauchen.<br> Ihr letzter Besuch: <b>" + lastLogin + "</b>";
+        /* This is the callback function when the user changed.
+         * Either because a new user logged in, or the current user
+         * signed out. */
+        function loginChanged(user) {
+            // If the user variable is set, a user is logged in
+            if (user) {
+                // Disable the login button
+                document.getElementById("btnLogin").setAttribute("disabled", true);
+                // Show the logout button
+                document.getElementById("btnLogout").removeAttribute("hidden");
+                console.log("Successfully logged in!");
+                // Get some user data
+                var email = user.email;
+                var lastLogin = user.metadata.lastSignInTime;
+                document.getElementById("welcomeTitle").innerText = "Herzlich Willkommen " + email;
+                document.getElementById("welcomeText").innerHTML = "Schön, dass Sie wieder Gülle brauchen.<br> Ihr letzter Besuch: <b>" + lastLogin + "</b>";
+            }
+            // No user logged in
+            else {
+                // Enable the login button
+                document.getElementById("btnLogin").removeAttribute("disabled");
+                // Hide the logout button
+                document.getElementById("btnLogout").setAttribute("hidden", "true");
+                document.getElementById("welcomeTitle").innerText = "Kein Benutzer angemeldet";
+                document.getElementById("welcomeText").innerText = "Für die Anmeldung bitte E-Mail und Passwort eingeben."
+            }
         }
-        // No user logged in
-        else {
-            // Enable the login button
-            document.getElementById("btnLogin").removeAttribute("disabled");
-            // Hide the logout button
-            document.getElementById("btnLogout").setAttribute("hidden", "true");
-            document.getElementById("welcomeTitle").innerText = "Kein Benutzer angemeldet";
-            document.getElementById("welcomeText").innerText = "Für die Anmeldung bitte E-Mail und Passwort eingeben."
-        }
-    }
     </script>
 
 </body>

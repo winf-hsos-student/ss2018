@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Navigation and Footer -->
+    <link rel="import" id="navigationimport" href="includes/navigation.html">
+    <link rel="import" id="footerimport" href="includes/footer.html">
+
+    <!-- Your custom styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>GülleMarkt24</title>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <div id="navigation"></div>
+
+    <div class="container">
+        <div class="row justify-content-center text-center mt-5">
+            <h1>Angebot erstellen</h1>
+        </div>
+        <div class="row justify-content-center mt-5" id="noUserInterface" hidden>
+            <div class="col-lg-8 text-center">
+                <p style="color:red">Kein Nutzer angemeldet! Melden Sie sich an, um ein Angebot zu erstellen.</p>
+            </div>
+            <div class="col-md-8 text-center mt-3">
+                <button class="btn nav-but" id="register_btn">
+                  <a class="search-link search-link-inactive" href="/register.html">Registrieren</a>
+                </button>
+                <button class="btn nav-but" id="login_btn">
+                  <a class="search-link search-link-inactive" href="/login.html">Login</a>
+                </button>
+            </div>
+        </div>
+        <div class="row justify-content-center" style="margin-top: 32px;" id="userInterface">
+
+            <div class="col-md-8 align-self-center">
+                <h5>Gülle</h5>
+                <div class="form-group">
+                    <label for="inputArt">Art:</label>
+                    <select class="form-control" id="inputArt" onchange="artDropdownChanged()">
+                        <option>Auswählen</option>
+                        <option>Schwein</option>
+                        <option>Rind</option>
+                        <option>Geflügel</option>
+                        <option>Biogassubstrat</option>
+                        <option>Andere</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="inputUnterart">Unterart:</label>
+                    <select class="form-control" id="inputUnterart" disabled>
+                        <option>Mastschweine</option>
+                        <option>Sauen</option>
+                        <option>Ferkel</option>
+                        <option>Separiert</option>
+                        <option>Andere</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <label>Erzeugung:</label>
+                    </div>
+                    <div class="col-8">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inputKonventionell" value="option1">
+                            <label class="form-check-label" for="inputKonventionell">Konventionell</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inputBiologisch" value="option2">
+                            <label class="form-check-label" for="inputBiologisch">Biologisch</label>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="inputMenge">Menge in m²:</label>
+                    <input type="email" class="form-control" id="inputMenge" aria-describedby="emailHelp" placeholder="Menge eingeben">
+                </div>
+                <hr>
+                <h5>Ortsangaben</h5>
+                <div class="form-group">
+                    <label for="inputEmail">Email</label>
+                    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Email eingeben">
+                </div>
+                <div class="form-group">
+                    <label for="inputTelefon">Telefon</label>
+                    <input type="email" class="form-control" id="inputTelefon" aria-describedby="emailHelp" placeholder="Nummer eingeben">
+                </div>
+                <div class="form-group">
+                    <label for="inputPlz">PLZ:</label>
+                    <input type="email" class="form-control" id="inputPlz" aria-describedby="emailHelp" placeholder="PLZ eingeben">
+                </div>
+                <div class="form-group">
+                    <label for="inputOrt">Ort:</label>
+                    <input type="email" class="form-control" id="inputOrt" aria-describedby="emailHelp" placeholder="Ort eingeben">
+                </div>
+                <hr>
+                <h5>Konditionen</h5>
+                <div class="form-group">
+                    <label for="inputPreis">Preis je m²:</label>
+                    <input type="email" class="form-control" id="inputPreis" aria-describedby="emailHelp" placeholder="Preis eingeben">
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <label>Sonstige Konditionen:</label>
+                    </div>
+                    <div class="col">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="inputLieferungM">
+                            <label class="form-check-label" for="inputLieferungM">Lieferung möglich</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="inputAusbrM">
+                            <label class="form-check-label" for="inputAusbrM">Ausbringung möglich</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="inputLieferungK">
+                            <label class="form-check-label" for="inputLieferungK">Kostenlose Lieferung</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="inputAusbrK">
+                            <label class="form-check-label" for="inputAusbrK">Kostenlose Ausbringung</label>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+                <!-- When this is clicked, updateView() is called -->
+                <div class="mt-3">
+                    <button onclick="insertOffer()" class="btn btn-secondary" style="width: auto">Angebot erstellen</button>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center text-center mt-5" id="angebotErstellt" hidden>
+            <div class="col-8">
+                <p style="color: red">Ihr Angebot wurde erstellt. Vielen Dank, dass Sie Güllemarkt24 nutzen und unterstützen!</p>
+            </div>
+            <div class="col-8">
+                <button class="btn nav-but" id="homeBtn">
+                  <a class="search-link search-link-inactive" href="/index.html">Zurück zur Startseite</a>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- FOOTER -->
+    <div id="footer"></div>
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/winf-hsos/firebase-tools@0.75/src/firebase-tools.js"></script>
+
+    <script src="js/custom.js"></script>
+
+
+    <script>
+        //Check user
+        firebase.auth().onAuthStateChanged(checkUser);
+
+        function artDropdownChanged() {
+            var dropDownValue = document.getElementById("inputArt").value;
+            console.log(dropDownValue);
+
+            var unterArtValues = [];
+
+            if (dropDownValue == "Rind") {
+                unterArtValues = ["Bullen", "Rinder", "Kühe", "Separiert", "Andere"];
+            }
+            else if (dropDownValue == "Geflügel") {
+                unterArtValues = ["Hühnertrockenkot", "Hühnerfrischkot", "Hühnermist", "Putenmist", "Andere"];
+            }
+            else if (dropDownValue == "Schwein") {
+                unterArtValues = ["Mastschweine", "Sauen", "Ferkel", "Separiert", "Andere"];
+            }
+            else if (dropDownValue == "Biogassubstrat") {
+                unterArtValues = ["Gärsubstrat", "Separiert"];
+            }
+            else if (dropDownValue == "Andere") {
+                unterArtValues = ["Andere"];
+            }
+
+            var dropDownMenu = document.getElementById("inputUnterart");
+            updateDropdownValues(unterArtValues, dropDownMenu);
+            dropDownMenu.removeAttribute("disabled");
+        }
+
+        function updateDropdownValues(valueList, dropDownList) {
+
+            /* Clear table */
+            while (dropDownList.firstChild) {
+                dropDownList.removeChild(dropDownList.firstChild);
+            }
+
+            valueList.forEach((item) => {
+                var listItem = document.createElement("option");
+                listItem.innerHTML = item;
+                dropDownList.appendChild(listItem);
+            })
+        }
+
+
+
+
+        function checkUser(user) {
+            if (user) {
+                console.log("User signed in");
+                document.getElementById("userInterface").removeAttribute("hidden");
+                document.getElementById("noUserInterface").setAttribute("hidden", "true");
+            }
+            else {
+                console.log("No User signed in");
+                document.getElementById("noUserInterface").removeAttribute("hidden");
+                document.getElementById("userInterface").setAttribute("hidden", "true");
+            }
+        }
+
+        function insertOffer() {
+            // Initialize Cloud Firestore through Firebase
+            var db = firebase.firestore();
+            //Set collection name
+            var collectionName = "angebote";
+            //Get input fields
+            var art = document.getElementById("inputArt").value;
+            var unterart = document.getElementById("inputUnterart").value;
+            var konventionell = document.getElementById("inputKonventionell").checked;
+            var bio = document.getElementById("inputBiologisch").checked;
+            var menge = document.getElementById("inputMenge").value;
+            var tel = document.getElementById("inputTelefon").value;
+            var plz = document.getElementById("inputPlz").value;
+            var ort = document.getElementById("inputOrt").value;
+            var preis = document.getElementById("inputPreis").value;
+            var liefm = document.getElementById("inputLieferungM").checked;
+            var ausbrm = document.getElementById("inputAusbrM").checked;
+            var liefk = document.getElementById("inputLieferungK").checked;
+            var ausbrk = document.getElementById("inputAusbrK").checked;
+
+            //Get user ID
+            var user = firebase.auth().currentUser;
+            var uid;
+            if (user != null) {
+                uid = user.uid;
+            }
+
+            //Get fields in Console
+            console.log(uid);
+            console.log(art);
+            console.log(konventionell);
+            console.log(bio);
+            console.log(menge);
+            console.log(tel);
+            console.log(plz);
+            console.log(ort);
+            console.log(preis);
+            console.log(liefm);
+            console.log(ausbrm);
+            console.log(liefk);
+            console.log(ausbrk);
+
+            //insert in Database
+            db.collection(collectionName).add({
+                    uid: uid,
+                    art: art,
+                    unterart: unterart,
+                    konv: konventionell,
+                    bio: bio,
+                    menge: menge,
+                    tel: tel,
+                    plz: plz,
+                    ort: ort,
+                    preis: preis,
+                    liefMöglich: liefm,
+                    ausbrMöglich: ausbrm,
+                    liefKostenl: liefk,
+                    ausbrKostenl: ausbrk
+                })
+                .then(function(docRef) {
+                    console.log("Document written with ID: ", docRef.id);
+                })
+                .catch(function(error) {
+                    console.error("Error adding document: ", error);
+                })
+                .then(function() {
+                    document.getElementById("userInterface").setAttribute("hidden", "true");
+                    document.getElementById("angebotErstellt").removeAttribute("hidden");
+                });
+        }
+
+        function showPathname() {
+            var path = window.location.pathname;
+            console.log(path);
+        }
+    </script>
+
+</body>
+
+</html>
